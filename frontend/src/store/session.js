@@ -13,6 +13,15 @@ const logOut = () => ({
   type: LOGOUT
 })
 
+
+export const restoreUser = () => async dispatch => {
+  const response = await csrfFetch('/api/session');
+  const data = await response.json();
+  console.log(data.user, "!!!!")
+  dispatch(loginUser(data.user));
+  return response;
+};
+
 export const login = (user) => async (dispatch) =>{
 const {credential, password} = user;
 try{
@@ -22,7 +31,7 @@ try{
   })
   if (response.ok){
     const user = await response.json();
-    dispatch(loginUser(user));
+    dispatch(loginUser(user.user));
     return user;
   }
 }catch(e){
@@ -37,7 +46,7 @@ const initialState = { user: null };
 const sessionReducer = (state = initialState, action) => {
   switch (action.type){
     case LOGIN:
-      if (action.payload.user)  return {...state, user: action.payload};
+     return {...state, user: action.payload};
     case LOGOUT:
       return {...state, user: null};
 
