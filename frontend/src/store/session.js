@@ -15,6 +15,7 @@ const logOut = () => ({
 
 export const login = (user) => async (dispatch) =>{
 const {credential, password} = user;
+try{
   const response = await csrfFetch('/api/session', {
     method: 'POST',
     body: JSON.stringify({credential, password})
@@ -23,6 +24,11 @@ const {credential, password} = user;
     const user = await response.json();
     dispatch(loginUser(user));
     return user;
+  }
+}catch(e){
+  const err = await e.json()
+    return err.errors[0];
+
   }
 }
 

@@ -1,28 +1,43 @@
 import {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import './LoginForm.css';
 import { login } from '../../store/session';
+
 
 
   const LoginForm = ({setShowLogin}) => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginErrors, setLoginErrors] = useState('');
   const dispatch = useDispatch();
-
+  const sessionUser = useSelector(state => state.session.user);
   const updateEmail = e => setEmail(e.target.value);
   const updatePassword = e => setPassword(e.target.value)
-  const handleClose = e => {e.preventDefault(); setShowLogin(false)}
+  const handleClose = e => {e.preventDefault(); setShowLogin(false)};
+
+   useEffect(() => {
+      setLoginErrors("");
+
+  }, [userName, email]);
+
   const handleSubmit = async(e) => {
     e.preventDefault();
     let payload = {};
      payload['credential'] = userName;
      payload['password'] = password;
-    console.log(payload);
+    // console.log(payload);
     const user = await dispatch(login(payload));
-    if (user){
+    console.log(user)
+    if (typeof user === 'object'){
       setShowLogin(false);
+      <Redirect to="/" />
+    }else {
+      console.log("made it")
+      setLoginErrors(user);
     }
-    setShowLogin(false)
+
   }
 
   return (
@@ -31,6 +46,7 @@ import { login } from '../../store/session';
       <div className='form-title'>
         <h2>Log In</h2>
         <button className='close' onClick={handleClose}>&#x2715;</button>
+    { loginErrors.length > 0 && <p className='login-errors'>{loginErrors}</p>}
       </div>
       <label>
         <p>username</p>

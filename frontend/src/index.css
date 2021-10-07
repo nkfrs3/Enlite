@@ -39,42 +39,6 @@ section {
   width: 100%;
 }
 
-form.login {
-  background-color: #8562D9 ;
-  display: flex;
-  flex-direction: column;
-  width: 440px;
-  align-items: center;
-  padding: 25px 100px;
-  margin: 0 35px 0 auto;
-  border-radius: 10px;
-  margin-top: 380px;
-}
-
-form.login * {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-form.login button {
-  margin-top: 15px;
-  background-color: white;
-  border-radius: 7px;
-
-}
-
-form.login h2 {
-  display: inline-block;
-  font-weight: 900;
-  letter-spacing: -2px;
-  font-size: 1.3em;
-}
-.form-title {
-  position: relative;
-}
-form.login button:hover {
-  background-color: #1A0A40;
-  color: white;
-}
 
 .nav-bar {
   display: flex;
@@ -104,36 +68,6 @@ form.login button:hover {
 .welcome {
   margin: 0 auto;
 }
-
-.login label{
-  padding-bottom: 0.8em;
-}
-.login input {
-  border-radius: 10px;
-  width: 350px;
-  background-color: whitesmoke;
-}
-form button.close {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  justify-self: flex-start;
-  align-self: flex-end;
-  font-size: 20px;
-  position: absolute;
-  right: -150px;
-  top: -25px;
-  border-radius: 50%;
-}
-
-
-
-
-
-
-
-
-
 
 
 

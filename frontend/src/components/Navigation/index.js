@@ -11,12 +11,12 @@ const Navigation = () => {
   }}
 
   const currentUser = useSelector(state => state.session.user)
-  console.log(currentUser)
+
   return (
     <div onClick={toggle} className="nav-bar">
       <h1 className= 'title'>App</h1>
       {!showLogin && <h2 className='welcome'>{currentUser?.user.username}</h2>}
-      {!showLogin && <span className="nav-link" onMouseUp={e => setShowLogin(!showLogin)}>Login</span>}
+      {!showLogin &&  !currentUser && <span className="nav-link" onMouseUp={e => setShowLogin(!showLogin)}>Login</span>}
     {showLogin && <LoginForm setShowLogin={setShowLogin}/> }
     </div>
   )
