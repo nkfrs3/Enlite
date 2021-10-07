@@ -3,7 +3,6 @@ import { csrfFetch } from "./csrf";
 const LOGIN = 'session/login';
 const LOGOUT = 'session/logout'
 
-
 const loginUser = payload => ({
   type: LOGIN,
   payload
@@ -21,6 +20,7 @@ export const restoreUser = () => async dispatch => {
   dispatch(loginUser(data.user));
   return response;
 };
+
 
 export const login = (user) => async (dispatch) =>{
 const {credential, password} = user;
@@ -65,6 +65,14 @@ export const signUp = (payload) => async (dispatch) => {
     }
   }
 
+
+  export const logout = () => async (dispatch) => {
+    const res = await csrfFetch('/api/session', {
+      method: 'DELETE',
+    })
+    dispatch(logOut());
+    return res;
+  }
 
 const initialState = { user: null };
 
