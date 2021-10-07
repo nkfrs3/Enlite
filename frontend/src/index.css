@@ -43,11 +43,12 @@ form.login {
   background-color: #8562D9 ;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  width: 440px;
   align-items: center;
-  padding: 25px 20px;
-  margin: 0 20px 0 auto;
+  padding: 25px 100px;
+  margin: 0 35px 0 auto;
   border-radius: 10px;
+  margin-top: 380px;
 }
 
 form.login * {
@@ -63,6 +64,9 @@ form.login button {
 
 form.login h2 {
   display: inline-block;
+  font-weight: 900;
+  letter-spacing: -2px;
+  font-size: 1.3em;
 }
 .form-title {
   position: relative;
@@ -74,19 +78,41 @@ form.login button:hover {
 
 .nav-bar {
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  height: 110px;
+  align-items: center;
+  background-color: #f3eee4;
+  width: 100vw;
 }
-.login {
+.nav-bar .title {
+  margin-left: 1em;
+}
+.nav-link {
   margin-right: 75px;
-  font-size: 1em;
+  font-size: 1.2em;
+  font-weight: 800;
+  position: absolute;
+  right: 0;
+  border-bottom: 4px solid #f3eee4;
 }
 
-.login:hover {
+.nav-link:hover {
   cursor:pointer;
-  border-bottom: 5px solid #A68A5B;
-
+  border-bottom: 4px solid #A68A5B;
 }
 
+.welcome {
+  margin: 0 auto;
+}
+
+.login label{
+  padding-bottom: 0.8em;
+}
+.login input {
+  border-radius: 10px;
+  width: 350px;
+  background-color: whitesmoke;
+}
 form button.close {
   background-color: transparent;
   border: none;
