@@ -3,9 +3,9 @@ form.sign-up {
     display: flex;
     flex-direction: column;
     width: 440px;
-    height:360px;
+    height:400px;
     align-items: center;
-    padding: 25px 60px;
+    padding: 20px auto;
     margin: 0 35px 0 auto;
     border-radius: 10px;
     margin-top: 380px;
@@ -13,21 +13,54 @@ form.sign-up {
     top: -350px;
     right: 0px;
 }
+form.sign-up * {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
 
+.sign-up h2 {
+  padding-top: 1em;
+  padding-bottom: 15px;
+}
 .sign-up input {
   border-radius: 10px;
   width: 350px;
+  padding: 3px 0;
   background-color: whitesmoke;
+  border: 3px solid #8562D9;
+}
+input:focus{
+  outline: none;
+  border: 3px solid black;
 }
 form.sign-up button.close {
-  top: -15px;
+  top: 13px;
   right: -160px;
   border-radius: 50%;
   background-color: transparent;
   position: absolute;
   border: none;
 }
+.sign-up h2 {
+  font-weight: 900;
+  letter-spacing: -2px;
+  font-size: 1.2em;
+}
+
+form.sign-up button{
+  margin: 7px 0;
+  background-color: white;
+  border-radius: 7px;
+}
 
 .sign-up label{
   padding-bottom: 10px;
+}
+
+.form-title .err {
+  position: absolute;
+  white-space: nowrap;
+  left: -35px;
+  top: 50px;
+  font-size: 12px;
 }

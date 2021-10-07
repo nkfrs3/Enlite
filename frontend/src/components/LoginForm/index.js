@@ -22,6 +22,11 @@ import { login } from '../../store/session';
 
   }, [userName, email]);
 
+  const onKeyDown = e => {
+    if (e.key == 'Enter'){
+    handleSubmit(e);
+  }}
+
   const handleSubmit = async(e) => {
     e.preventDefault();
     let payload = {};
@@ -55,6 +60,7 @@ import { login } from '../../store/session';
           placeholder="user-name"
           onChange={(e) => setUserName(e.target.value)}
           value={userName}
+          onKeyDown={onKeyDown}
       />
       </label>
     <label>
@@ -64,6 +70,7 @@ import { login } from '../../store/session';
         min="1"
         value={password}
         onChange={updatePassword}
+        onKeyDown={onKeyDown}
       />
     </label>
     <button type="submit">Submit</button>

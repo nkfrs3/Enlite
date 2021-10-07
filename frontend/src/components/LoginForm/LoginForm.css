@@ -19,7 +19,7 @@
 }
 
 form.login * {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 form.login button {
@@ -28,11 +28,12 @@ form.login button {
   border-radius: 7px;
 }
 
-form.login, h2 {
+form.login h2 {
   display: inline-block;
   font-weight: 900;
   letter-spacing: -2px;
   font-size: 1.3em;
+  margin-bottom: 30px;
 }
 .form-title {
   position: relative;

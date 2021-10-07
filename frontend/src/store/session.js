@@ -43,7 +43,9 @@ try{
 
 export const signUp = (payload) => async (dispatch) => {
   const {email, password, username } = payload;
+  console.log(payload);
 
+  try{
     const response = await csrfFetch("/api/users", {
       method: "POST",
       body: JSON.stringify({
@@ -52,11 +54,17 @@ export const signUp = (payload) => async (dispatch) => {
         password,
       }),
     })
+    if (response.ok){
       const data = await response.json();
       dispatch(loginUser(data.user));
-      return response;
+      return data.user;
+    }
+  } catch(e){
+    const err = await e.json()
+      return err.errors;
+    }
+  }
 
-}
 
 const initialState = { user: null };
 

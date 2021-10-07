@@ -23,7 +23,7 @@ const Navigation = ({isLoaded}) => {
     <div onClick={toggle} className="nav-bar">
       <h1 className= 'title'>App</h1>
       {!showLogin && <h2 className='welcome'>{currentUser?.username}</h2>}
-      { isLoaded && !showLogin && !currentUser && <span className="nav-link" onMouseUp={e => setShowLogin(!showLogin)}>Login</span>}
+      { isLoaded && !showLogin && !showSignUp && !currentUser && <span className="nav-link" onMouseUp={e => setShowLogin(!showLogin)}>Login</span>}
       {showLogin && <LoginForm setShowLogin={setShowLogin}/> }
       { isLoaded && !showSignUp && !currentUser && <span className="nav-link" onMouseUp={e => setShowSignUp(true)}>Sign Up</span> }
       {showSignUp && <SignUpForm setShowSignUp={setShowSignUp} />}
