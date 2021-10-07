@@ -41,6 +41,23 @@ try{
   }
 }
 
+export const signUp = (payload) => async (dispatch) => {
+  const {email, password, username } = payload;
+
+    const response = await csrfFetch("/api/users", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+    })
+      const data = await response.json();
+      dispatch(loginUser(data.user));
+      return response;
+
+}
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {

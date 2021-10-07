@@ -1,5 +1,10 @@
-form.login {
-  background-color: #8562D9 ;
+.login-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.login-container form.login {
+  background-color: #8562D9;
   display: flex;
   flex-direction: column;
   width: 440px;
@@ -8,8 +13,9 @@ form.login {
   padding: 25px 100px;
   margin: 0 35px 0 auto;
   border-radius: 10px;
-  margin-top: 380px;
-  position: relative;
+  position: absolute;
+  right: -100px;
+  top: 30px;
 }
 
 form.login * {
@@ -20,10 +26,9 @@ form.login button {
   margin-top: 15px;
   background-color: white;
   border-radius: 7px;
-
 }
 
-form.login h2 {
+form.login, h2 {
   display: inline-block;
   font-weight: 900;
   letter-spacing: -2px;
@@ -33,8 +38,8 @@ form.login h2 {
   position: relative;
   text-align: center;
 }
-form.login button:hover {
-  background-color: #1A0A40;
+form button:hover {
+  background-color: #1A0A40 !important;
   color: white;
 }
 
@@ -50,13 +55,14 @@ p.login-errors {
   width: 350px;
   background-color: whitesmoke;
 }
-form button.close {
+
+form.login button.close {
   background-color: transparent;
   border: none;
   outline: none;
   font-size: 20px;
   position: absolute;
   right: -120px;
-  top: -25px;
+  top: -20px;
   border-radius: 50%;
 }

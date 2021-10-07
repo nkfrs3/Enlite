@@ -41,8 +41,8 @@ import { login } from '../../store/session';
   }
 
   return (
-    <section >
-    <form onSubmit={handleSubmit} className="login" onClick={e =>e.stopPropagation() }>
+    <section className='login-container'>
+    <form onSubmit={handleSubmit} className="login user-form" onClick={e =>e.stopPropagation() }>
       <div className='form-title'>
         <h2>Log In</h2>
         <button className='close' onClick={handleClose}>&#x2715;</button>

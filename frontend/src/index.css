@@ -52,12 +52,11 @@ section {
   margin-left: 1em;
 }
 .nav-link {
-  margin-right: 75px;
+  margin-right: 60px;
   font-size: 1.2em;
   font-weight: 800;
-  position: absolute;
-  right: 0;
   border-bottom: 4px solid #f3eee4;
+  white-space: nowrap
 }
 
 .nav-link:hover {
