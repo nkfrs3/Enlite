@@ -4,6 +4,7 @@ import CoffeeBanner from "./components/CoffeeBanner";
 import LoginForm from "./components/LoginForm";
 import Navigation from "./components/Navigation";
 import {restoreUser} from './store/session'
+import Shops from "./components/Shops";
 
 
 
@@ -21,6 +22,7 @@ function App() {
     <>
     <Navigation isLoaded={isLoaded}/>
     <CoffeeBanner />
+    <Shops />
     </>
   );
 }

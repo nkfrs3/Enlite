@@ -34,7 +34,7 @@ import { login } from '../../store/session';
      payload['password'] = password;
     // console.log(payload);
     const user = await dispatch(login(payload));
-    console.log(user)
+    // console.log(user)
     if (typeof user === 'object'){
       setShowLogin(false);
       <Redirect to="/" />
