@@ -12,6 +12,7 @@ form.sign-up {
     position: absolute;
     top: -350px;
     right: 0px;
+    z-index: 999;
 }
 form.sign-up * {
   font-size: 1.1rem;

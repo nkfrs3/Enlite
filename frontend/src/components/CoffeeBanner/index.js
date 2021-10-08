@@ -5,7 +5,7 @@ const CoffeeBanner = () => {
   const [coffees, setCoffees] = useState([]);
   const [selected, setSelected] = useState();
   const [count, setCounter] = useState(0);
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
   const [options, setOptions] = useState();
   const [scrollCounter, setScrollCounter] = useState(0);
 

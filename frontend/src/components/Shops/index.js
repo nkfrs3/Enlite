@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShops } from "../../store/shops";
 import Shop from "./shop";
+import './Shop.css'
 
 const Shops = () => {
   const [selectedShops, setSelectedShops] = useState([]);
@@ -38,11 +39,14 @@ const Shops = () => {
   }
 
   return (
-    <div className='shops-container'>
-      {selectedShops.map(shop => {
-        return <Shop shop={shop}/>
-      }) }
-    <span onClick={scroll}>show more</span>
+    <div class="content-container">
+      <h2 className='the-best'>The Best Coffee in Ohio</h2>
+      <span onClick={scroll} className='show-more'><i class="fas fa-ellipsis-h"></i></span>
+      <div className='shops-container'>
+        {selectedShops.map(shop => {
+          return <Shop shop={shop}/>
+        }) }
+      </div>
     </div>
   )
 }

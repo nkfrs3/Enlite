@@ -1,0 +1,85 @@
+div.content-container {
+  position: relative;
+  width: 100%;
+
+}
+
+.shops-container{
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin: 2em;
+  width: 75%;
+  margin-top: 0px;
+}
+
+
+
+h2.the-best {
+  margin-top:15px;
+  margin-left: 1.65em;
+  padding-bottom: 2em;
+}
+span.shop-logo {
+  min-width: 150px;
+  min-height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  grid-area: logo;
+}
+
+div.shop-card {
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: 15px 1fr 1fr 1fr 15px;
+  grid-template-rows: 60px 1fr 1fr 30px;
+  grid-template-areas: '. name name name .'
+                        '. m logo m3 .'
+                        '. address address link .'
+                        '. b2 b2 . .';
+  min-width: 300px;
+  width: 480px;
+  height: 375px;
+  background-color: white;
+  padding: 20px 5px 10px 5px;
+
+}
+
+h3.shop-name{
+  grid-area: name;
+  place-self: start center;
+  font-weight: 900;
+  font-size: 1.3em;
+}
+
+.shop-card a {
+  text-decoration: none;
+  grid-area: link;
+  place-self: end center;
+  color: #5B6DA6;
+}
+.shop-card a:visited {
+  color: #5B6DA6;
+}
+.shop-card a:hover{
+  color: #8562D9;
+}
+p.address {
+  grid-area: address;
+  font-size: 14px;
+  place-self: end start;
+  letter-spacing: -0.3px;
+
+}
+
+span.show-more {
+  font-size: 2.7em;
+  margin-left: 1em;
+  padding-top: 20px;
+}
+span.show-more:hover {
+  color: #8562D9;
+}

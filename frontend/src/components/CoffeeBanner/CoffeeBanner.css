@@ -16,6 +16,7 @@
   1px -1px 0 #000,
   -1px -1px 0 #000;
   border-bottom: 2px solid black;
+  border-top: 1.25px solid #A68A5B;
 }
 
 div.coffee-banner {
@@ -52,10 +53,10 @@ div.coffee-banner {
   display: inline-block;
   align-self: center;
   font-size: 1.75em;
+  color: #8562D9;
 }
 
 .coffee-banner-container span:hover {
-  color:  #8562D9;
   cursor: pointer;
 }
 
@@ -63,7 +64,9 @@ span.show-banner {
   position: absolute;
   top: -35px;
 }
-
+span.hide-banner{
+  color: white;
+}
 .coffee-banner li {
   font-size: 17px;
 }

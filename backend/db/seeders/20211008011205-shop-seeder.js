@@ -43,7 +43,7 @@ module.exports = {
         name: 'Plate 21',
         address: '3664 Rugby Dr., Toledo, OH',
         website:'https://platecafes.com/',
-        image:'backend/db/seeders/Plate-21-Logo-300x246.jpg',
+        image:'./Plate-21-Logo-300x246.jpg',
         lat: 41.59937941432561,
         long: -83.61067463950259,
       },

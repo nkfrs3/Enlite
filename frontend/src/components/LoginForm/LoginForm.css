@@ -4,7 +4,7 @@
   height: 100%;
 }
 .login-container form.login {
-  background-color: #8562D9;
+  background-color: #f3eee4;
   display: flex;
   flex-direction: column;
   width: 440px;
@@ -16,6 +16,8 @@
   position: absolute;
   right: -100px;
   top: 30px;
+  z-index: 999;
+  border: 2px solid black;
 }
 
 form.login * {
@@ -24,8 +26,9 @@ form.login * {
 }
 form.login button {
   margin-top: 15px;
-  background-color: white;
+  background-color: #1A0A40;
   border-radius: 7px;
+  color: #fffddc;
 }
 
 form.login h2 {
@@ -40,7 +43,7 @@ form.login h2 {
   text-align: center;
 }
 form button:hover {
-  background-color: #1A0A40 !important;
+  background-color: #8562D9 !important;
   color: white;
 }
 
@@ -66,4 +69,5 @@ form.login button.close {
   right: -120px;
   top: -20px;
   border-radius: 50%;
+  color: #1A0A40;
 }

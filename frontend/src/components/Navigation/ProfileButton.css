@@ -1,11 +1,11 @@
 .profile-icon {
  font-size: 2.5em;
  margin-right: 60px;
-
+color: #A68A5B;
 }
 
 .profile-icon:hover {
-  color: #A68A5B
+  color: #7c6d53
 }
 .dropdown-container {
   position: relative;
