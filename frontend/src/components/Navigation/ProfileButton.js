@@ -37,8 +37,8 @@ const ProfileButton = ({user}) => {
      {showMenu && (
         <div className="profile-dropdown">
           <span id="profile">Profile</span>
-          <span>
-            <button onClick={handleLogout}>Log Out</button>
+          <span onClick={handleLogout}>
+            Log Out
             </span>
         </div>
     )}

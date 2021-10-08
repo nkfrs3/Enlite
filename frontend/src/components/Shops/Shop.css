@@ -23,6 +23,7 @@ h2.the-best {
 }
 span.shop-logo {
   min-width: 180px;
+  width: 250px;
   min-height: 180px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -60,6 +61,8 @@ h3.shop-name{
   grid-area: link;
   place-self: end center;
   color: #5B6DA6;
+  white-space: nowrap;
+  letter-spacing: -1px;
 }
 .shop-card a:visited {
   color: #5B6DA6;
