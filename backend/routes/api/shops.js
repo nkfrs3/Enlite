@@ -11,9 +11,14 @@ router.get('/', asyncHandler(async(req,res)=>{
 
 }))
 
-router.get('/shop/:shopId(\\d+)', asyncHandler(async(req,res) => {
+router.get('/:shopId(\\d+)', asyncHandler(async(req,res) => {
   const shopId = req.params.shopId;
-  const shop = await Shop.findByPk()
+
+  const shop = await Shop.findByPk(shopId)
+
+  console.log(shop)
+  return res.json(shop);
+
 }))
 
 module.exports = router;

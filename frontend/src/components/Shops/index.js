@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Switch, Route } from "react-router";
 import { fetchShops } from "../../store/shops";
 import Shop from "./shop";
+import ShopDetails from "./ShopDetails";
 import './Shop.css'
 
 const Shops = () => {
@@ -39,6 +41,8 @@ const Shops = () => {
   }
 
   return (
+    <Switch >
+    <Route exact path='/(|shops)'>
     <div class="content-container">
       <h2 className='the-best'>The Best Coffee in Ohio</h2>
       <span onClick={scroll} className='show-more'><i class="fas fa-ellipsis-h"></i></span>
@@ -48,6 +52,13 @@ const Shops = () => {
         }) }
       </div>
     </div>
+    </Route>
+
+    <Route path="/shops/:id" >
+      <ShopDetails shop={selectedShops}/>
+    </Route>
+
+    </Switch>
   )
 }
 

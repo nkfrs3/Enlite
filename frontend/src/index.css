@@ -76,7 +76,12 @@ section {
 
 }
 
-
+.app-title {
+  text-decoration: none;
+  color: #fffddc;
+  font-size: 2em;
+  padding-left: 1.5em;
+}
 
 
 /* purp:  #8562D9 #1A0A40 #5B6DA6 # tan:  #A68A5B #A57F5A light-tan: #f3eee4*/
