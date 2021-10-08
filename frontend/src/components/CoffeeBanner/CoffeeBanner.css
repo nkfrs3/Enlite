@@ -1,0 +1,88 @@
+.coffee-banner-container{
+  width: 100%;
+  background-image: url('./download.jpg');
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: contain;
+  background-color: #3b3b36;
+  background-blend-mode:soft-light;
+  color: white;
+  font-weight: 900;
+  font-family: 'Source Serif Pro', serif;
+  text-shadow: -1px 1px 2px #000,
+  1px 1px 2px #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+  border-bottom: 2px solid black;
+}
+
+div.coffee-banner {
+  position: relative;
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  height: 210px;
+}
+
+.coffee-selector {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+  justify-content: space-around;
+  font-size: 10px;
+}
+.coffee-banner {
+  text-align: center;
+}
+.coffee-banner h2{
+  font-size: 2.4em;
+}
+.coffee-banner p {
+  padding: 10px 0 20px 0;
+  font-size: 1.4em;
+  word-break: break-word;
+  width: 90%;
+  margin: 0 auto;
+  height: 80px;
+}
+
+.hide-banner, .show-banner {
+  display: inline-block;
+  align-self: center;
+  font-size: 1.75em;
+}
+
+.coffee-banner-container span:hover {
+  color:  #8562D9;
+  cursor: pointer;
+}
+
+span.show-banner {
+  position: absolute;
+  top: -35px;
+}
+
+.coffee-banner li {
+  font-size: 17px;
+}
+.coffee-banner li:hover {
+  cursor: pointer;
+ color: #e8e3f1;
+}
+.scroll-left {
+  position: absolute;
+  left: 7px;
+  top: 80px;
+  font-size: 2.2em;
+  padding: 10px;
+}
+
+span.scroll-right {
+  position: absolute;
+  right: -10px;
+  top: 80px;
+  font-size: 2.2em;
+  width: 100px;
+}

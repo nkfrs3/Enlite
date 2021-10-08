@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import CoffeeBanner from "./components/CoffeeBanner";
 import LoginForm from "./components/LoginForm";
 import Navigation from "./components/Navigation";
 import {restoreUser} from './store/session'
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
     <Navigation isLoaded={isLoaded}/>
+    <CoffeeBanner />
     </>
   );
 }
