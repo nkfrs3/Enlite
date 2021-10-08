@@ -24,11 +24,13 @@ color: #A68A5B;
 }
 .profile-dropdown span {
   padding-bottom: 5px;
+  font-weight: 700;
+  padding: 5px 0px;
 
 }
-.profile-dropdown span:hover,button:hover {
+.profile-dropdown span:hover {
   cursor: pointer;
-  background-color: #e7d3ad !important;
+  background-color: #f1e8d5 !important;
 
 }
 #profile {

@@ -1,10 +1,17 @@
+import {useHistory, Route, Switch } from 'react-router-dom';
+import ShopDetails from './ShopDetails';
 
 const Shop = ({shop}) => {
-  console.log(shop.image)
+  const history = useHistory();
+
+  const handleVisit = () => {
+    history.push(`/shops/${shop.id}`)
+  }
+
   return (
-    <div className='shop-card'>
-      <h3 className='shop-name'>{shop.name}</h3>
-        <span className='shop-logo' style={{  backgroundImage: `url(${shop.image})` }}> </span>
+     <div className='shop-card'>
+      <h3 className='shop-name' onClick={handleVisit}>{shop.name}</h3>
+        <span className='shop-logo' style={{  backgroundImage: `url(${shop.image})` }} onClick={handleVisit}> </span>
         <p className='address'>address: {shop.address}</p>
         { shop.website && <a href={shop.website} target="_blank"> visit them here </a>}
     </div>

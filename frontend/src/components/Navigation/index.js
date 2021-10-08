@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignupFormPage";
 import ProfileButton from "./ProfileButton";
+import { NavLink } from "react-router-dom";
 
 const Navigation = ({isLoaded}) => {
   const [showLogin, setShowLogin] = useState(false);
@@ -25,7 +26,8 @@ const Navigation = ({isLoaded}) => {
 
   return (
     <div className="nav-bar">
-      <h1 className= 'title'>App</h1>
+      <NavLink to="/" className='app-title' activeClassName="home">App</NavLink>
+      {/* <h1 className= 'title'></h1> */}
       {!showLogin && <h2 className='welcome'>{currentUser?.username}</h2>}
       { isLoaded && !showLogin && !showSignUp && !currentUser && <span className="nav-link" onMouseUp={e => setShowLogin(!showLogin)}>Login</span>}
       {showLogin && <LoginForm setShowLogin={setShowLogin}/> }

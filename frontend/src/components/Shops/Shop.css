@@ -14,8 +14,6 @@ div.content-container {
   margin-top: 0px;
 }
 
-
-
 h2.the-best {
   margin-top:15px;
   margin-left: 1.65em;
@@ -23,12 +21,14 @@ h2.the-best {
 }
 span.shop-logo {
   min-width: 180px;
+  width: 250px;
   min-height: 180px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   display: inline-block;
   grid-area: logo;
+  cursor: pointer;
 }
 
 div.shop-card {
@@ -53,6 +53,7 @@ h3.shop-name{
   place-self: start center;
   font-weight: 900;
   font-size: 1.3em;
+  cursor: pointer;
 }
 
 .shop-card a {
@@ -60,10 +61,14 @@ h3.shop-name{
   grid-area: link;
   place-self: end center;
   color: #5B6DA6;
+  white-space: nowrap;
+  letter-spacing: -1px;
 }
+
 .shop-card a:visited {
   color: #5B6DA6;
 }
+
 .shop-card a:hover{
   color: #8562D9;
 }
