@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import {restoreUser} from './store/session'
 import Shops from "./components/Shops";
 import ShopDetails from "./components/Shops/ShopDetails";
+import Footer from "./components/Navigation/Footer";
 
 
 
@@ -17,7 +18,7 @@ function App() {
 
   useEffect(() => {
     console.log('restoring!')
-   dispatch(restoreUser()).then(() => setIsLoaded(true));;
+   dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
 
@@ -28,6 +29,7 @@ function App() {
         <CoffeeBanner />
       </Route>
       <Shops />
+      <Footer />
     </>
   );
 }

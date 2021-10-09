@@ -27,7 +27,6 @@ const ProfileButton = ({user}) => {
     e.preventDefault();
     console.log(user.email);
     if (user.email.includes('visitor@enlite')){
-      console.log('matches!!!')
       dispatch(demoLogout(user.id));
     }else {
       dispatch(logout());
@@ -43,7 +42,7 @@ const ProfileButton = ({user}) => {
      {showMenu && (
         <div className="profile-dropdown">
           <span id="profile">Profile</span>
-          <span onClick={handleLogout}>
+          <span className='logout' onClick={handleLogout}>
             Log Out
             </span>
         </div>

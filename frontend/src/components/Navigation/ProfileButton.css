@@ -20,27 +20,43 @@ color: #A68A5B;
   background-color: white;
   white-space: nowrap;
   text-align: center;
-  width: 80px;
+  width: 83px;
+  z-index: 99;
 }
 .profile-dropdown span {
-  padding-bottom: 5px;
   font-weight: 700;
-  padding: 5px 0px;
+  padding: 5px 5px;
 
 }
 .profile-dropdown span:hover {
   cursor: pointer;
   background-color: #f1e8d5 !important;
-
 }
+
 #profile {
   border-bottom: 2px solid gray;
 }
-.profile-dropdown span:hover{
-  margin-bottom: 1px solid black;
+
+/* .footer-container {
+  height: 80vh;
+  position: relative;
+} */
+.footer {
+  display: flex;
+  gap: 2em;
+  font-size: 2.5em;
+  position: absolute;
+  bottom: 0;
+  left:0;
+  right: 0;
+  padding: 80px 0 10px 0;
+  color: #1A0A40;
+  background-color: #A68A5B;
+
 }
-.profile-dropdown button {
-  background-color: white;
-  border: none;
-  width: 100%;
+.github,.linkedin {
+  color: #1A0A40;
+}
+.footer .about-me {
+  padding-left: 3em;
 }

@@ -14,7 +14,7 @@
   margin: 0 35px 0 auto;
   border-radius: 10px;
   position: absolute;
-  right: -100px;
+  right: 10px;
   top: 30px;
   z-index: 999;
   border: 2px solid black;
@@ -42,10 +42,6 @@ form.login h2 {
   position: relative;
   text-align: center;
 }
-form button:hover {
-  background-color: #8562D9 !important;
-  color: white;
-}
 
 p.login-errors {
   font-size: 10px;
@@ -58,16 +54,25 @@ p.login-errors {
   border-radius: 10px;
   width: 350px;
   background-color: whitesmoke;
+  padding: 3px 5px 2px 8px;
 }
 
 form.login button.close {
   background-color: transparent;
   border: none;
   outline: none;
-  font-size: 20px;
   position: absolute;
-  right: -120px;
-  top: -20px;
+  right: -165px;
+  top: -25px;
   border-radius: 50%;
   color: #1A0A40;
+}
+
+form.login button.close:hover {
+  color:  #8562D9;
+}
+
+form.login button.submit:hover {
+  background-color: #8562D9;
+
 }

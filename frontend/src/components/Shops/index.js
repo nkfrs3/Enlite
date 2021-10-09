@@ -5,6 +5,7 @@ import { fetchShops } from "../../store/shops";
 import Shop from "./shop";
 import ShopDetails from "./ShopDetails";
 import './Shop.css'
+import { set } from "js-cookie";
 
 const Shops = () => {
   const [selectedShops, setSelectedShops] = useState([]);
@@ -30,9 +31,12 @@ const Shops = () => {
 
 
   const scroll = () => {
-    if (limit > allShops.length - 8 ) {
-      setSelectedShops(allShops.slice(0, 7));
-      setLimit(0);
+    if (limit > allShops.length - 7 ) {
+      const end = allShops.slice(limit);
+      const start = allShops.slice(0, 7 - (end.length-1))
+      setSelectedShops([...end, ...start]);
+      // setSelectedShops(allShops.slice(0, 7));
+      setLimit(start.length);
       return;
     } else {
         setSelectedShops(allShops.slice(limit, limit+7));

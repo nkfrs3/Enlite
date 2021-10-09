@@ -7,6 +7,10 @@
 #root{
   background-color: rgb(246, 242, 247);
 }
+html{
+  position: relative;
+  min-height: 100%;
+}
 
 body,
 h1,
@@ -30,6 +34,8 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  margin-bottom: 200px;
+  background-color: rgb(246, 242, 247);
 }
 
 input,

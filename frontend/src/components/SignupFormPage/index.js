@@ -39,7 +39,7 @@ const SignUpForm = ({setShowSignUp}) => {
     <form onSubmit={handleSubmit} className="sign-up user-form" onClick={e => e.stopPropagation() }>
       <div className='form-title' >
         <h2>Sign Up</h2>
-        <button className='close' onClick={handleClose}>&#x2715;</button>
+        <span className='close' onClick={handleClose}><i class="far fa-times-circle"></i></span>
     { validationErrors.map(err => <p className='err'>{err}</p>)}
       </div>
       <label>
@@ -82,7 +82,7 @@ const SignUpForm = ({setShowSignUp}) => {
         onKeyDown={onKeyDown}
       />
     </label>
-    <button type="submit">Submit</button>
+    <button type="submit" className='submit'>Submit</button>
     </form>
     </section>
   )

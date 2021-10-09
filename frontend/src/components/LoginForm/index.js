@@ -12,7 +12,7 @@ import { login } from '../../store/session';
   const [password, setPassword] = useState('');
   const [loginErrors, setLoginErrors] = useState('');
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  // const sessionUser = useSelector(state => state.session.user);
   const updateEmail = e => setEmail(e.target.value);
   const updatePassword = e => setPassword(e.target.value)
   const handleClose = e => {e.preventDefault(); setShowLogin(false)};
@@ -50,7 +50,9 @@ import { login } from '../../store/session';
     <form onSubmit={handleSubmit} className="login user-form" onClick={e =>e.stopPropagation() }>
       <div className='form-title'>
         <h2>Log In</h2>
-        <button className='close' onClick={handleClose}>&#x2715;</button>
+        <button className='close' onClick={handleClose}>
+        <i class="far fa-times-circle"></i>
+        </button>
     { loginErrors.length > 0 && <p className='login-errors'>{loginErrors}</p>}
       </div>
       <label>
@@ -73,7 +75,7 @@ import { login } from '../../store/session';
         onKeyDown={onKeyDown}
       />
     </label>
-    <button type="submit">Submit</button>
+    <button type="submit" class="submit">Submit</button>
     </form>
     </section>
   )
