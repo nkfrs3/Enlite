@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { logout } from "../../store/session";
+import { demoLogout, logout } from "../../store/session";
 import './ProfileButton.css'
 
 const ProfileButton = ({user}) => {
@@ -25,7 +25,13 @@ const ProfileButton = ({user}) => {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(logout());
+    console.log(user.email);
+    if (user.email.includes('visitor@enlite')){
+      console.log('matches!!!')
+      dispatch(demoLogout(user.id));
+    }else {
+      dispatch(logout());
+    }
   };
 
   return (

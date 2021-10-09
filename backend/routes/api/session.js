@@ -52,6 +52,19 @@ router.delete(
   }
 );
 
+// Log out demo user which deletes it
+router.delete(
+  '/demo/:id',
+  asyncHandler (async (req, res) => {
+    const id = req.params.id;
+    console.log(id)
+    const demo = await User.findByPk(id);
+    demo.destroy();
+    res.clearCookie('token');
+    return res.json({ message: 'success' });
+  })
+);
+
 // Restore session user
 router.get(
   '/',
