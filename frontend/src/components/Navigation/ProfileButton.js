@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { demoLogout, logout } from "../../store/session";
 import './ProfileButton.css'
@@ -6,6 +7,8 @@ import './ProfileButton.css'
 const ProfileButton = ({user}) => {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const history = useHistory();
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -23,13 +26,19 @@ const ProfileButton = ({user}) => {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const handleVisit = () =>{
+    history.push(`/profile/${user.id}`)
+  }
+
   const handleLogout = (e) => {
     e.preventDefault();
     console.log(user.email);
     if (user.email.includes('visitor@enlite')){
       dispatch(demoLogout(user.id));
-    }else {
+    } else {
       dispatch(logout());
+    } if (window.location.href.startsWith('http://localhost:3000/profile')){
+      history.push('/');
     }
   };
 
@@ -41,7 +50,7 @@ const ProfileButton = ({user}) => {
     <div className="dropdown-container">
      {showMenu && (
         <div className="profile-dropdown">
-          <span id="profile">Profile</span>
+          <span id="profile" onClick={handleVisit}>Profile</span>
           <span className='logout' onClick={handleLogout}>
             Log Out
             </span>

@@ -39,13 +39,16 @@ const ShopDetails = ({shop}) => {
      }
    }
 
-   const handleComment = ({target}) => {setComment(target.value); target.style.height = '250px'}
+   const handleComment = ({target}) => {setComment(target.value); if(!target.value.length){
+    target.style.height = '30px';
+   }
+   else {target.style.height = '250px' }}
 
 
   return (
     <div className='shop-details'>
       <p className='shop-name'>{visited?.name}</p>
-    { visited && <Map shop={visited} />}
+    {/* { visited && <Map shop={visited} />} */}
      { currentUser && <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> }
       { showReview &&  <form className='review' onSubmit={handleSubmit}>
         <div className='rating' style={styles.cups}>

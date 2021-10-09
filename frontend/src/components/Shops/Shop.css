@@ -127,7 +127,7 @@ form textarea:focus{
   border: 2.5px solid #090418;
 }
 form textarea:focus{
-  height: 200px;
+  height: 250px;
 }
 
 form.review {
@@ -157,9 +157,10 @@ div.map {
   background-color: transparent;
   border-radius: 10px;
   transition: 0.3s;
+  background-color: #dfd49a;
 }
 .submit-review:hover{
-  background-color:  #fffddc;;
+  background-color:  #fffddc;
 }
 .rating-cup {
   transition: 0.5s;

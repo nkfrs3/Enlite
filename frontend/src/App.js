@@ -6,9 +6,8 @@ import LoginForm from "./components/LoginForm";
 import Navigation from "./components/Navigation";
 import {restoreUser} from './store/session'
 import Shops from "./components/Shops";
-import ShopDetails from "./components/Shops/ShopDetails";
 import Footer from "./components/Navigation/Footer";
-
+import ProfilePage from "./components/ProfilePage/Index";
 
 
 
@@ -29,6 +28,9 @@ function App() {
         <CoffeeBanner />
       </Route>
       <Shops />
+      <Route path='/profile/:id'>
+        <ProfilePage />
+      </Route>
       <Footer />
     </>
   );
