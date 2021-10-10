@@ -31,7 +31,8 @@ span.shop-logo {
   cursor: pointer;
 }
 
-span[style*="Urbana"],span[style*="coffeeology"] {
+/* selects only the images with white backgrounds */
+span[style*="Urbana"],span[style*="coffeeology"],span[style*="cca_cd518d4"],span[style*="5f3304eada45"] {
   background-color: #28262c;
 }
 
@@ -42,8 +43,8 @@ div.shop-card {
   grid-template-rows: 60px 1fr 1fr 25px;
   grid-template-areas: '. name name name .'
                         '. m logo m3 .'
-                        '. address address link .'
-                        '. b2 b2 . .';
+                        '. address address . .'
+                        'city b2 b2 link .';
   min-width: 300px;
   width: 460px;
   height: 360px;
@@ -100,6 +101,13 @@ span.show-more:hover {
   align-items: center;
 }
 
+.zipcode {
+  grid-area: city;
+  font-size: 12.5px;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  margin-left: 15px;
+}
 
 div.rating {
   display: flex;

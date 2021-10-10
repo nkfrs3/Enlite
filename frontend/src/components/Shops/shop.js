@@ -13,7 +13,8 @@ const Shop = ({shop}) => {
      <div className='shop-card'>
       <h3 className='shop-name' onClick={handleVisit}>{shop.name}</h3>
         <span className='shop-logo' style={{  backgroundImage: `url(${shop.image})` }} onClick={handleVisit}> </span>
-        <p className='address'>address: {shop.address}</p>
+        <p className='address'>{shop.address}</p>
+        <span className='zipcode'>{shop.city}, {shop.zipcode}</span>
         { shop.website && <a href={shop.website} target="_blank"> visit them here </a>}
     </div>
   )
