@@ -37,7 +37,7 @@ const ProfileButton = ({user}) => {
       dispatch(demoLogout(user.id));
     } else {
       dispatch(logout());
-    } if (window.location.href.startsWith('http://localhost:3000/profile')){
+    } if (window.location.href.includes('/profile/')){
       history.push('/');
     }
   };

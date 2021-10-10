@@ -31,18 +31,22 @@ span.shop-logo {
   cursor: pointer;
 }
 
+span[style*="Urbana"],span[style*="coffeeology"] {
+  background-color: #28262c;
+}
+
 div.shop-card {
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 15px 1fr 1fr 1fr 15px;
-  grid-template-rows: 60px 1fr 1fr 30px;
+  grid-template-rows: 60px 1fr 1fr 25px;
   grid-template-areas: '. name name name .'
                         '. m logo m3 .'
                         '. address address link .'
                         '. b2 b2 . .';
   min-width: 300px;
-  width: 480px;
-  height: 375px;
+  width: 460px;
+  height: 360px;
   background-color: white;
   padding: 20px 5px 10px 5px;
 

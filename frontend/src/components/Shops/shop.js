@@ -8,6 +8,7 @@ const Shop = ({shop}) => {
     history.push(`/shops/${shop.id}`)
   }
 
+
   return (
      <div className='shop-card'>
       <h3 className='shop-name' onClick={handleVisit}>{shop.name}</h3>
