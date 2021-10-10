@@ -94,6 +94,12 @@ span.show-more:hover {
   color: #8562D9;
 }
 
+.sort-by {
+  margin-left: 230px;
+  padding-right: 0.5em;
+  font-size: 13px;
+}
+
 /*Start of individual shop details */
 .shop-details {
   display: flex;

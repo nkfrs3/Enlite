@@ -17,7 +17,7 @@ module.exports = {
         website:'https://www.surehousecoffee.com/',
         image:'https://static.wixstatic.com/media/4bf9cf_608a64769ee84a6fb95a0594a0420188~mv2.png/v1/fill/w_368,h_123,al_c,q_85,usm_0.66_1.00_0.01/4bf9cf_608a64769ee84a6fb95a0594a0420188~mv2.webp',
         lat: 40.79741255146078,
-        long: -81.94023696133338,
+        long: -81.93990280191348
       },{
         name: 'Mission Coffee Co.',
         address: '2050 S High St.',
