@@ -63,6 +63,7 @@ const ShopDetails = ({shop}) => {
     }else {
      body = { comment, rating, userId, shopId}
     }
+
     dispatch(createReview(body))
       .then(() => {
         setComment("");
@@ -99,12 +100,13 @@ const ShopDetails = ({shop}) => {
      { currentUser ? <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 
       { showReview &&  <form className='review' onSubmit={handleSubmit}>
+        <h3 className='review-title'>Review</h3>
        {errors.length > 0 && <div className="review-errors">
         {  errors?.map(err => (<p>{err}</p>) )}
        </div> }
-      <label className='upload-img'><i class="far fa-image"><span className='img-label'> {image?.name ? image.name.slice(0,10) + image.name.slice(image.name.length -4) : "upload image" }</span></i>
+      <label className='upload-img'><i class="far fa-image"> <span className='img-label'> {image?.name ? image.name.slice(0,10) + image.name.slice(image.name.length -4) : "upload image" }</span></i>
           <input type="file" onChange={updateFile} />
-       { image?.name && <span className='remove-img' onClick={(e)=> setImage(null)}> remove</span>}
+       { image?.name && <span className='remove-img' onClick={(e)=>{ e.preventDefault(); setImage(null)}}> remove</span>}
         </label>
 
         <div className='rating' style={styles.cups}>
