@@ -5,7 +5,7 @@ const { User, Shop } = require('../../db/models/');
 const router = express.Router();
 
 router.get('/', asyncHandler(async(req,res)=>{
-  const allshops = await Shop.findAll()
+  const allshops = await Shop.findAll( { order: [['name'] ]})
   console.log(allshops);
   return res.json(allshops);
 

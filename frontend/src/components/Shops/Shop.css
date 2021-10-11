@@ -31,18 +31,23 @@ span.shop-logo {
   cursor: pointer;
 }
 
+/* selects only the images with white backgrounds */
+span[style*="Urbana"],span[style*="coffeeology"],span[style*="cca_cd518d4"],span[style*="5f3304eada45"] {
+  background-color: #28262c;
+}
+
 div.shop-card {
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 15px 1fr 1fr 1fr 15px;
-  grid-template-rows: 60px 1fr 1fr 30px;
+  grid-template-rows: 60px 1fr 1fr 25px;
   grid-template-areas: '. name name name .'
                         '. m logo m3 .'
-                        '. address address link .'
-                        '. b2 b2 . .';
+                        '. address address . .'
+                        'city b2 b2 link .';
   min-width: 300px;
-  width: 480px;
-  height: 375px;
+  width: 460px;
+  height: 360px;
   background-color: white;
   padding: 20px 5px 10px 5px;
 
@@ -87,4 +92,114 @@ span.show-more {
 }
 span.show-more:hover {
   color: #8562D9;
+}
+
+.sort-by {
+  margin-left: 230px;
+  padding-right: 0.5em;
+  font-size: 13px;
+}
+
+/*Start of individual shop details */
+.shop-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.zipcode {
+  grid-area: city;
+  font-size: 12.5px;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  margin-left: 15px;
+}
+
+div.rating {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+p.shop-name {
+  font-size: 2em;
+}
+form textarea {
+  border-radius: 5px;
+  resize: none;
+  width: 400px;
+  display: block;
+  /* height: 150px; */
+  height: 30px;
+  overflow-y: hidden;
+  border: 2px solid rgb(204, 203, 207);
+  padding: 3px 0 33px 5px;
+  font-size: 1.25em;
+  transition: 1s;
+}
+
+form textarea:focus{
+  outline: none !important;
+  border: 2.5px solid #090418;
+}
+form textarea:focus{
+  height: 250px;
+}
+
+form.review {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+div.map {
+  height: 200px;
+}
+.show-rating {
+  display:block;
+  font-size: 1.3em;
+  font-weight: 900;
+  text-align: center;
+  margin-right: 13px;
+}
+.show-review {
+  cursor: pointer;
+  align-self: flex-end;
+  margin-right: 50px;
+
+}
+.submit-review {
+  padding: 5px 15px;
+  background-color: transparent;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: #dfd49a;
+}
+.submit-review:hover{
+  background-color:  #fffddc;
+}
+.rating-cup {
+  transition: 0.5s;
+}
+.rating-cup:nth-child(1) {
+  height: 23px;
+  margin-bottom: 5px;
+}
+.rating-cup:nth-child(2) {
+  height: 27px;
+  margin-bottom: 6px;
+}
+
+.rating-cup:nth-child(3) {
+  height: 30px;
+  margin-bottom: 6px;
+}
+.rating-cup:nth-child(4) {
+  height: 35px;
+  margin-bottom: 5px;
+}
+.rating-cup:nth-child(4) {
+  height: 38px;
 }

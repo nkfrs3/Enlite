@@ -3,7 +3,7 @@ form.sign-up {
     display: flex;
     flex-direction: column;
     width: 440px;
-    height:400px;
+    height:430px;
     align-items: center;
     padding: 20px auto;
     margin: 0 35px 0 auto;
@@ -13,6 +13,7 @@ form.sign-up {
     top: -350px;
     right: 0px;
     z-index: 999;
+    border: 1px solid black;
 }
 form.sign-up * {
   font-size: 1.1rem;
@@ -24,23 +25,31 @@ form.sign-up * {
   padding-bottom: 15px;
 }
 .sign-up input {
-  border-radius: 10px;
+  border-radius: 12px;
   width: 350px;
-  padding: 3px 0;
+  padding: 3px 5px;
   background-color: whitesmoke;
-  border: 3px solid #8562D9;
+  border: 2px solid #1A0A40;
 }
 input:focus{
   outline: none;
-  border: 3px solid black;
+  border: 2px solid #A68A5B;
 }
-form.sign-up button.close {
+form.sign-up span.close {
   top: 13px;
   right: -160px;
   border-radius: 50%;
-  background-color: transparent;
+  color: #1A0A40;
   position: absolute;
-  border: none;
+  font-weight: 900;
+  border-radius: 50%;
+}
+span.close:hover {
+  color: #fffddc !important;
+}
+form.sign-up button:hover{
+  background-color: #1A0A40 !important;
+  color: #fffddc;
 }
 .sign-up h2 {
   font-weight: 900;
@@ -48,7 +57,7 @@ form.sign-up button.close {
   font-size: 1.2em;
 }
 
-form.sign-up button{
+form.sign-up button.submit{
   margin: 7px 0;
   background-color: white;
   border-radius: 7px;
@@ -64,4 +73,5 @@ form.sign-up button{
   left: -35px;
   top: 50px;
   font-size: 12px;
+  height:fit-content;
 }

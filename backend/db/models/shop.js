@@ -3,6 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Shop = sequelize.define('Shop', {
     name: DataTypes.STRING,
     address: DataTypes.STRING,
+    city: DataTypes.STRING,
+    zipcode: DataTypes.INTEGER,
     website: DataTypes.STRING,
     image: DataTypes.STRING,
     lat: DataTypes.FLOAT,

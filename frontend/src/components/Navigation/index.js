@@ -10,7 +10,7 @@ import { signUp } from "../../store/session";
 const Navigation = ({isLoaded}) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false)
-  const [demoCount, setDemoCount] = useState(0);
+  // const [demoCount, setDemoCount] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!showLogin && !showSignUp) return;
@@ -28,8 +28,9 @@ const Navigation = ({isLoaded}) => {
   const currentUser = useSelector(state => state.session.user);
 
   const handleDemo = async () => {
-    const demoUser ={username: `Visitor${demoCount + 1}`, email: `visitor@enlite${demoCount + 1}.com`, password: 'password'}
-    setDemoCount(prev => prev + 1);
+    let num = Math.floor(Math.random() * 999);
+    const demoUser ={username: `Visitor${num}`, email: `visitor@enlite${num}.com`, password: 'password'}
+    // setDemoCount(prev => prev + 1);
     const demo = await dispatch(signUp(demoUser))
   }
 
