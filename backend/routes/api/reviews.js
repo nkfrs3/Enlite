@@ -1,18 +1,18 @@
 //this is just for reference, on how to set up file upload for aws
 const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3');
+const {Review } = require('../../db')
 
 router.post(
   "/",
   singleMulterUpload("image"),
   validateSignup,
   asyncHandler(async (req, res) => {
-    const { email, password, username } = req.body;
+    const { rating, comment, image  } = req.body;
     const image = await singlePublicFileUpload(req.file);
-    const review = await User.signup({  //to do change Table name and method.
-      username,
-      email,
-      password,
-      image,
+    const review = await Review.signup({  //to do change Table name and method.
+    rating,
+    comment,
+    image,
     });
 
     setTokenCookie(res, user);

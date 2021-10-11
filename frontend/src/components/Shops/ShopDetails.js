@@ -50,7 +50,9 @@ const ShopDetails = ({shop}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let newErrors = [];
-    dispatch(createReview({ image, comment, rating }))
+    const userId = currentUser.id;
+    const shopId = id;
+    dispatch(createReview({ image, comment, rating, userId, shopId }))
       .then(() => {
         setComment("");
         setRating("");
@@ -76,7 +78,7 @@ const ShopDetails = ({shop}) => {
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
    { visited && <Map shop={visited} />}
-     { currentUser && <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> }
+     { currentUser ? <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review'>login to review</span> }
 
       { showReview &&  <form className='review' onSubmit={handleSubmit}>
       <label className='upload-img'><i class="far fa-image"><span className='img-label'>upload image</span></i>

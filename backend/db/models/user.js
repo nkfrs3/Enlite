@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
 
-  },
+    },
   );
   User.associate = function(models) {
     // associations can be defined here
@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
      }
 
 
-    Shop.belongsToMany(models.User, columnMapping )
+    User.belongsToMany(models.Shop, columnMapping );
   };
 
 
