@@ -8,6 +8,8 @@ const Map = ({shop}) => {
   const mapStyles = {
     height: "400px",
     width: "400px",
+    gridArea: "map",
+    marginTop: "50px"
   };
 
   const defaultCenter = {
@@ -22,7 +24,6 @@ const Map = ({shop}) => {
          mapContainerStyle={mapStyles}
          zoom={16}
          center={defaultCenter}
-         className='shop-map'
 
        >
       <Marker key={shop.id} position={defaultCenter}/>

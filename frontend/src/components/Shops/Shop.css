@@ -102,9 +102,14 @@ span.show-more:hover {
 
 /*Start of individual shop details */
 .shop-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 50px 1fr 1fr 1fr 50px;
+  grid-template-rows: 75px 1fr 1fr 1fr;
+  grid-template-areas: "t t t t t"
+                        ". map . review ."
+                        ". . . . ."
+                        ". . . . .";
+  position: relative;
 }
 
 .zipcode {
@@ -123,15 +128,23 @@ span.show-more:hover {
 
 div.rating {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   position: relative;
   justify-content: center;
   align-items: flex-end;
+  margin-bottom: 25px;
 }
 
-p.shop-name {
+h1.shop-name {
   font-size: 2em;
+  padding-top: 7px;
+  width: 100%;
+  text-align: center;
+  grid-area: t;
+  border-bottom: 10px solid #1A0A40;
+  outline: 3px solid black;
 }
+
 form textarea {
   border-radius: 5px;
   resize: none;
@@ -156,11 +169,44 @@ form textarea:focus{
 }
 
 form.review {
+  grid-area: review;
   display:flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  position: relative;
+  margin-top: 80px;
 }
+input[type="file"] {
+  display: none;
+}
+
+.upload-img {
+  border: 1px solid rgb(104, 103, 103);
+  display: inline-block;
+  padding: 6px 12px;
+  width: 200px;
+  height: 25px;
+  align-self: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.upload-img .fa-image {
+  font-size: 2.5em;
+  position: absolute;
+  left: 155px;
+  top: -7px;
+}
+.img-label {
+  font-size: 16px;
+  position: absolute;
+  white-space: nowrap;
+  bottom: 15px;
+  left: 50px;
+
+}
+
 div.map {
   height: 200px;
 }
@@ -173,8 +219,11 @@ div.map {
 }
 .show-review {
   cursor: pointer;
-  align-self: flex-end;
-  margin-right: 50px;
+  position: absolute;
+  right: 50px;
+  top: 100px;
+  font-weight: 600;
+  letter-spacing: -0.75px;
 
 }
 .submit-review {
@@ -182,6 +231,7 @@ div.map {
   background-color: transparent;
   border-radius: 10px;
   transition: 0.3s;
+  margin-top: 20px;
   background-color: #dfd49a;
 }
 .submit-review:hover{
