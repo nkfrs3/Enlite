@@ -204,7 +204,15 @@ input[type="file"] {
   white-space: nowrap;
   bottom: 15px;
   left: 50px;
+  overflow: none;
 
+}
+.remove-img{
+  background: #1A0A40;
+  color:#fffddc;
+  position: absolute;
+  right: 50px;
+  top: -3px;
 }
 
 div.map {

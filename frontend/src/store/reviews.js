@@ -8,12 +8,13 @@ const sendReview = (review) => ({
 });
 
 export const createReview = (review) => async (dispatch) => {
-  const { image, comment, rating } = review;
+  const { image, comment, rating, userId, shopId } = review;
 
   const formData = new FormData();
   formData.append("comment", comment);
   formData.append("rating", rating);
-
+  formData.append("userId", userId);
+  formData.append("shopId", shopId);
   // for multiple files
   // if (images && images.length !== 0) {
   //   for (var i = 0; i < images.length; i++) {

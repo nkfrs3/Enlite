@@ -50,12 +50,23 @@ const ShopDetails = ({shop}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let newErrors = [];
+    if (rating <= 0 ){
+      newErrors.push('You must provide a score.')
+      setErrors(newErrors)
+    }
     const userId = currentUser.id;
     const shopId = id;
-    dispatch(createReview({ image, comment, rating, userId, shopId }))
+    let body;
+
+    if (image && image.name) {
+      body = {image, comment, rating, userId, shopId}
+    }else {
+     body = { comment, rating, userId, shopId}
+    }
+    dispatch(createReview(body))
       .then(() => {
         setComment("");
-        setRating("");
+        setRating(0);
         setImage(null);
       })
       .catch(async (res) => {
@@ -65,8 +76,15 @@ const ShopDetails = ({shop}) => {
           setErrors(newErrors);
         }
       });
+      if (!newErrors.length) {
+        setRating(0);
+        setShowReview(false);
+      }
   };
 
+  useEffect(()=> {
+    setErrors([]);
+  }, [rating])
 
    const handleComment = ({target}) => {setComment(target.value); if(!target.value.length){
     target.style.height = '30px';
@@ -78,12 +96,17 @@ const ShopDetails = ({shop}) => {
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
    { visited && <Map shop={visited} />}
-     { currentUser ? <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review'>login to review</span> }
+     { currentUser ? <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 
       { showReview &&  <form className='review' onSubmit={handleSubmit}>
-      <label className='upload-img'><i class="far fa-image"><span className='img-label'>upload image</span></i>
+       {errors.length > 0 && <div className="review-errors">
+        {  errors?.map(err => (<p>{err}</p>) )}
+       </div> }
+      <label className='upload-img'><i class="far fa-image"><span className='img-label'> {image?.name ? image.name.slice(0,10) + image.name.slice(image.name.length -4) : "upload image" }</span></i>
           <input type="file" onChange={updateFile} />
+       { image?.name && <span className='remove-img' onClick={(e)=> setImage(null)}> remove</span>}
         </label>
+
         <div className='rating' style={styles.cups}>
           {cups.map((each, i) => { return (
             <FaCoffee key={i}
