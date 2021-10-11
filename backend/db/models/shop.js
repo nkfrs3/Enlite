@@ -13,6 +13,15 @@ module.exports = (sequelize, DataTypes) => {
   },{});
   Shop.associate = function(models) {
     // associations can be defined here
+    const columnMapping = {
+      through: 'Review',
+      otherKey: 'userId',
+      foreignKey: 'shopId'
+     }
+
+
+    Shop.belongsToMany(models.User, columnMapping )
   };
+
   return Shop;
 };

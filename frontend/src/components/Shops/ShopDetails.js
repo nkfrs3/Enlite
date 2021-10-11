@@ -75,7 +75,7 @@ const ShopDetails = ({shop}) => {
   return (
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
-   { visited && <Map shop={visited} className="google-map"/>}
+   { visited && <Map shop={visited} />}
      { currentUser && <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> }
 
       { showReview &&  <form className='review' onSubmit={handleSubmit}>

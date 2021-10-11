@@ -9,11 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: [3, 30],
-        isNotEmail(value) {
-          if (Validator.isEmail(value)) {
-            throw new Error('Cannot be an email.');
-          }
-        },
+
       },
     },
     email: {
@@ -51,6 +47,14 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function(models) {
     // associations can be defined here
+    const columnMapping = {
+      through: 'Review',
+      otherKey: 'shopId',
+      foreignKey: 'userId'
+     }
+
+
+    Shop.belongsToMany(models.User, columnMapping )
   };
 
 
