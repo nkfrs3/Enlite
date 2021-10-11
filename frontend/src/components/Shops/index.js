@@ -92,7 +92,7 @@ const Shops = () => {
 
   return (
     <Switch >
-    <Route exact path='/(|shops)'>
+    <Route exact path='/shops'>
     <div class="content-container">
       <h2 className='the-best'>The Best Coffee in Ohio</h2>
       <span onClick={scroll} className='show-more'><i class="fas fa-ellipsis-h"></i></span>
@@ -107,7 +107,9 @@ const Shops = () => {
         {selectedShops.map(shop => {
           return <Shop shop={shop}/>
         }) }
+      <span onClick={scroll} className='show-more'><i class="fas fa-ellipsis-h"></i></span>
       </div>
+
     </div>
     </Route>
 

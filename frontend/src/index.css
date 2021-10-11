@@ -55,7 +55,9 @@ section {
   align-items: center;
   background-color: #1A0A40;
   width: 100vw;
+  gap: 20px;
 }
+
 .nav-bar .title {
   margin-left: 1em;
   color: #fffddc;
@@ -75,12 +77,8 @@ section {
   border-bottom: 2px solid #fffddc;
 }
 
-.welcome {
-  margin: 0 auto;
+h2.welcome {
   color: #A68A5B;
-  justify-self: flex-end;
-  margin-right: 2em;
-
 }
 
 .app-title {
@@ -90,7 +88,11 @@ section {
   padding-left: 1.5em;
 }
 
-
+.link-to-shops {
+  text-decoration: none;
+  font-size: 1.3em;
+    margin: 0 auto;
+}
 /* purp:  #8562D9 #1A0A40 #5B6DA6 # tan:  #A68A5B #A57F5A light-tan: #f3eee4*/
 
 /* font-family: 'Source Serif Pro', serif; */
