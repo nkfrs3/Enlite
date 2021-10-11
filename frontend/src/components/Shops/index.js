@@ -71,7 +71,8 @@ const Shops = () => {
     if (order == 'distance'){
       navigator.geolocation.getCurrentPosition(success, error);
     }
-    if (order == 'aphabetical'){
+
+    if (order == 'alphabetical'){
       setSelectedShops(allShops.slice(0, 7))
       setLimit(7);
       }
@@ -97,8 +98,8 @@ const Shops = () => {
       <span onClick={scroll} className='show-more'><i class="fas fa-ellipsis-h"></i></span>
       <label for='sort-by' className='sort-by'>Order By</label>
         <select  value={order} onChange={handleOrder} >
-          <option value='rating'>Aphabetical</option>
-          <option value='aphabetical'>Rating</option>
+          <option value='alphabetical'>Alphabetical</option>
+          <option value='rating'>Rating</option>
           <option value='distance'>Distance</option>
         </select>
 
