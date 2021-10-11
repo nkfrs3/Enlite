@@ -7,12 +7,12 @@ router.post(
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username } = req.body;
-    const profileImageUrl = await singlePublicFileUpload(req.file);
+    const image = await singlePublicFileUpload(req.file);
     const review = await User.signup({  //to do change Table name and method.
       username,
       email,
       password,
-      imageUrl,
+      image,
     });
 
     setTokenCookie(res, user);

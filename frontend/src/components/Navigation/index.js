@@ -37,8 +37,9 @@ const Navigation = ({isLoaded}) => {
   return (
     <div className="nav-bar">
       <NavLink to="/" className='app-title' activeClassName="home">Enlite</NavLink>
-      {/* <h1 className= 'title'></h1> */}
-      <NavLink to="/shops" className='nav-link link-to-shops' activeClassName="at-shops">Shops</NavLink>
+
+      { !showLogin && !showSignUp &&  <NavLink to="/shops" className='nav-link link-to-shops' activeClassName="at-shops">Shops</NavLink> }
+
       {!showLogin && <h2 className='welcome'>{currentUser?.username}</h2>}
       { isLoaded && !showLogin && !showSignUp && !currentUser &&
       <div>
