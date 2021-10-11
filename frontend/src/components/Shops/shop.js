@@ -14,7 +14,8 @@ const Shop = ({shop}) => {
       <h3 className='shop-name' onClick={handleVisit}>{shop.name}</h3>
         <span className='shop-logo' style={{  backgroundImage: `url(${shop.image})` }} onClick={handleVisit}> </span>
         <p className='address'>{shop.address}</p>
-        <span className='zipcode'>{shop.city}, {shop.zipcode}</span> <span>distance: {shop?.distance}</span>
+        <span className='zipcode'>{shop.city}, {shop.zipcode}</span>
+      { shop?.distance && <span className ='shop-distance'>distance: {shop.distance.toFixed(2)} mi.</span> }
         { shop.website && <a href={shop.website} target="_blank"> visit them here </a>}
     </div>
   )
