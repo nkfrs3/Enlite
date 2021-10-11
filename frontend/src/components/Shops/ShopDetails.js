@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import shopsReducer from "../../store/shops";
 import { FaCoffee } from 'react-icons/fa';
+import { createReview } from "../../store/reviews";
 import Map from "../Map/Index";
 
 const ShopDetails = ({shop}) => {
@@ -11,6 +12,9 @@ const ShopDetails = ({shop}) => {
   const [showReview, setShowReview] = useState(false);
   const [hoverRating, setHoverRating] = useState(undefined);
   const [comment, setComment] = useState('');
+  const [image, setImage] = useState(null);
+  const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user);
 
@@ -28,7 +32,6 @@ const ShopDetails = ({shop}) => {
   const handleMouseLeave = () => {
     setHoverRating(undefined);
   }
-  const handleSubmit = (e) => e.preventDefault();
 
   const cups = [1, 2, 3, 4, 5];
 
@@ -39,6 +42,30 @@ const ShopDetails = ({shop}) => {
      }
    }
 
+   const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let newErrors = [];
+    dispatch(createReview({ image, comment, rating }))
+      .then(() => {
+        setComment("");
+        setRating("");
+        setImage(null);
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          newErrors = data.errors;
+          setErrors(newErrors);
+        }
+      });
+  };
+
+
    const handleComment = ({target}) => {setComment(target.value); if(!target.value.length){
     target.style.height = '30px';
    }
@@ -47,10 +74,14 @@ const ShopDetails = ({shop}) => {
 
   return (
     <div className='shop-details'>
-      <p className='shop-name'>{visited?.name}</p>
-   {/* { visited && <Map shop={visited} />} google map comment in later */}
+      <h1 className='shop-name'>{visited?.name}</h1>
+   { visited && <Map shop={visited} className="google-map"/>}
      { currentUser && <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> }
+
       { showReview &&  <form className='review' onSubmit={handleSubmit}>
+      <label className='upload-img'><i class="far fa-image"><span className='img-label'>upload image</span></i>
+          <input type="file" onChange={updateFile} />
+        </label>
         <div className='rating' style={styles.cups}>
           {cups.map((each, i) => { return (
             <FaCoffee key={i}
@@ -66,7 +97,7 @@ const ShopDetails = ({shop}) => {
         <span className='show-rating'>{rating}/5</span>
         </div>
         <textarea onChange={handleComment} placeholder="How was your stay?" />
-        <button className='submit-review'>Submit</button>
+        <button className='submit-review' type='submit'>Submit</button>
         </form> }
     </div>
 
