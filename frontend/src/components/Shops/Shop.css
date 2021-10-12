@@ -103,8 +103,8 @@ span.show-more:hover {
 /*Start of individual shop details */
 .shop-details {
   display: grid;
-  grid-template-columns: 50px 1fr 1fr 1fr 50px;
-  grid-template-rows: 75px 1fr 1fr 1fr;
+  grid-template-columns: 50px 1fr 1.3fr 1fr 50px;
+  grid-template-rows: 75px 1fr 1.5fr 1fr;
   grid-template-areas: "t t t t t"
                         ". map feed review ."
                         ". . . . ."
@@ -181,6 +181,7 @@ form.review {
   justify-content: flex-start;
   width: 450px;
   border-radius: 25px;
+  max-height: 402px;
 }
 .review-title{
  margin-bottom: auto;
@@ -189,6 +190,8 @@ form.review {
 
 .review-errors {
   font-size: 12px;
+  position: absolute;
+  top: 47px;
 }
 input[type="file"] {
   display: none;
@@ -205,13 +208,14 @@ input[type="file"] {
   margin-bottom: 20px;
   font-size: 0.875em;
   background-color: rgb(255, 255, 255);
+  margin-top: 20px;
 }
 
 .upload-img .fa-image {
   font-size: 2.5em;
   position: absolute;
   left: 130px;
-  top: 53px;
+  top: 73px;
 }
 
 .img-label {
@@ -304,6 +308,8 @@ div.map {
   place-self: center top;
   margin-top: 20px;
   text-align: center;
-  background-color: brown;
-  width: 380px;
+  background-color: #e6dfd5;
+  width: 90%;
+  /* height: 100vh; */
+  display:flex;
 }

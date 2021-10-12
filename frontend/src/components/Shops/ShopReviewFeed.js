@@ -17,14 +17,15 @@ console.log(id, 'params id')
 useEffect(() => {
 dispatch(fetchReviewsForShop(id));
 
-},[dispatch,id],
+},[dispatch, id],
 
 )
 
   return (
       <div className='review-feed-container'>
-        <h2>Review Feed</h2>
-       { reviews?.length && reviews.map(review => <p>{review.comment}</p>) }
+        <h2>Reviews</h2>
+       { reviews?.length && reviews.map(review =>
+       <p>{review.comment}</p> )  }
 
       </div>
   )

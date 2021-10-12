@@ -32,7 +32,7 @@ router.post(
 router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
   console.log(id)
-  const reviews = await Review.findAll({where: {shopId: id}, order: [["updatedAt", 'DESC']]},);
+  const reviews = await Review.findAll({where: {shopId: id}, order: [["updatedAt", 'DESC']], limit: 20},);
     console.log(reviews)
     return res.json(reviews);
   })
