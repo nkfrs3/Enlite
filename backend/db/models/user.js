@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
         len: [3, 30],
 
@@ -43,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
 
-  },
+    },
   );
   User.associate = function(models) {
     // associations can be defined here
@@ -51,10 +52,12 @@ module.exports = (sequelize, DataTypes) => {
       through: 'Review',
       otherKey: 'shopId',
       foreignKey: 'userId'
+
      }
 
 
-    Shop.belongsToMany(models.User, columnMapping )
+    User.belongsToMany(models.Shop, columnMapping );
+    User.hasMany(models.Review, {foreignKey: 'userId'})
   };
 
 

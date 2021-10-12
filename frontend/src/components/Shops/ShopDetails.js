@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import shopsReducer from "../../store/shops";
 import { FaCoffee } from 'react-icons/fa';
 import { createReview } from "../../store/reviews";
+import ShopReviewFeed from "./ShopReviewFeed";
 import Map from "../Map/Index";
 
 const ShopDetails = ({shop}) => {
@@ -50,38 +50,66 @@ const ShopDetails = ({shop}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let newErrors = [];
-    dispatch(createReview({ image, comment, rating }))
+    if (rating <= 0 ){
+      newErrors.push('You must provide a score.')
+      setErrors(newErrors)
+    }
+    const userId = currentUser.id;
+    const shopId = id;
+    let body;
+
+    if (image && image.name) {
+      body = {image, comment, rating, userId, shopId}
+    }else {
+     body = { comment, rating, userId, shopId}
+    }
+
+    dispatch(createReview(body))
       .then(() => {
         setComment("");
-        setRating("");
+        setRating(0);
         setImage(null);
       })
       .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          newErrors = data.errors;
-          setErrors(newErrors);
-        }
+        console.log(res)
+        // const data = await res.json();
+        // if (data && data.errors) {
+        //   newErrors = data.errors;
+        //   setErrors(newErrors);
+        // }
       });
+      if (!newErrors.length) {
+        setRating(0);
+        setShowReview(false);
+      }
   };
 
+  useEffect(()=> {
+    setErrors([]);
+  }, [rating])
 
-   const handleComment = ({target}) => {setComment(target.value); if(!target.value.length){
-    target.style.height = '30px';
-   }
-   else {target.style.height = '250px' }}
+
+   const handleComment = ({target}) => {setComment(target.value)}
 
 
   return (
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
+      {visited && <ShopReviewFeed id={id, currentUser}/>}
    { visited && <Map shop={visited} />}
-     { currentUser && <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> }
+     { currentUser ? <span  className='show-review' onClick={()=> {setShowReview(!showReview); setComment('')}}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 
-      { showReview &&  <form className='review' onSubmit={handleSubmit}>
-      <label className='upload-img'><i class="far fa-image"><span className='img-label'>upload image</span></i>
+      { showReview &&  <form className='review' onSubmit={handleSubmit} >
+        <h3 className='review-title'>Review</h3>
+       {errors.length > 0 && <div className="review-errors">
+        {  errors?.map(err => (<p>{err}</p>) )}
+       </div> }
+      <label className='upload-img'><i class="far fa-image"> <span className='img-label'> {image?.name ? image.name.slice(0,10) + image.name.slice(image.name.length -4) : "upload image" }</span></i>
           <input type="file" onChange={updateFile} />
+
+       { image?.name && <span className='remove-img' onClick={(e)=>{ e.preventDefault(); setImage(null)}}> remove</span>}
         </label>
+
         <div className='rating' style={styles.cups}>
           {cups.map((each, i) => { return (
             <FaCoffee key={i}
@@ -96,7 +124,7 @@ const ShopDetails = ({shop}) => {
 
         <span className='show-rating'>{rating}/5</span>
         </div>
-        <textarea onChange={handleComment} placeholder="How was your stay?" />
+        <textarea onChange={handleComment}  placeholder="How was your stay?" />
         <button className='submit-review' type='submit'>Submit</button>
         </form> }
     </div>

@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     rating: {
@@ -11,35 +12,42 @@ module.exports = (sequelize, DataTypes) => {
     },
     comment: {
       type: DataTypes.TEXT,
-      validate: {len: [3, 500]}
+      validate: {len: [0, 500]}
     },
     image: DataTypes.STRING,
-    // userId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    // username: {
+    //   type: DataTypes.STRING,
+    //   unique: true
     // },
-    // shopId: {
-    //   type:DataTypes.INTEGER,
-    //   allowNull: false,
-    //   },
+    shopId: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+      },
   },
   {
-    uniqueKeys: {
-        Items_unique: {
+    indexes: [
+        {
+            unique: true,
             fields: ['userId', 'shopId']
         }
-      //   {
-      //     indexes: [
-      //         {
-      //             unique: true,
-      //             fields: ['user_id', 'count', 'name']
-      //         }
-      //     ]
-      // }
-    }
-});
+    ]
+}
+//   {
+//     uniqueKeys: {
+//         Items_unique: {
+//             fields: ['userId', 'shopId']
+//         }
+//     }
+// }
+
+);
   Review.associate = function(models) {
     // associations can be defined here
+    Review.belongsTo(models.User, {foreignKey: 'userId'})
 
   };
   return Review;

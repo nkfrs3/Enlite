@@ -274,8 +274,8 @@ module.exports = {
         zipcode: 44212,
         website:'https://www.facebook.com/Kellys-cafe-109160965789389/',
         image:'https://scontent-ort2-2.xx.fbcdn.net/v/t1.6435-9/34159327_1798433150195487_8806943776045006848_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=UVczydKot5MAX-yAMDC&_nc_ht=scontent-ort2-2.xx&oh=09fc100513a1b1d2fa70a4c8ded4b435&oe=61881133',
-        lat: 41.23066164109626,
-        long: -81.84042800371192,
+        lat: 41.23021776236695,
+        long: -81.84027003789579,
       },
       {
         name: 'Cavu Coffee',

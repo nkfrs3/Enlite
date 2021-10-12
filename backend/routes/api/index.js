@@ -5,11 +5,12 @@ const { User } = require('../../db/models');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const shopsRouter = require('./shops.js');
+const reviewsRouter = require('./reviews.js')
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/shops', shopsRouter);
-
+router.use('/reviews', reviewsRouter);
 
 //  Test Routes for auth
 
