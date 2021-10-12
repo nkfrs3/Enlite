@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import shopsReducer from "../../store/shops";
 import { FaCoffee } from 'react-icons/fa';
 import { createReview } from "../../store/reviews";
+import ShopReviewFeed from "./ShopReviewFeed";
 import Map from "../Map/Index";
 
 const ShopDetails = ({shop}) => {
@@ -96,6 +96,7 @@ const ShopDetails = ({shop}) => {
   return (
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
+      {visited && <ShopReviewFeed id={id, currentUser}/>}
    { visited && <Map shop={visited} />}
      { currentUser ? <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 
@@ -106,6 +107,7 @@ const ShopDetails = ({shop}) => {
        </div> }
       <label className='upload-img'><i class="far fa-image"> <span className='img-label'> {image?.name ? image.name.slice(0,10) + image.name.slice(image.name.length -4) : "upload image" }</span></i>
           <input type="file" onChange={updateFile} />
+
        { image?.name && <span className='remove-img' onClick={(e)=>{ e.preventDefault(); setImage(null)}}> remove</span>}
         </label>
 

@@ -106,7 +106,7 @@ span.show-more:hover {
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
   grid-template-rows: 75px 1fr 1fr 1fr;
   grid-template-areas: "t t t t t"
-                        ". map . review ."
+                        ". map feed review ."
                         ". . . . ."
                         ". . . . .";
   position: relative;
@@ -166,9 +166,7 @@ form textarea:focus{
   outline: none !important;
   border: 2.5px solid #090418;
 }
-form textarea:focus{
-  height: 250px;
-}
+
 
 form.review {
   grid-area: review;
@@ -297,4 +295,15 @@ div.map {
 .rating-cup:nth-child(5) {
   height: 47px;
   width: 45px;
+}
+
+/* styles for review feed */
+
+.review-feed-container {
+  grid-area: feed;
+  place-self: center top;
+  margin-top: 20px;
+  text-align: center;
+  background-color: brown;
+  width: 380px;
 }

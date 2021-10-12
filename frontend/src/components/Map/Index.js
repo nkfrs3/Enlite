@@ -6,8 +6,8 @@ const Map = ({shop}) => {
   const lng = shop.long;
 
   const mapStyles = {
-    height: "400px",
-    width: "400px",
+    height: "375px",
+    width: "375px",
     gridArea: "map",
     marginTop: "50px"
   };
