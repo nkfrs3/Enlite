@@ -66,7 +66,7 @@ const reviewsReducer = (state = initialState, action) => {
       if (!action.reviews) return newState;
 
       const shopID = (action.reviews[0].shopId);
-      newState[shopID] = [].concat(newState[shopID], action.reviews).filter(x => x)
+      newState[shopID] = [...action.reviews];
       return newState;
 
     default:
