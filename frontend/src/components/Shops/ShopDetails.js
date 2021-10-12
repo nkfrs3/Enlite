@@ -71,11 +71,12 @@ const ShopDetails = ({shop}) => {
         setImage(null);
       })
       .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          newErrors = data.errors;
-          setErrors(newErrors);
-        }
+        console.log(res)
+        // const data = await res.json();
+        // if (data && data.errors) {
+        //   newErrors = data.errors;
+        //   setErrors(newErrors);
+        // }
       });
       if (!newErrors.length) {
         setRating(0);

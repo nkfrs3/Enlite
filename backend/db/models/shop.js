@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     const columnMapping = {
       through: 'Review',
       otherKey: 'userId',
-      foreignKey: 'shopId'
+      foreignKey: 'shopId',
      }
 
 

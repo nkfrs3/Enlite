@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
         len: [3, 30],
 
@@ -51,10 +52,12 @@ module.exports = (sequelize, DataTypes) => {
       through: 'Review',
       otherKey: 'shopId',
       foreignKey: 'userId'
+
      }
 
 
     User.belongsToMany(models.Shop, columnMapping );
+    User.hasMany(models.Review, {foreignKey: 'userId'})
   };
 
 

@@ -48,6 +48,8 @@ export const createReview = (review) => async (dispatch) => {
 
   const data = await res.json();
   dispatch(sendReview(data.review));
+  console.log("DATA!!!", data)
+  return data;
 };
 
 const initialState = {}
