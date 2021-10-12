@@ -17,18 +17,18 @@ const Map = ({shop}) => {
   }
 
   return (
+    <></>
+    // <LoadScript
+    //   googleMapsApiKey='AIzaSyBOdWkRdSuj0BPRTjyobY4N4tKrpYPGnBs&callback=initMap'>
+    //    <GoogleMap
+    //      mapContainerStyle={mapStyles}
+    //      zoom={16}
+    //      center={defaultCenter}
 
-    <LoadScript
-      googleMapsApiKey='AIzaSyBOdWkRdSuj0BPRTjyobY4N4tKrpYPGnBs&callback=initMap'>
-       <GoogleMap
-         mapContainerStyle={mapStyles}
-         zoom={16}
-         center={defaultCenter}
-
-       >
-      <Marker key={shop.id} position={defaultCenter}/>
-       </GoogleMap>
-    </LoadScript>
+    //    >
+    //   <Marker key={shop.id} position={defaultCenter}/>
+    //    </GoogleMap>
+    // </LoadScript>
    )
  }
 

@@ -2,7 +2,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3');
-const {Review} = require('../../db/models');
+const {Review, User} = require('../../db/models');
 const router = express.Router();
 
 
@@ -32,7 +32,9 @@ router.post(
 router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
   console.log(id)
-  const reviews = await Review.findAll({where: {shopId: id}, order: [["updatedAt", 'DESC']], limit: 20},);
+
+  const reviews = await Review.findAll({where: {shopId: id}, include: User, order: [[Review,"updatedAt", 'DESC']], limit: 20});
+
     console.log(reviews)
     return res.json(reviews);
   })

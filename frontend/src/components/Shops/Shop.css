@@ -148,23 +148,21 @@ h1.shop-name {
 form textarea {
   border-radius: 5px;
   resize: none;
-  width: 375px;
+  width: 350px;
   display: block;
-  /* height: 150px; */
-  height: 30px;
   overflow-y: hidden;
-  border: 2px solid rgb(204, 203, 207);
+  min-height: 100px;
+  border: 1px solid rgb(204, 203, 207);
   padding: 3px 0 33px 5px;
   font-size: 1.25em;
   transition: 1s;
-  margin-top: 40px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 
 form textarea:focus{
   outline: none !important;
-  border: 2.5px solid #090418;
+  border: 1px solid #090418;
 }
 
 
@@ -179,9 +177,9 @@ form.review {
   padding: 20px 0 15px 0;
   background-color: #faf9fd;
   justify-content: flex-start;
-  width: 450px;
+  width: 445px;
   border-radius: 25px;
-  max-height: 402px;
+  height: 420px;
 }
 .review-title{
  margin-bottom: auto;
@@ -212,10 +210,10 @@ input[type="file"] {
 }
 
 .upload-img .fa-image {
-  font-size: 2.5em;
+  font-size: 2.3em;
   position: absolute;
-  left: 130px;
-  top: 73px;
+  left: 120px;
+  top: 86px;
 }
 
 .img-label {
@@ -310,35 +308,64 @@ div.map {
   text-align: center;
   background-color: #e6dfd5;
   width: 90%;
-  /* height: 100vh; */
   display:flex;
   flex-direction: column;
   gap: 15px;
 }
-
+.individual-review:last-child {
+ margin-bottom: 1rem;
+}
 .individual-review {
-display:flex;
-justify-content: space-between;
+display:grid;
+grid-template-columns: 10px 1fr 1fr 1fr 10px;
+grid-template-rows: 60px 1fr 1fr 1fr;
+position: relative;
+grid-template-areas: '. . img . .'
+                      '. . img . .'
+                      '. . . . .'
+                      '. p p score .';
 margin-top: 0.75rem;
 background-color: rgb(246, 242, 247);
 padding: 5px 0;
 margin: 0 5px;
+min-width: 348px;
 
 }
 
+.individual-review p {
+  height: fit-content;
+  width: fit-content;
+  white-space: pre-line;
+ grid-area: p;
+ text-align: start;
+ font-size: 12.5px;
+}
+/* .individual-review p::before {
+  content: "";
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 2.5px;
+  right: 0px;
+  bottom: 70px;
+} */
 .review-image-contianer {
-  width: 100px;
+  grid-area: img;
 }
 .review-image {
-  width: 125px;
+  height: 130px;
+  object-fit: contain;
 }
 .stars-container{
   background-color: #ece9f3;
   height: fit-content;
+  width:fit-content;
   border-radius: 15px;
-  padding: 0 5px 2px 5px;
+  padding: 0 9px 2px 9px;
   white-space: nowrap;
   align-self: flex-end;
+  place-self: end end;
+  grid-area: score;
 }
 .stars {
   font-size: 12px;

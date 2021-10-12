@@ -1,4 +1,7 @@
 'use strict';
+
+const { FOREIGNKEYS } = require("sequelize/types/lib/query-types");
+
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     rating: {
@@ -42,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
 );
   Review.associate = function(models) {
     // associations can be defined here
+    Review.belongsTo(models.User,  {foreignKey: 'userId'})
 
   };
   return Review;

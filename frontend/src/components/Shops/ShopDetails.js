@@ -87,10 +87,8 @@ const ShopDetails = ({shop}) => {
     setErrors([]);
   }, [rating])
 
-   const handleComment = ({target}) => {setComment(target.value); if(!target.value.length){
-    target.style.height = '30px';
-   }
-   else {target.style.height = '250px' }}
+
+   const handleComment = ({target}) => {setComment(target.value)}
 
 
   return (
@@ -98,9 +96,9 @@ const ShopDetails = ({shop}) => {
       <h1 className='shop-name'>{visited?.name}</h1>
       {visited && <ShopReviewFeed id={id, currentUser}/>}
    { visited && <Map shop={visited} />}
-     { currentUser ? <span  className='show-review' onClick={()=> setShowReview(!showReview)}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
+     { currentUser ? <span  className='show-review' onClick={()=> {setShowReview(!showReview); setComment('')}}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 
-      { showReview &&  <form className='review' onSubmit={handleSubmit}>
+      { showReview &&  <form className='review' onSubmit={handleSubmit} >
         <h3 className='review-title'>Review</h3>
        {errors.length > 0 && <div className="review-errors">
         {  errors?.map(err => (<p>{err}</p>) )}
@@ -125,7 +123,7 @@ const ShopDetails = ({shop}) => {
 
         <span className='show-rating'>{rating}/5</span>
         </div>
-        <textarea onChange={handleComment} placeholder="How was your stay?" />
+        <textarea onChange={handleComment}  placeholder="How was your stay?" />
         <button className='submit-review' type='submit'>Submit</button>
         </form> }
     </div>
