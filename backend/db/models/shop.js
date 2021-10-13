@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     lat: DataTypes.FLOAT,
     long: DataTypes.FLOAT,
-
   },{});
   Shop.associate = function(models) {
     // associations can be defined here
@@ -21,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
     Shop.belongsToMany(models.User, columnMapping )
+    Shop.hasMany(models.Review, { foreignKey:'shopId'})
   };
 
   return Shop;

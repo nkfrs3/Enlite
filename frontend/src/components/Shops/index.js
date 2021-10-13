@@ -5,6 +5,7 @@ import { fetchShops } from "../../store/shops";
 import Shop from "./shop";
 import ShopDetails from "./ShopDetails";
 import './Shop.css'
+import { fetchAllReviews } from "../../store/reviews";
 
 const Shops = () => {
   const [selectedShops, setSelectedShops] = useState([]);
@@ -17,9 +18,10 @@ const Shops = () => {
 
   const allShops = useSelector(state => state.shops);
 
+
   useEffect(() => {
     const res = dispatch(fetchShops());
-
+    const reviews = dispatch(fetchAllReviews());
     }, [dispatch]);
 
 

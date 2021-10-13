@@ -3,6 +3,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3');
 const {Review, User} = require('../../db/models');
+const Sequelize = require('sequelize')
 const router = express.Router();
 
 
@@ -28,6 +29,13 @@ router.post(
   })
 );
 
+// get all reviews for each shop
+router.get('/', asyncHandler(async (req, res) => {
+   const allReviews = await Review.findAll()
+    console.log(allReviews)
+    return res.json(allReviews);
+}));
+
 // get all reviews for a single shop
 router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
@@ -38,7 +46,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
     console.log(reviews)
     return res.json(reviews);
   })
-
 )
+
+
 
 module.exports = router;

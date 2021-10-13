@@ -48,9 +48,10 @@ div.shop-card {
   min-width: 300px;
   width: 460px;
   height: 360px;
-  background-color: white;
   padding: 20px 5px 10px 5px;
-
+  background-color: #faf9f4;
+  border-radius: 20px;
+  border: 2px solid #1A0A40;
 }
 
 h3.shop-name{
@@ -177,7 +178,7 @@ form.review {
   padding: 20px 0 15px 0;
   background-color: #faf9fd;
   justify-content: flex-start;
-  width: 445px;
+  width: 437px;
   border-radius: 25px;
   height: 420px;
 }
@@ -306,29 +307,33 @@ div.map {
   place-self: center top;
   margin-top: 20px;
   text-align: center;
-  background-color: #e6dfd5;
+  /* background-color: #e6dfd5; */
   width: 90%;
   display:flex;
   flex-direction: column;
   gap: 15px;
+  min-height: 470px;
 }
 .individual-review:last-child {
  margin-bottom: 1rem;
 }
 .individual-review {
 display:grid;
-grid-template-columns: 10px 1fr 1fr 1fr 10px;
-grid-template-rows: 60px 1fr 1fr 1fr;
+grid-template-columns: 10px 1fr 1fr 0.5fr 10px;
+grid-template-rows: 70px 80px 70px 25px 30px;
 position: relative;
-grid-template-areas: '. . img . .'
-                      '. . img . .'
-                      '. . . . .'
-                      '. p p score .';
+grid-template-areas: '. img img img . '
+                      '. img img img . '
+                      '. p p . . '
+                      '. p p author . '
+                      '. .  date score .';
 margin-top: 0.75rem;
-background-color: rgb(246, 242, 247);
+background-color: rgb(250, 249, 246);
 padding: 5px 0;
 margin: 0 5px;
 min-width: 348px;
+border: 3px solid rgb(231, 226, 226);
+border-radius: 7px;
 
 }
 
@@ -336,24 +341,40 @@ min-width: 348px;
   height: fit-content;
   width: fit-content;
   white-space: pre-line;
- grid-area: p;
- text-align: start;
- font-size: 12.5px;
+  grid-area: p;
+   text-align: start;
+  font-size: 13px;
+  margin-top: 3px;
 }
-/* .individual-review p::before {
+.individual-review p::before {
   content: "";
   position: absolute;
-  background-color: black;
+  background-color:#e6dfd5;
   width: 100%;
-  height: 2.5px;
+  height: 2px;
   right: 0px;
-  bottom: 70px;
-} */
-.review-image-contianer {
+  bottom: 130px;
+}
+.review-author{
+  grid-area: author;
+  font-size: 14.5px;
+  place-self: start end;
+  margin-right: 5px;
+}
+.review-date {
+  grid-area: date;
+  white-space: nowrap;
+  font-size: 12px;
+  place-self: end start;
+  letter-spacing: -0.4px;
+}
+.review-image-container {
   grid-area: img;
+  place-self: start center;
+  margin-top: 3px;
 }
 .review-image {
-  height: 130px;
+  height: 140px;
   object-fit: contain;
 }
 .stars-container{
@@ -366,8 +387,23 @@ min-width: 348px;
   align-self: flex-end;
   place-self: end end;
   grid-area: score;
+  position: relative;
 }
 .stars {
   font-size: 12px;
   color: #A68A5B;
+}
+
+.partialStar::after{
+  content: "";
+  width: 12px;
+  height: 13px;
+  position:absolute;
+  color: #ece9f3;
+  z-index: 99;
+  right: 3.5px;
+  top: 3px;
+  /* right: 10px; */
+  background-color:#ece9f3;
+
 }

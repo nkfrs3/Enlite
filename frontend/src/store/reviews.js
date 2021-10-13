@@ -2,11 +2,18 @@ import { csrfFetch } from "./csrf";
 //going to be my reviews store
 const SEND_REVIEW = "reviews/sendReview";
 const FETCH_REVIEW = 'reviews/fetchReview'
+const LOAD_ALL = "review/loadAll"
 
-const sendReview = (review) => ({
-  type: SEND_REVIEW,
-  payload: review,
+const getAllReviews = (reviews) => ({
+  type: LOAD_ALL,
+  reviews
 });
+
+export const fetchAllReviews = () => async(dispatch) => {
+  const res = await fetch('/api/reviews');
+  const allReviews = await res.json();
+  dispatch(getAllReviews(allReviews))
+}
 
 const getReviewsForShop = (reviews) => ({
   type: FETCH_REVIEW,
@@ -17,8 +24,12 @@ export const fetchReviewsForShop = (shopId) => async(dispatch) => {
   const res = await fetch(`/api/reviews/${shopId}`);
   const reviews = await res.json();
   dispatch(getReviewsForShop(reviews))
-
 }
+
+const sendReview = (review) => ({
+  type: SEND_REVIEW,
+  payload: review,
+});
 
 export const createReview = (review) => async (dispatch) => {
   const { image, comment, rating, userId, shopId } = review;
@@ -48,7 +59,6 @@ export const createReview = (review) => async (dispatch) => {
 
   const data = await res.json();
   dispatch(sendReview(data.review));
-  console.log("DATA!!!", data)
   return data;
 };
 
@@ -57,9 +67,25 @@ const initialState = {}
 const reviewsReducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type){
+    case LOAD_ALL:
+      console.log(action)
+      let obj = {};
+      action.reviews.forEach(review => {
+        (!obj[review.shopId]) ?  obj[review.shopId] = [review] :
+        obj[review.shopId].push(review)
+
+      });
+      return {
+        ...obj,
+        ...state
+      };
     case SEND_REVIEW:
       const shopId = action.payload.shopId;
       const newObj = {...state};
+      if (!newObj[shopId]) {
+        newObj[shopId] = action.payload;
+        return newObj;
+      }
     newObj[shopId].unshift(action.payload);
     return newObj;
 

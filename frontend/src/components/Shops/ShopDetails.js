@@ -17,9 +17,7 @@ const ShopDetails = ({shop}) => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user);
-
   let visited = shop.find(each => each.id == parseInt(id));
-
   const handleRating = (i) => setRating(i);
 
   useEffect(() => {
