@@ -9,7 +9,7 @@ const ShopReviewFeed = ({currentUser}) => {
   const {id} = useParams();
   const dispatch = useDispatch();
 
-  const reviews = useSelector(state => {if (state.reviews[id]) return state.reviews[id]; else return []} );
+  const reviews = useSelector(state => {if (state.reviews[id]) return state.reviews[id]});
 
   useEffect(() => {
     dispatch(fetchReviewsForShop(id));

@@ -7,7 +7,7 @@ import ShopReviewFeed from "./ShopReviewFeed";
 import { fetchReviewsForShop } from "../../store/reviews";
 import Map from "../Map/Index";
 
-const ShopDetails = ({shop}) => {
+const ShopDetails = () => {
   const {id} = useParams();
   const [rating, setRating] = useState(0);
   const [showReview, setShowReview] = useState(false);
@@ -18,7 +18,7 @@ const ShopDetails = ({shop}) => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user);
-  let visited = shop.find(each => each.id == parseInt(id));
+  const visited = useSelector(state => state.shops[id])
   const handleRating = (i) => setRating(i);
 
   useEffect(() => {
