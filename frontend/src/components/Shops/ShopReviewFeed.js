@@ -59,7 +59,6 @@ const ShopReviewFeed = () => {
     },[dispatch, id] )
 
 
-
 const formatDate = (date) => {
   const time = new Date(date).toLocaleTimeString('en',
                  { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'America/Adak' });
@@ -92,35 +91,8 @@ const formatDate = (date) => {
       </div>
 
         {/* start of edit form */}
-     { showEdit && <EditReview /> }
-        {/* <form className='review' onSubmit={handleSubmit} style={{backgroundColor: 'red'}}><span onClick={setShowEdit(false)}>close</span>
-      <h3 className='review-title'> Edit Review</h3>
-    {errors.length > 0 && <div className="review-errors">
-      {  errors?.map(err => (<p>{err}</p>) )}
-    </div> }
-    <label className='upload-img'><i class="far fa-image"> <span className='img-label'> {image?.name ? image.name.slice(0,10) + image.name.slice(image.name.length -4) : "upload image" }</span></i>
-        <input type="file" onChange={updateFile} />
+     { showEdit && <EditReview reviewId={reviewId} setShowEdit={setShowEdit}/> }
 
-    { image?.name && <span className='remove-img' onClick={(e)=>{ e.preventDefault(); setImage(null)}}> remove</span>}
-      </label>
-
-      <div className='rating' style={styles.cups}>
-        {cups.map((each, i) => { return (
-        <FaCoffee key={i}
-        size={50}
-        className='rating-cup'
-        color={( hoverRating || rating ) > i ? colors.gold : colors.grey}
-        onClick={() => handleRating(i + 1)}
-        onMouseOver={() => handleMouseOver(i + 1)}
-        onMouseLeave={()=> handleMouseLeave()}
-        />)
-      })}
-
-    <span className='show-rating'>{rating}/5</span>
-    </div>
-    <textarea onChange={handleComment}  placeholder="How was your stay?" />
-    <button className='submit-review' type='submit'>Submit</button>
-    </form> */}
       </>
   )
 }
