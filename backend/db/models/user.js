@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
     User.belongsToMany(models.Shop, columnMapping );
-    User.hasMany(models.Review, {foreignKey: 'userId'})
+    User.hasMany(models.Review, {foreignKey: 'userId', onDelete: 'cascade', hooks:true})
   };
 
 

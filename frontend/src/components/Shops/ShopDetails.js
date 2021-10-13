@@ -95,7 +95,7 @@ const ShopDetails = () => {
   return (
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
-      <ShopReviewFeed id={id, currentUser}/>
+      <ShopReviewFeed id={currentUser}/>
    { visited && <Map shop={visited} />}
      { currentUser ? <span  className='show-review' onClick={()=> {setShowReview(!showReview); setComment('')}}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 

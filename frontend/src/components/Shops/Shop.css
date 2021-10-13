@@ -335,7 +335,7 @@ display:grid;
 grid-template-columns: 10px 1fr 1fr 0.5fr 10px;
 grid-template-rows: 70px 80px 70px 25px 30px;
 position: relative;
-grid-template-areas: '. img img img . '
+grid-template-areas: '. img img img edit '
                       '. img img img . '
                       '. p p . . '
                       '. p p author . '
@@ -373,6 +373,14 @@ border-radius: 7px;
   font-size: 14.5px;
   place-self: start end;
   margin-right: 5px;
+}
+span.edit-review{
+  grid-area: edit;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  font-weight: 300px;
+  color: #29135c;
 }
 .review-date {
   grid-area: date;

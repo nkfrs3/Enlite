@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const SEND_REVIEW = "reviews/sendReview";
 const FETCH_REVIEW = 'reviews/fetchReview'
 const LOAD_ALL = "review/loadAll"
+const EDIT_REVIEW = 'review/edit'
 
 const getAllReviews = (reviews) => ({
   type: LOAD_ALL,
@@ -96,7 +97,12 @@ const reviewsReducer = (state = initialState, action) => {
       const shopID = (action.reviews[0].shopId);
       newState[shopID] = [...action.reviews];
       return newState;
+      case EDIT_REVIEW:
+        const prevObj = {...state};
+        const shop_Id = action.payload.shopId;
 
+
+      return;
     default:
       return state;
   }

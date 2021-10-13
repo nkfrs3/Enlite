@@ -100,11 +100,29 @@ h2.welcome {
  position: relative;
 }
 .search-bar input {
+  all:unset;
   width: 300px;
-  border-radius: 11px;
-  padding: 3px 0 3px 5px;
+  border-radius: 20px;
+  padding: 5px 0 5px 0;
+  height: 37.5px;
+  text-indent: 1em;
+  background-color: #1A0A40;
+  color:#fffddc;
+  box-shadow: inset -5px -5px 3.0px 1.25px rgb(0, 0, 0), inset 6px 3px 1.5px 1.5px #0c041f;
+}
+.search-bar input::placeholder{
+  color:#fffddc;
+  padding-left: 0.5em;
 }
 
+.search-bar input:focus {
+  border: none;
+  outline: none;
+  box-shadow: inset -5px -5px 3.0px 1.25px rgb(0, 0, 0), inset 6px 3px 1.5px 1.5px #0c041f;
+  width: 300px;
+  border-radius: 15px;
+  padding: 3px 0 3px 0;
+}
 ul.search-results {
   position: absolute;
   background-color: rgba(124, 121, 121, 0.664);
@@ -123,6 +141,7 @@ ul.search-results div {
   padding: 8px 0 8px 0;
   text-align: left;
 }
+
 ul.search-results div:hover {
   background-color: rgba(128, 128, 128, 0.664);
   cursor:pointer;

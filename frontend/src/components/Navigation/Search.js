@@ -27,6 +27,7 @@ const Search = () => {
     if (!showSearch) return;
     const closeModal = () => {
       setShowSearch(false);
+      setTerm('');
     };
     document.addEventListener('click', closeModal);
 
@@ -36,7 +37,7 @@ const Search = () => {
 
   return (
     <div className='search-bar'>
-      <input type="text" placeholder='search' value={term} onChange={handleSearch} onClick={()=> setShowSearch(true)}/>
+      <input type="text" placeholder='search' value={term} onChange={handleSearch} onClick={()=> {setShowSearch(true); setResults([])}}/>
       {results.length > 0 && showSearch && <ul className='search-results'>
         { results.map(shop => <div onClick={(e) => history.push(`/shops/${shop.id}`)}>{shop.name}, {shop.city}</div>)}
       </ul>

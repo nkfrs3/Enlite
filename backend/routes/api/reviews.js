@@ -46,7 +46,10 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(reviews);
   })
 )
+router.put('/:id', asyncHandler (async (req, res)=> {
+  // const {}
 
+}))
 
 
 module.exports = router;

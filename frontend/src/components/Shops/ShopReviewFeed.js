@@ -5,11 +5,14 @@ import Stars from "./Stars";
 import {fetchReviewsForShop} from '../../store/reviews'
 
 
-const ShopReviewFeed = ({currentUser}) => {
+const ShopReviewFeed = () => {
+
   const {id} = useParams();
   const dispatch = useDispatch();
 
   const reviews = useSelector(state => {if (state.reviews[id]) return state.reviews[id]});
+  const currentUser = useSelector(state => state.session.user);
+
 
   useEffect(() => {
     dispatch(fetchReviewsForShop(id));
@@ -32,6 +35,7 @@ const formatDate = (date) => {
         <h2>Reviews</h2>
        { reviews?.length && reviews.map(review =>
        <div className='individual-review' >
+         {currentUser?.id === review.User?.id && <span className='edit-review'>edit</span>}
          <span className='review-author'>-{review.User?.username}</span>
          <span className='review-date'>{formatDate(review.createdAt)}</span>
         <p>{review.comment}</p>
