@@ -18,7 +18,7 @@ const ShopDetails = () => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user);
-  const visited = useSelector(state => state.shops[id])
+  const visited = useSelector(state => state.shops.find(shop => shop.id == id));
   const handleRating = (i) => setRating(i);
 
   useEffect(() => {

@@ -39,7 +39,6 @@ import { login } from '../../store/session';
       setShowLogin(false);
       <Redirect to="/" />
     }else {
-      console.log("made it")
       setLoginErrors(user);
     }
 
