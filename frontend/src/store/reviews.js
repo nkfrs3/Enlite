@@ -19,7 +19,8 @@ export const fetchAllReviews = () => async(dispatch) => {
 const getReviewsForShop = (reviews) => ({
   type: FETCH_REVIEW,
   reviews
-})
+});
+
 
 export const fetchReviewsForShop = (shopId) => async(dispatch) => {
   const res = await fetch(`/api/reviews/${shopId}`);
@@ -63,6 +64,34 @@ export const createReview = (review) => async (dispatch) => {
   return data;
 };
 
+const edit_Review = (review) => ({
+  type: EDIT_REVIEW,
+  payload: review,
+});
+
+export const editReview = (review) => async(dispatch) =>{
+  const { image, comment, rating, userId, shopId } = review;
+  const formData = new FormData();
+  formData.append("comment", comment);
+  formData.append("rating", rating);
+  formData.append("userId", userId);
+  formData.append("shopId", shopId);
+  // for single file
+  if (image) formData.append("image", image);
+
+  const res = await csrfFetch(`/api/reviews/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+
+  const data = await res.json();
+  dispatch(edit_Review(data.review));
+  return data;
+}
+
 const initialState = {}
 
 const reviewsReducer = (state = initialState, action) => {
@@ -97,12 +126,18 @@ const reviewsReducer = (state = initialState, action) => {
       const shopID = (action.reviews[0].shopId);
       newState[shopID] = [...action.reviews];
       return newState;
+
       case EDIT_REVIEW:
         const prevObj = {...state};
         const shop_Id = action.payload.shopId;
+        const review_Id = action.payload.id;
+        let postsArr = prevObj[shopId];
+        // let postToEdit = postsArr.find(post => post.id == review_Id);
+        let postIndex = postsArr.findIndex(post => post.id == review_Id);
+       postsArr[postIndex] = action.payload;
 
-
-      return;
+       prevObj[shop_Id] = postsArr
+      return prevObj;
     default:
       return state;
   }

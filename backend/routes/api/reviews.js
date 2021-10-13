@@ -38,7 +38,6 @@ router.get('/', asyncHandler(async (req, res) => {
 // get all reviews for a single shop
 router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
-  console.log(id)
 
   const reviews = await Review.findAll({where: {shopId: id}, include: User, order: [["updatedAt", 'DESC']], limit: 20});
 

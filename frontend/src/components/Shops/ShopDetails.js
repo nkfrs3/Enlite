@@ -6,6 +6,7 @@ import { createReview } from "../../store/reviews";
 import ShopReviewFeed from "./ShopReviewFeed";
 import { fetchReviewsForShop } from "../../store/reviews";
 import Map from "../Map/Index";
+import EditReview from "./EditReview";
 
 const ShopDetails = () => {
   const {id} = useParams();
@@ -124,15 +125,14 @@ const ShopDetails = () => {
 
         <span className='show-rating'>{rating}/5</span>
         </div>
-        <textarea onChange={handleComment}  placeholder="How was your stay?" />
+        <textarea onChange={handleComment}  placeholder="How was your visit?" />
         <button className='submit-review' type='submit'>Submit</button>
         </form> }
     </div>
 
   )
 
-
-
 }
+
 
 export default ShopDetails;
