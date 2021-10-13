@@ -11,7 +11,7 @@ const ShopReviewFeed = () => {
 
   const {id} = useParams();
   const dispatch = useDispatch();
-  const [showEdit, setShowEdit] = useState(true);
+  const [showEdit, setShowEdit] = useState(false);
   const [reviewId, setReviewId] = useState(null);
   const reviews = useSelector(state => {if (state.reviews[id]) return state.reviews[id]});
 
@@ -76,8 +76,9 @@ const formatDate = (date) => {
         <h2>Reviews</h2>
        { reviews?.length && reviews.map(review =>
        <div className='individual-review' >
-         {currentUser?.id === review.User?.id && <span className='edit-review' onClick={()=> { setShowEdit(true);
-  setReviewId(review.id)}} >edit</span>}
+         {currentUser?.id === review.User?.id &&
+         <span className='edit-review' onClick={()=> { setShowEdit(!showEdit);
+    setReviewId(review.id)}}>{showEdit ? 'cancel' : 'edit'}</span>}
          <span className='review-author'>-{review.User?.username}</span>
          <span className='review-date'>{formatDate(review.createdAt)}</span>
         <p>{review.comment}</p>
@@ -91,8 +92,8 @@ const formatDate = (date) => {
       </div>
 
         {/* start of edit form */}
-
-        <form className='review' onSubmit={handleSubmit} style={{backgroundColor: 'red'}}><span onClick={setShowEdit(false)}>close</span>
+     { showEdit && <EditReview /> }
+        {/* <form className='review' onSubmit={handleSubmit} style={{backgroundColor: 'red'}}><span onClick={setShowEdit(false)}>close</span>
       <h3 className='review-title'> Edit Review</h3>
     {errors.length > 0 && <div className="review-errors">
       {  errors?.map(err => (<p>{err}</p>) )}
@@ -119,7 +120,7 @@ const formatDate = (date) => {
     </div>
     <textarea onChange={handleComment}  placeholder="How was your stay?" />
     <button className='submit-review' type='submit'>Submit</button>
-    </form>
+    </form> */}
       </>
   )
 }
