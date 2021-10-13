@@ -34,10 +34,15 @@ useEffect(() => {
   return (
      <div className='shop-card'>
       <h3 className='shop-name' onClick={handleVisit}>{shop.name}</h3>
-        <span>{avgRating} <Stars rating={avgRating}/></span>
+        { avgRating > 0 &&
+           <span className='shop-rating'>
+            <span className='total-reviews'>Total: {shopReviews?.length}</span>
+            <span className='average'>Average: {avgRating}</span>
+            <Stars rating={avgRating}/></span> }
+
         <span className='shop-logo' style={{  backgroundImage: `url(${shop.image})` }} onClick={handleVisit}> </span>
         <p className='address'>{shop.address}</p>
-        <span className='zipcode'>{shop.city}, {shop.zipcode}</span>
+        <span className='zipcode'>{shop.city}, OH {shop.zipcode}</span>
       { shop?.distance && <span className ='shop-distance'>distance: {shop.distance.toFixed(2)} mi.</span> }
         { shop.website && <a href={shop.website} target="_blank"> visit them here </a>}
     </div>

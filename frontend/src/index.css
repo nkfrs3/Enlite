@@ -91,8 +91,17 @@ h2.welcome {
 .link-to-shops {
   text-decoration: none;
   font-size: 1.3em;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     justify-self: self-end;
+}
+.search-bar {
+ margin-left:auto;
+ margin-right: 50px;
+}
+.search-bar input {
+  width: 300px;
+  border-radius: 11px;
+  padding: 3px 0 3px 5px;
 }
 /* purp:  #8562D9 #1A0A40 #5B6DA6 # tan:  #A68A5B #A57F5A light-tan: #f3eee4*/
 

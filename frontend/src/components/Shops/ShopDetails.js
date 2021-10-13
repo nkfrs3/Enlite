@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { FaCoffee } from 'react-icons/fa';
 import { createReview } from "../../store/reviews";
 import ShopReviewFeed from "./ShopReviewFeed";
+import { fetchReviewsForShop } from "../../store/reviews";
 import Map from "../Map/Index";
 
 const ShopDetails = ({shop}) => {
@@ -30,6 +31,7 @@ const ShopDetails = ({shop}) => {
   const handleMouseLeave = () => {
     setHoverRating(undefined);
   }
+
 
   const cups = [1, 2, 3, 4, 5];
 
@@ -93,7 +95,7 @@ const ShopDetails = ({shop}) => {
   return (
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
-      {visited && <ShopReviewFeed id={id, currentUser}/>}
+      <ShopReviewFeed id={id, currentUser}/>
    { visited && <Map shop={visited} />}
      { currentUser ? <span  className='show-review' onClick={()=> {setShowReview(!showReview); setComment('')}}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 

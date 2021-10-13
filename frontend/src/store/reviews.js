@@ -83,10 +83,10 @@ const reviewsReducer = (state = initialState, action) => {
       const shopId = action.payload.shopId;
       const newObj = {...state};
       if (!newObj[shopId]) {
-        newObj[shopId] = action.payload;
+        newObj[shopId] = [action.payload];
         return newObj;
       }
-    newObj[shopId].unshift(action.payload);
+    newObj[shopId] = [].concat(action.payload, newObj[shopId]);
     return newObj;
 
     case FETCH_REVIEW: //gets all the reviews for a single shop

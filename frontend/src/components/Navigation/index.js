@@ -5,6 +5,7 @@ import SignUpForm from "../SignupFormPage";
 import ProfileButton from "./ProfileButton";
 import { NavLink } from "react-router-dom";
 import { signUp } from "../../store/session";
+import Search from "./Search";
 
 
 const Navigation = ({isLoaded}) => {
@@ -37,7 +38,7 @@ const Navigation = ({isLoaded}) => {
   return (
     <div className="nav-bar">
       <NavLink to="/" className='app-title' activeClassName="home">Enlite</NavLink>
-
+      <Search/>
       { !showLogin && !showSignUp &&  <NavLink to="/shops" className='nav-link link-to-shops' activeClassName="at-shops">Shops</NavLink> }
 
       {!showLogin && <h2 className='welcome'>{currentUser?.username}</h2>}

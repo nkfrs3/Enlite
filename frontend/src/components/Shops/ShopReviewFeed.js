@@ -7,21 +7,15 @@ import {fetchReviewsForShop} from '../../store/reviews'
 
 const ShopReviewFeed = ({currentUser}) => {
   const {id} = useParams();
+  const dispatch = useDispatch();
 
-const reviews = useSelector(state =>{
-    return state.reviews[id] }
-   );
+  const reviews = useSelector(state => {if (state.reviews[id]) return state.reviews[id]; else return []} );
 
-const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchReviewsForShop(id));
 
+    },[dispatch, id] )
 
-console.log(id, 'params id')
-useEffect(() => {
-dispatch(fetchReviewsForShop(id));
-
-},[dispatch, id],
-
-)
 
 const formatDate = (date) => {
   const time = new Date(date).toLocaleTimeString('en',
@@ -36,7 +30,7 @@ const formatDate = (date) => {
   return (
       <div className='review-feed-container'>
         <h2>Reviews</h2>
-       { reviews?.length ? reviews.map(review =>
+       { reviews?.length && reviews.map(review =>
        <div className='individual-review' >
          <span className='review-author'>-{review.User?.username}</span>
          <span className='review-date'>{formatDate(review.createdAt)}</span>
@@ -46,7 +40,7 @@ const formatDate = (date) => {
         </div>
         <Stars rating={review.rating}/>
        </div>
-       ) : <div className="no-reviews">Be The First To Review This Location</div>}
+       ) }
 
       </div>
   )
