@@ -27,6 +27,13 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       },
     },
+    profileIcon: {
+      type: DataTypes.STRING,
+     },
+      profileColor: {
+        type: DataTypes.STRING,
+     },
+
   },
   {
     //must specify the scope when querying this model: User.scope('currentUser').findByPk(id)
@@ -54,10 +61,18 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId'
 
      }
+     const columnMappingCheckin = {
+      through: 'Checkin',
+      otherKey: 'shopId',
+      foreignKey: 'userId'
+     }
 
 
     User.belongsToMany(models.Shop, columnMapping );
     User.hasMany(models.Review, {foreignKey: 'userId', onDelete: 'cascade', hooks:true})
+
+    // User.belongsToMany(models.Shop, columnMappingCheckin );
+    User.hasMany(models.Checkin, {foreignKey: 'userId', onDelete: 'cascade', hooks:true})
   };
 
 

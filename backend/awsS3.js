@@ -12,6 +12,17 @@ const multer = require("multer");
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 // --------------------------- Public UPLOAD ------------------------
+const singleFileDelete = async (key) => {
+  var params = {
+    Bucket: NAME_OF_BUCKET,
+    Key: key
+     };
+     s3.deleteObject(params, function(err, data) {
+      if (err) console.log(err, err.stack); // an error occurred
+      else console.log(data);           // successful response
+
+    });
+  }
 
 const singlePublicFileUpload = async (file) => {
 if (file !== undefined) {
@@ -94,6 +105,7 @@ const multipleMulterUpload = (nameOfKey) =>
 module.exports = {
   s3,
   singlePublicFileUpload,
+  singleFileDelete,
   multiplePublicFileUpload,
   singlePrivateFileUpload,
   multiplePrivateFileUpload,

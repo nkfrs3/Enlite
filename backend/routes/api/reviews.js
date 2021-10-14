@@ -1,8 +1,8 @@
 //this is just for reference, on how to set up file upload for aws
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const {singlePublicFileUpload, singleMulterUpload} = require('../../awsS3');
-const {Review, User} = require('../../db/models');
+const {singlePublicFileUpload, singleMulterUpload, singleFileDelete} = require('../../awsS3');
+const {Review, User, Shop} = require('../../db/models');
 const router = express.Router();
 
 
@@ -34,11 +34,12 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(allReviews);
 }));
 
+//get all reviews for a single user
 router.get('/users/:id', asyncHandler(async(req,res)=> {
   const userId = parseInt(req.params.id);
-  const review = await Review.findAll({where:{
+  const review = await Review.findAll({include: {model: Shop, attributes: ['name', 'address', 'city', 'image']}, where:{
     userId,
-  }, order: [['updatedAt', 'DESC']], limit: 20
+  }, order: [['updatedAt', 'DESC']],
   })
   return res.json(review);
 }))
@@ -48,7 +49,6 @@ router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
 
   const reviews = await Review.findAll({where: {shopId: id}, include: User, order: [["updatedAt", 'DESC']], limit: 20});
-
     console.log(reviews)
     return res.json(reviews);
   })
@@ -71,6 +71,7 @@ router.put('/:id',singleMulterUpload("image"), asyncHandler (async (req, res)=> 
 
 router.delete('/:id', asyncHandler(async(req, res)=> {
     const response = await Review.destroy( {where:{id: req.params.id}} );
+  //  const awsDeleted = await singleFileDelete()
     res.json({status: 0, data: response});
 }))
 

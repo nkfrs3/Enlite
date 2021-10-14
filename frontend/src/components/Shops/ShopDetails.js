@@ -6,6 +6,7 @@ import { createReview } from "../../store/reviews";
 import ShopReviewFeed from "./ShopReviewFeed";
 import { fetchReviewsForShop } from "../../store/reviews";
 import Map from "../Map/Index";
+import CheckIn from '../CheckIn/CheckIn'
 import EditReview from "./EditReview";
 
 const ShopDetails = () => {
@@ -93,7 +94,13 @@ const ShopDetails = () => {
       <h1 className='shop-name'>{visited?.name}</h1>
       <ShopReviewFeed id={currentUser}/>
    { visited && <Map shop={visited} />}
-     { currentUser ? <span  className='show-review' onClick={()=> {setShowReview(!showReview); setComment('')}}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
+    <span> {visited?.address}</span>
+     { currentUser ? <> <CheckIn />
+     <span  className='show-review'
+     onClick={()=> {setShowReview(!showReview); setComment('')}}>
+        {(showReview) ? 'cancel' : 'leave a review ?'}</span> </>
+
+       :  <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 
       { showReview &&  <form className='review' onSubmit={handleSubmit} >
         <h3 className='review-title'>Review</h3>

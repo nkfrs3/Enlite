@@ -13,7 +13,8 @@ const ShopReviewFeed = () => {
   const dispatch = useDispatch();
   const [showEdit, setShowEdit] = useState(false);
   const [reviewId, setReviewId] = useState(null);
-  const reviews = useSelector(state => {if (state.reviews[id]) return state.reviews[id]});
+
+  const reviews = useSelector(state =>  (state.reviews[id]));
 
   const currentUser = useSelector(state => state.session.user);
   const [rating, setRating] = useState(0);
@@ -45,13 +46,14 @@ const ShopReviewFeed = () => {
      }
    }
 
+
   useEffect(() => {
     dispatch(fetchReviewsForShop(id));
+    },[dispatch])
 
-    },[dispatch, id] )
 
   const handleDelete = (reviewId) => {
-    console.log("!!!!!", reviewId, id)
+
     let answer = window.confirm("Confirm to delete post.");
     if (answer){
       dispatch(deleteReview(reviewId, parseInt(id)))
@@ -59,13 +61,14 @@ const ShopReviewFeed = () => {
 
   }
 
-const formatDate = (date) => {
+  const formatDate = (date) => {
   const time = new Date(date).toLocaleTimeString('en');
 
   const arr = date.split('-');
   const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
   console.log(monthAndDay, time)
   return `${monthAndDay} ${time}`;
+
 }
 
   return (

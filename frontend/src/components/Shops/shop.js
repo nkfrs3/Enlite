@@ -16,8 +16,6 @@ const Shop = ({shop}) => {
   }
 
 useEffect(() => {
-  console.log('In use Effect')
-  console.log(shopReviews)
   if (shopReviews && shopReviews.length > 0){
     let num = shopReviews.length;
     let total = 0;
