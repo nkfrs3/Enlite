@@ -31,9 +31,17 @@ router.post(
 // get all reviews for each shop
 router.get('/', asyncHandler(async (req, res) => {
    const allReviews = await Review.findAll()
-    console.log(allReviews)
     return res.json(allReviews);
 }));
+
+router.get('/users/:id', asyncHandler(async(req,res)=> {
+  const userId = parseInt(req.params.id);
+  const review = await Review.findAll({where:{
+    userId,
+  }, order: [['updatedAt', 'DESC']], limit: 20
+  })
+  return res.json(review);
+}))
 
 // get all reviews for a single shop
 router.get('/:id', asyncHandler(async (req, res) => {
