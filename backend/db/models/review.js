@@ -2,6 +2,12 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     rating: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -47,7 +53,8 @@ module.exports = (sequelize, DataTypes) => {
 );
   Review.associate = function(models) {
     // associations can be defined here
-    Review.belongsTo(models.User, {foreignKey: 'userId'})
+    Review.belongsTo(models.User, {foreignKey: 'userId', } )
+    Review.belongsTo(models.Shop, {foreignKey: 'shopId'})
 
   };
   return Review;

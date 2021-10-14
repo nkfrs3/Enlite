@@ -22,6 +22,14 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false,
       },
+      profileIcon: {
+        type: Sequelize.STRING,
+        defaultValue: "fas fa-user-circle"
+      },
+      profileColor: {
+        type: Sequelize.STRING,
+        defaultValue: '#A68A5B',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

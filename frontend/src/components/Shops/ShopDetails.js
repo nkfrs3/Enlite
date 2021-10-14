@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import { FaCoffee } from 'react-icons/fa';
 import { createReview } from "../../store/reviews";
 import ShopReviewFeed from "./ShopReviewFeed";
+import { fetchReviewsForShop } from "../../store/reviews";
 import Map from "../Map/Index";
+import CheckIn from '../CheckIn/CheckIn'
+import EditReview from "./EditReview";
 
-const ShopDetails = ({shop}) => {
+const ShopDetails = () => {
   const {id} = useParams();
   const [rating, setRating] = useState(0);
   const [showReview, setShowReview] = useState(false);
@@ -17,9 +20,7 @@ const ShopDetails = ({shop}) => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user);
-
-  let visited = shop.find(each => each.id == parseInt(id));
-
+  const visited = useSelector(state => state.shops.find(shop => shop.id == id));
   const handleRating = (i) => setRating(i);
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const ShopDetails = ({shop}) => {
   const handleMouseLeave = () => {
     setHoverRating(undefined);
   }
+
 
   const cups = [1, 2, 3, 4, 5];
 
@@ -61,7 +63,7 @@ const ShopDetails = ({shop}) => {
     if (image && image.name) {
       body = {image, comment, rating, userId, shopId}
     }else {
-     body = { comment, rating, userId, shopId}
+     body = {comment, rating, userId, shopId}
     }
 
     dispatch(createReview(body))
@@ -69,14 +71,9 @@ const ShopDetails = ({shop}) => {
         setComment("");
         setRating(0);
         setImage(null);
-      })
+      }).then(dispatch(fetchReviewsForShop(id)))
       .catch(async (res) => {
         console.log(res)
-        // const data = await res.json();
-        // if (data && data.errors) {
-        //   newErrors = data.errors;
-        //   setErrors(newErrors);
-        // }
       });
       if (!newErrors.length) {
         setRating(0);
@@ -95,9 +92,16 @@ const ShopDetails = ({shop}) => {
   return (
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
-      {visited && <ShopReviewFeed id={id, currentUser}/>}
+      <ShopReviewFeed id={currentUser}/>
    { visited && <Map shop={visited} />}
-     { currentUser ? <span  className='show-review' onClick={()=> {setShowReview(!showReview); setComment('')}}>{(showReview) ? 'cancel' : 'leave a review ?'}</span> : <span className='show-review' style={{cursor: "default"}}>login to review</span> }
+    <span className='map-address'> {visited?.address}, {visited?.city}</span>
+
+     { currentUser ? <> <CheckIn user={currentUser} id={id}/>
+     <span  className='show-review'
+     onClick={()=> {setShowReview(!showReview); setComment('')}}>
+        {(showReview) ? 'cancel' : 'leave a review ?'}</span> </>
+
+       :  <span className='show-review' style={{cursor: "default"}}>login to review</span> }
 
       { showReview &&  <form className='review' onSubmit={handleSubmit} >
         <h3 className='review-title'>Review</h3>
@@ -121,18 +125,16 @@ const ShopDetails = ({shop}) => {
             onMouseLeave={()=> handleMouseLeave()}
             />)
           })}
-
         <span className='show-rating'>{rating}/5</span>
         </div>
-        <textarea onChange={handleComment}  placeholder="How was your stay?" />
+        <textarea onChange={handleComment}  placeholder="How was your visit?" />
         <button className='submit-review' type='submit'>Submit</button>
         </form> }
     </div>
 
   )
 
-
-
 }
+
 
 export default ShopDetails;

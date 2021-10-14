@@ -6,12 +6,12 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const shopsRouter = require('./shops.js');
 const reviewsRouter = require('./reviews.js')
-
+const searchRouter = require('./search')
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/shops', shopsRouter);
 router.use('/reviews', reviewsRouter);
-
+router.use('/search', searchRouter);
 //  Test Routes for auth
 
 //    GET /api/set-token-cookie

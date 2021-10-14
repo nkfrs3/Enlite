@@ -40,18 +40,20 @@ div.shop-card {
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 15px 1fr 1fr 1fr 15px;
-  grid-template-rows: 60px 1fr 1fr 25px;
+  grid-template-rows: 60px 1fr 70px 25px;
   grid-template-areas: '. name name name .'
-                        '. m logo m3 .'
-                        '. address address . .'
+                        '. m logo . .'
+                        '. address address rating .'
                         'city b2 distance link .';
   min-width: 300px;
   width: 460px;
-  height: 360px;
-  background-color: white;
+  height: 365px;
   padding: 20px 5px 10px 5px;
-
+  background-color: #faf9f4;
+  border-radius: 20px;
+  border: 2px solid #1A0A40;
 }
+
 
 h3.shop-name{
   grid-area: name;
@@ -59,6 +61,16 @@ h3.shop-name{
   font-weight: 900;
   font-size: 1.3em;
   cursor: pointer;
+}
+
+.shop-rating{
+  grid-area: rating;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  align-items: flex-end;
+  margin-right: 2px;
+  font-weight: 600;
 }
 
 .shop-card a {
@@ -82,7 +94,7 @@ p.address {
   font-size: 14px;
   place-self: end start;
   letter-spacing: -0.3px;
-
+  font-weight: 500;
 }
 
 span.show-more {
@@ -103,13 +115,22 @@ span.show-more:hover {
 /*Start of individual shop details */
 .shop-details {
   display: grid;
-  grid-template-columns: 50px 1fr 1.3fr 1fr 50px;
-  grid-template-rows: 75px 1fr 1.5fr 1fr;
+  grid-template-columns: 50px 1fr 1.3fr 1fr 35px;
+  grid-template-rows: 75px 475px 1.5fr 1fr;
   grid-template-areas: "t t t t t"
                         ". map feed review ."
-                        ". . . . ."
+                        ". checkIn . . ."
                         ". . . . .";
   position: relative;
+}
+.map-address{
+grid-area: map;
+height:fit-content;
+margin-left: 12px;
+margin-top: auto;
+margin-bottom: 16px;
+letter-spacing: -1px;
+font-size: 14px;
 }
 
 .zipcode {
@@ -118,6 +139,7 @@ span.show-more:hover {
   letter-spacing: -0.3px;
   white-space: nowrap;
   margin-left: 15px;
+  font-weight: 600;
 }
 
 .shop-distance {
@@ -177,9 +199,10 @@ form.review {
   padding: 20px 0 15px 0;
   background-color: #faf9fd;
   justify-content: flex-start;
-  width: 445px;
+  max-width: 415px;
   border-radius: 25px;
   height: 420px;
+
 }
 .review-title{
  margin-bottom: auto;
@@ -299,6 +322,15 @@ div.map {
   width: 45px;
 }
 
+.close-edit {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #29135c;
+  cursor: pointer;
+}
 /* styles for review feed */
 
 .review-feed-container {
@@ -306,29 +338,33 @@ div.map {
   place-self: center top;
   margin-top: 20px;
   text-align: center;
-  background-color: #e6dfd5;
+  /* background-color: #e6dfd5; */
   width: 90%;
   display:flex;
   flex-direction: column;
   gap: 15px;
+  min-height: 470px;
 }
 .individual-review:last-child {
  margin-bottom: 1rem;
 }
 .individual-review {
 display:grid;
-grid-template-columns: 10px 1fr 1fr 1fr 10px;
-grid-template-rows: 60px 1fr 1fr 1fr;
+grid-template-columns: 10px 1fr 1fr 0.5fr 10px;
+grid-template-rows: 70px 80px 70px 25px 30px;
 position: relative;
-grid-template-areas: '. . img . .'
-                      '. . img . .'
-                      '. . . . .'
-                      '. p p score .';
+grid-template-areas: '. img img img edit '
+                      '. img img img delete '
+                      '. p p . . '
+                      '. p p author . '
+                      '. .  date score .';
 margin-top: 0.75rem;
-background-color: rgb(246, 242, 247);
+background-color: rgb(250, 249, 246);
 padding: 5px 0;
 margin: 0 5px;
 min-width: 348px;
+border: 1.75px solid rgb(205, 203, 207);
+border-radius: 7px;
 
 }
 
@@ -336,24 +372,58 @@ min-width: 348px;
   height: fit-content;
   width: fit-content;
   white-space: pre-line;
- grid-area: p;
- text-align: start;
- font-size: 12.5px;
+  grid-area: p;
+   text-align: start;
+  font-size: 13px;
+  margin-top: 3px;
 }
-/* .individual-review p::before {
+.individual-review p::before {
   content: "";
   position: absolute;
-  background-color: black;
+  background-color:#e6dfd5;
   width: 100%;
-  height: 2.5px;
+  height: 2px;
   right: 0px;
-  bottom: 70px;
-} */
-.review-image-contianer {
+  bottom: 130px;
+}
+.review-author{
+  grid-area: author;
+  font-size: 14.5px;
+  place-self: start end;
+  margin-right: 5px;
+}
+span.edit-review,.delete-review{
+  grid-area: edit;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  font-weight: 300px;
+  color: #29135c;
+  font-size: 14px;
+}
+span.delete-review{
+  bottom: 5px;
+  grid-area: delete;
+  color: red;
+  letter-spacing: -0.5px;
+}
+span.edit-review:hover,.delete-review:hover{
+  font-weight: 600;
+}
+.review-date {
+  grid-area: date;
+  white-space: nowrap;
+  font-size: 12px;
+  place-self: end start;
+  letter-spacing: -0.4px;
+}
+.review-image-container {
   grid-area: img;
+  place-self: start center;
+  margin-top: 3px;
 }
 .review-image {
-  height: 130px;
+  height: 140px;
   object-fit: contain;
 }
 .stars-container{
@@ -363,11 +433,25 @@ min-width: 348px;
   border-radius: 15px;
   padding: 0 9px 2px 9px;
   white-space: nowrap;
-  align-self: flex-end;
   place-self: end end;
   grid-area: score;
+  position: relative;
 }
 .stars {
   font-size: 12px;
   color: #A68A5B;
+}
+
+.partialStar::after{
+  content: "";
+  width: 12px;
+  height: 13px;
+  position:absolute;
+  color: #ece9f3;
+  z-index: 99;
+  right: 3.5px;
+  top: 3px;
+  /* right: 10px; */
+  background-color:#ece9f3;
+
 }
