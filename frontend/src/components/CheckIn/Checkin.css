@@ -1,0 +1,21 @@
+.checkin-container {
+  grid-area: checkIn;
+  /* background-color: red; */
+}
+.checkin-container p {
+  font-size: 14px;
+  background-color: rgb(205, 203, 207);
+  width:fit-content;
+  padding: 1px 4px;
+  border-radius: 7px;
+  font-weight: 600;
+
+}
+.checkIn-btn {
+  font-size: 3em;
+  background-color: transparent;
+}
+.checkIn-btn:hover {
+ color: greenyellow;
+  padding: 0;
+}

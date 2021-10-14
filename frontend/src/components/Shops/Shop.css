@@ -95,7 +95,6 @@ p.address {
   place-self: end start;
   letter-spacing: -0.3px;
   font-weight: 500;
-
 }
 
 span.show-more {
@@ -117,12 +116,21 @@ span.show-more:hover {
 .shop-details {
   display: grid;
   grid-template-columns: 50px 1fr 1.3fr 1fr 35px;
-  grid-template-rows: 75px 1fr 1.5fr 1fr;
+  grid-template-rows: 75px 475px 1.5fr 1fr;
   grid-template-areas: "t t t t t"
                         ". map feed review ."
-                        ". . . . ."
+                        ". checkIn . . ."
                         ". . . . .";
   position: relative;
+}
+.map-address{
+grid-area: map;
+height:fit-content;
+margin-left: 12px;
+margin-top: auto;
+margin-bottom: 16px;
+letter-spacing: -1px;
+font-size: 14px;
 }
 
 .zipcode {

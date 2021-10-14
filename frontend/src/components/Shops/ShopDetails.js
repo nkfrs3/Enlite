@@ -94,8 +94,9 @@ const ShopDetails = () => {
       <h1 className='shop-name'>{visited?.name}</h1>
       <ShopReviewFeed id={currentUser}/>
    { visited && <Map shop={visited} />}
-    <span> {visited?.address}</span>
-     { currentUser ? <> <CheckIn />
+    <span className='map-address'> {visited?.address}, {visited.city}</span>
+
+     { currentUser ? <> <CheckIn user={currentUser} id={id}/>
      <span  className='show-review'
      onClick={()=> {setShowReview(!showReview); setComment('')}}>
         {(showReview) ? 'cancel' : 'leave a review ?'}</span> </>
