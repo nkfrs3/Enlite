@@ -94,7 +94,7 @@ const ShopDetails = () => {
       <h1 className='shop-name'>{visited?.name}</h1>
       <ShopReviewFeed id={currentUser}/>
    { visited && <Map shop={visited} />}
-    <span className='map-address'> {visited?.address}, {visited.city}</span>
+    <span className='map-address'> {visited?.address}, {visited?.city}</span>
 
      { currentUser ? <> <CheckIn user={currentUser} id={id}/>
      <span  className='show-review'
