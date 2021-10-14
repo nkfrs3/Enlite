@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCoffee } from 'react-icons/fa';
 import { editReview } from "../../store/reviews";
-
+import { fetchReviewsForShop} from "../../store/reviews";
 
 
 const EditReview = ({reviewId, setShowEdit}) => {
@@ -22,7 +22,7 @@ const EditReview = ({reviewId, setShowEdit}) => {
 
 
   const reviewToEdit = useSelector(state => state.reviews[id].find(each => each.id === reviewId));
-  console.log(reviewToEdit)
+
   const handleComment = ({target}) => {setComment(target.value)}
 
   const updateFile = (e) => {
@@ -34,7 +34,7 @@ const EditReview = ({reviewId, setShowEdit}) => {
     setRating(reviewToEdit.rating);
     setImage(reviewToEdit.image);
     setComment(reviewToEdit.comment);
-  }, [reviewToEdit])
+  }, [])
 
   const handleMouseLeave = () => {
     setHoverRating(undefined);
@@ -53,29 +53,23 @@ const EditReview = ({reviewId, setShowEdit}) => {
     let body;
 
     if (image && image.name) {
-      body = {image, comment, rating, userId, id}
+      body = {image, comment, rating, userId, shopId: parseInt(id), id: reviewToEdit.id}
     }else {
-     body = { comment, rating, userId, id}
+     body = { comment, rating, userId, shopId: parseInt(id), id: reviewToEdit.id}
     }
 
-    dispatch(editReview(body))
+     dispatch(editReview(body))
       .then(() => {
         setComment("");
         setRating(0);
         setImage(null);
-      })
+        setShowEdit(false);
+
+      }).then(()=> dispatch(fetchReviewsForShop(id)))
       .catch(async (res) => {
         console.log(res)
-        // const data = await res.json();
-        // if (data && data.errors) {
-        //   newErrors = data.errors;
-        //   setErrors(newErrors);
-        // }
+
       });
-      if (!newErrors.length) {
-        setRating(0);
-        setShowEdit(false);
-      }
      };
 
 
@@ -83,7 +77,7 @@ const EditReview = ({reviewId, setShowEdit}) => {
 
     <form className='review' onSubmit={handleSubmit} >
     <h3 className='review-title'> Edit Review</h3>
-
+    <span className='close-edit' onClick={()=> setShowEdit(false)}>close</span>
    {errors.length > 0 && <div className="review-errors">
     {  errors?.map(err => (<p>{err}</p>) )}
    </div> }

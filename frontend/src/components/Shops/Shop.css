@@ -116,7 +116,7 @@ span.show-more:hover {
 /*Start of individual shop details */
 .shop-details {
   display: grid;
-  grid-template-columns: 50px 1fr 1.3fr 1fr 50px;
+  grid-template-columns: 50px 1fr 1.3fr 1fr 35px;
   grid-template-rows: 75px 1fr 1.5fr 1fr;
   grid-template-areas: "t t t t t"
                         ". map feed review ."
@@ -191,9 +191,10 @@ form.review {
   padding: 20px 0 15px 0;
   background-color: #faf9fd;
   justify-content: flex-start;
-  width: 420px;
+  max-width: 415px;
   border-radius: 25px;
   height: 420px;
+
 }
 .review-title{
  margin-bottom: auto;
@@ -313,6 +314,15 @@ div.map {
   width: 45px;
 }
 
+.close-edit {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #29135c;
+  cursor: pointer;
+}
 /* styles for review feed */
 
 .review-feed-container {
@@ -336,7 +346,7 @@ grid-template-columns: 10px 1fr 1fr 0.5fr 10px;
 grid-template-rows: 70px 80px 70px 25px 30px;
 position: relative;
 grid-template-areas: '. img img img edit '
-                      '. img img img . '
+                      '. img img img delete '
                       '. p p . . '
                       '. p p author . '
                       '. .  date score .';
@@ -374,13 +384,23 @@ border-radius: 7px;
   place-self: start end;
   margin-right: 5px;
 }
-span.edit-review{
+span.edit-review,.delete-review{
   grid-area: edit;
   cursor: pointer;
   position: absolute;
   right: 10px;
   font-weight: 300px;
   color: #29135c;
+  font-size: 14px;
+}
+span.delete-review{
+  bottom: 5px;
+  grid-area: delete;
+  color: red;
+  letter-spacing: -0.5px;
+}
+span.edit-review:hover,.delete-review:hover{
+  font-weight: 600;
 }
 .review-date {
   grid-area: date;

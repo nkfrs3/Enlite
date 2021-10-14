@@ -45,10 +45,25 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(reviews);
   })
 )
-router.put('/:id', asyncHandler (async (req, res)=> {
-  // const {}
+router.put('/:id',singleMulterUpload("image"), asyncHandler (async (req, res)=> {
+  const id = req.params.id;
+  const {comment, rating} = req.body;
+  const image = await singlePublicFileUpload(req.file);
+  await Review.update( {image, comment, rating}, { where: {id} } )
+
+    const review = await Review.findOne({
+      where: {
+          id,
+      }
+    });
+
+    return res.json(review)
 
 }))
 
+router.delete('/:id', asyncHandler(async(req, res)=> {
+    const response = await Review.destroy( {where:{id: req.params.id}} );
+    res.json({status: 0, data: response});
+}))
 
 module.exports = router;

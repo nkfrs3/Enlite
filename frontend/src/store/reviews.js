@@ -4,6 +4,7 @@ const SEND_REVIEW = "reviews/sendReview";
 const FETCH_REVIEW = 'reviews/fetchReview'
 const LOAD_ALL = "review/loadAll"
 const EDIT_REVIEW = 'review/edit'
+const DELETE_REVIEW = 'review/delete'
 
 const getAllReviews = (reviews) => ({
   type: LOAD_ALL,
@@ -70,16 +71,16 @@ const edit_Review = (review) => ({
 });
 
 export const editReview = (review) => async(dispatch) =>{
-  const { image, comment, rating, userId, shopId } = review;
+  const { id, image, comment, rating } = review;
   const formData = new FormData();
   formData.append("comment", comment);
   formData.append("rating", rating);
-  formData.append("userId", userId);
-  formData.append("shopId", shopId);
+  // formData.append("userId", userId);
+  // formData.append("shopId", shopId);
   // for single file
   if (image) formData.append("image", image);
 
-  const res = await csrfFetch(`/api/reviews/`, {
+  const res = await csrfFetch(`/api/reviews/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "multipart/form-data",
@@ -88,8 +89,22 @@ export const editReview = (review) => async(dispatch) =>{
   });
 
   const data = await res.json();
-  dispatch(edit_Review(data.review));
+  dispatch(edit_Review(data));
   return data;
+}
+
+const handleDelete =(id, reviewId) => ({
+  type: DELETE_REVIEW,
+  id,
+  reviewId
+})
+
+export const deleteReview = (reviewId, id) => async(dispatch) => {
+ await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE"
+  });
+  dispatch(handleDelete(id, reviewId));
+
 }
 
 const initialState = {}
@@ -121,23 +136,34 @@ const reviewsReducer = (state = initialState, action) => {
 
     case FETCH_REVIEW: //gets all the reviews for a single shop
       const newState = {...state}
-      if (!action.reviews.length) return newState;
+      if (!action.reviews || !action.reviews.length) return newState;
 
       const shopID = (action.reviews[0].shopId);
       newState[shopID] = [...action.reviews];
       return newState;
 
       case EDIT_REVIEW:
-        const prevObj = {...state};
+        const prevObj = {...state}
+        console.log(action.payload);
         const shop_Id = action.payload.shopId;
         const review_Id = action.payload.id;
-        let postsArr = prevObj[shopId];
-        // let postToEdit = postsArr.find(post => post.id == review_Id);
-        let postIndex = postsArr.findIndex(post => post.id == review_Id);
-       postsArr[postIndex] = action.payload;
+        let postsArr = prevObj[shop_Id];
+        console.log(postsArr);
+        postsArr.map( each => {if(each.id === review_Id){
+          console.log('founddd!!!')
+          return action.payload;
+        }
+          });
+          console.log('postsArr', postsArr);
 
-       prevObj[shop_Id] = postsArr
-      return prevObj;
+      return  {...state, [action.payload.shopId]: postsArr}
+
+      case DELETE_REVIEW:
+        const prev = {...state}
+        const shopid = action.id;
+        const arr = prev[action.id].filter(item => item.id !== action.reviewId);
+        prev[shopid] = arr;
+        return prev;
     default:
       return state;
   }

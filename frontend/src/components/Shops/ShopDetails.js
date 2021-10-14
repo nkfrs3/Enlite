@@ -62,7 +62,7 @@ const ShopDetails = () => {
     if (image && image.name) {
       body = {image, comment, rating, userId, shopId}
     }else {
-     body = { comment, rating, userId, shopId}
+     body = {comment, rating, userId, shopId}
     }
 
     dispatch(createReview(body))
@@ -70,14 +70,9 @@ const ShopDetails = () => {
         setComment("");
         setRating(0);
         setImage(null);
-      })
+      }).then(dispatch(fetchReviewsForShop(id)))
       .catch(async (res) => {
         console.log(res)
-        // const data = await res.json();
-        // if (data && data.errors) {
-        //   newErrors = data.errors;
-        //   setErrors(newErrors);
-        // }
       });
       if (!newErrors.length) {
         setRating(0);
@@ -122,7 +117,6 @@ const ShopDetails = () => {
             onMouseLeave={()=> handleMouseLeave()}
             />)
           })}
-
         <span className='show-rating'>{rating}/5</span>
         </div>
         <textarea onChange={handleComment}  placeholder="How was your visit?" />
