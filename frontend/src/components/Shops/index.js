@@ -9,7 +9,8 @@ import { fetchAllReviews } from "../../store/reviews";
 
 const Shops = () => {
   const [selectedShops, setSelectedShops] = useState([]);
-  const [limit, setLimit] = useState(7);
+  const [scrollWidth, setScrollWidth] = useState(7) //the number to determine the scroll distance
+  const [scrollIndex, setScrollIndex] = useState(7); //the number to track the current index
   const [loaded, setLoaded] = useState(false);
   const [distanceArr, setDistanceArr] = useState([]);
   const [ratingsArr, setRatingsArr] = useState([]);
@@ -39,33 +40,35 @@ const Shops = () => {
 
   const scroll = () => {
     if(order === 'distance'){
-      if (limit > distanceArr.length - 7 ) {
-        const end = distanceArr.slice(limit);
-        const start = distanceArr.slice(0, 7 - (end.length-1))
-        setSelectedShops([...end, ...start]);
-        // setSelectedShops(allShops.slice(0, 7));
-        setLimit(start.length);
-        return;
-      } else {
-          setSelectedShops(distanceArr.slice(limit, limit+7));
-          setLimit(limit => limit + 7)
-        }
-    }
-    if(order === 'rating'){}
-    else if (order === 'alphabetical'){
-      if (limit > allShops.length - 7 ) {
-        const end = allShops.slice(limit);
-        const start = allShops.slice(0, 7 - (end.length-1))
-        setSelectedShops([...end, ...start]);
-        // setSelectedShops(allShops.slice(0, 7));
-        setLimit(start.length);
-        return;
-      } else {
-          setSelectedShops(allShops.slice(limit, limit+7));
-          setLimit(limit => limit + 7)
-        }
+      scrollRight(distanceArr, scrollWidth);
     }
 
+    if(order === 'rating'){
+      scrollRight(ratingsArr, scrollWidth)
+    }
+    else if (order === 'alphabetical'){
+      console.log('scrolling right');
+      scrollRight(allShops, scrollWidth);
+   }
+  }
+  function scrollRight(arr, num) {
+    console.log('begin scrolling right')
+    if (scrollIndex > arr.length - num) {
+      console.log('hit the end!!!')
+      const end = arr.slice(scrollIndex);
+      const start = arr.slice(0, num - (end.length));
+      console.log(end, start)
+      setSelectedShops([...end, ...start]);
+      setScrollIndex(start.length);
+      return;
+    } else {
+      setSelectedShops(arr.slice(scrollIndex, scrollIndex + num));
+      setScrollIndex(prev => prev + num);
+    }
+  }
+
+  function scrollLeft(arr, num) {
+    console.log('left');
   }
 
   const handleOrder = ({target}) =>{
@@ -76,7 +79,7 @@ const Shops = () => {
     if (order == 'distance' ) {
       if(distanceArr.length > 0){
         setSelectedShops(distanceArr.slice(0,7));
-        setLimit(7)
+        setScrollIndex(scrollWidth)
       }else {
         navigator.geolocation.getCurrentPosition(success, error);
          }
@@ -91,12 +94,12 @@ const Shops = () => {
         console.log(ratingsArr);
         setSelectedShops(ratingsArr.slice(0,7))
         setRatingsArr(ratingsArr);
-        setLimit(7)
+        setScrollIndex(scrollWidth)
       }
     }
     if (order == 'alphabetical'){
       setSelectedShops(allShops.slice(0, 7))
-      setLimit(7);
+      setScrollIndex(scrollWidth);
       }
 
   }, [order])
@@ -108,7 +111,7 @@ const Shops = () => {
     const distanceArr = allShops.map(shop => ({...shop, distance: calculateDistance(userLat, userLng, shop.lat, shop.long)}) ).sort( (a,b) => a.distance -b.distance);
     setSelectedShops(distanceArr.slice(0,7))
     setDistanceArr(distanceArr);
-    setLimit(7)
+    setScrollIndex(scrollWidth)
   }
 
   return (

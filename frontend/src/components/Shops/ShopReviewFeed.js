@@ -115,20 +115,4 @@ const ShopReviewFeed = ({count}) => {
 }
 
 
-
-// export const Stars = ({rating}) => {
-//  let numStars = [];
-//  let i = rating;
-//  while (i > 0){
-//    numStars.push('3');
-//   i--;
-//  }
-
-//   return (
-//     <span className='stars-container'>
-//     {numStars.map(x => <span className='stars'><i class="fas fa-star"></i></span>)}
-//     </span>
-//   )
-// }
-
 export default ShopReviewFeed;
