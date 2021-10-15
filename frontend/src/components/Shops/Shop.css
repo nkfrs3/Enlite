@@ -363,7 +363,8 @@ margin-top: 0.75rem;
 background-color: rgb(250, 249, 246);
 padding: 5px 0;
 margin: 0 5px;
-min-width: 348px;
+min-width: 470px;
+max-width: 653px;
 border: 1.75px solid rgb(205, 203, 207);
 border-radius: 7px;
 

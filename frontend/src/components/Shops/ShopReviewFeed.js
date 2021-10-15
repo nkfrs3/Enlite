@@ -7,14 +7,14 @@ import {deleteReview, fetchReviewsForShop,} from '../../store/reviews'
 import EditReview from "./EditReview";
 
 
-const ShopReviewFeed = () => {
+const ShopReviewFeed = ({count}) => {
 
   const {id} = useParams();
   const dispatch = useDispatch();
   const [showEdit, setShowEdit] = useState(false);
   const [reviewId, setReviewId] = useState(null);
 
-  const reviews = useSelector(state =>  (state.reviews[id]));
+  const reviews = useSelector(state =>  state.reviews[id]);
 
   const currentUser = useSelector(state => state.session.user);
   const [rating, setRating] = useState(0);
@@ -23,6 +23,9 @@ const ShopReviewFeed = () => {
   const [hoverRating, setHoverRating] = useState(undefined);
   const [errors, setErrors] = useState([]);
   const handleRating = (i) => setRating(i);
+  const [loading, setLoading] = useState(false);
+  // const [count, setCount] = useState(0);
+
   const handleMouseOver = value => {
     setHoverRating(value);
   }
@@ -48,8 +51,10 @@ const ShopReviewFeed = () => {
 
 
   useEffect(() => {
-    dispatch(fetchReviewsForShop(id));
-    },[dispatch])
+
+    dispatch(fetchReviewsForShop(id)).then(()=> setLoading(true))
+    console.log(count)
+    },[dispatch, count])
 
 
   const handleDelete = (reviewId) => {
@@ -66,10 +71,10 @@ const ShopReviewFeed = () => {
 
   const arr = date.split('-');
   const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
-  console.log(monthAndDay, time)
+
   return `${monthAndDay} ${time}`;
 
-}
+  }
 
   return (
     <>
@@ -101,6 +106,7 @@ const ShopReviewFeed = () => {
 
       </>
   )
+
 }
 
 

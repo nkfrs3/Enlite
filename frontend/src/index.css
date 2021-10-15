@@ -34,7 +34,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  margin-bottom: 200px;
+  /* margin-bottom: 200px; */
   background-color: rgb(246, 242, 247);
 }
 

@@ -17,6 +17,8 @@
   -1px -1px 0 #000;
   border-bottom: 2px solid black;
   border-top: 1.25px solid #A68A5B;
+  position: absolute;
+  top: 110px;
 }
 
 div.coffee-banner {
