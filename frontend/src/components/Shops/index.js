@@ -12,11 +12,13 @@ const Shops = () => {
   const [limit, setLimit] = useState(7);
   const [loaded, setLoaded] = useState(false);
   const [distanceArr, setDistanceArr] = useState([]);
-  const [order, setOrder] = useState('');
+  const [ratingsArr, setRatingsArr] = useState([]);
+  const [order, setOrder] = useState('alphabetical');
 
   const dispatch = useDispatch()
 
   const allShops = useSelector(state => state.shops);
+  const reviews = useSelector( state => state.reviews)
 
 
   useEffect(() => {
@@ -49,7 +51,8 @@ const Shops = () => {
           setLimit(limit => limit + 7)
         }
     }
-    else {
+    if(order === 'rating'){}
+    else if (order === 'alphabetical'){
       if (limit > allShops.length - 7 ) {
         const end = allShops.slice(limit);
         const start = allShops.slice(0, 7 - (end.length-1))
@@ -70,10 +73,27 @@ const Shops = () => {
   }
 
   useEffect(()=> {
-    if (order == 'distance'){
-      navigator.geolocation.getCurrentPosition(success, error);
+    if (order == 'distance' ) {
+      if(distanceArr.length > 0){
+        setSelectedShops(distanceArr.slice(0,7));
+        setLimit(7)
+      }else {
+        navigator.geolocation.getCurrentPosition(success, error);
+         }
+       }
+    if (order =='rating'){
+      if (ratingsArr.length > 0){
+        setSelectedShops(ratingsArr.slice(0,7))
+        setRatingsArr(ratingsArr);
+      }else {
+        const averagesObj =  getAverage(reviews);
+        const ratingsArr = allShops.map((shop) => ({...shop, avgRating: averagesObj[shop.id]|| 0})).sort((a,b)=> b.avgRating - a.avgRating)
+        console.log(ratingsArr);
+        setSelectedShops(ratingsArr.slice(0,7))
+        setRatingsArr(ratingsArr);
+        setLimit(7)
+      }
     }
-
     if (order == 'alphabetical'){
       setSelectedShops(allShops.slice(0, 7))
       setLimit(7);
@@ -86,7 +106,6 @@ const Shops = () => {
     const userLng = pos.coords.longitude;
     console.log('user:', userLat, userLng)
     const distanceArr = allShops.map(shop => ({...shop, distance: calculateDistance(userLat, userLng, shop.lat, shop.long)}) ).sort( (a,b) => a.distance -b.distance);
-    console.log(distanceArr)
     setSelectedShops(distanceArr.slice(0,7))
     setDistanceArr(distanceArr);
     setLimit(7)
@@ -134,6 +153,22 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
 
 }
 
+function getAverage(reviews){
+ const keys = Object.keys(reviews);
+ const avg = {};
+ keys.map( x => avg[x] = 0);
+
+
+  for (let i = 0; i < keys.length; i++){
+    let arr = reviews[keys[i]];
+    for(let j = 0; j < arr.length; j++){
+
+      avg[keys[i]] += parseInt(arr[j].rating);
+    }
+    avg[keys[i]] = avg[keys[i]] / arr.length;
+  }
+return avg;
+}
 
 function error(){
   console.log('err')

@@ -34,7 +34,7 @@ useEffect(() => {
       <h3 className='shop-name' onClick={handleVisit}>{shop.name}</h3>
         { avgRating > 0 &&
            <span className='shop-rating'>
-            <span className='total-reviews'>Total: {shopReviews?.length}</span>
+            <span className='total-reviews'>Total: {shopReviews?.length || 0}</span>
             <span className='average'>Average: {avgRating}</span>
             <Stars rating={avgRating}/></span> }
 

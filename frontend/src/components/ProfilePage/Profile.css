@@ -21,7 +21,7 @@
   font-size: 2.4em;
   color: #A68A5B;
   background-color: rgb(14, 12, 12);
-  padding: 0 8px;
+  padding: 3px 10px 0 10px;
   margin:2px;
 
 }
@@ -31,7 +31,8 @@
 }
 
 .profile-label{
-  margin-left: 60%;
+  margin: 0 20px 0 75px;
+  font-size: 1.5em;
 }
 
 

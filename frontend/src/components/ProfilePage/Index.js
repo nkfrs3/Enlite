@@ -26,9 +26,7 @@ const ProfilePage = () => {
   useEffect(() => {
 
     fetch(`/api/reviews/users/${id}`).then(res => res.json()).then(json => setReviews(json));
-    if (user && user.id){
-      fetch(`/api/checkin/${user.id}`).then(res => res.json()).then(json => setCheckIns(json)).catch(e => console.log(e));
-    }
+     fetch(`/api/checkin/${id}`).then(res => res.json()).then(json => setCheckIns(json)).catch(e => console.log(e));
 
   }, [])
 
@@ -57,15 +55,18 @@ const ProfilePage = () => {
     <h3>Your Recent Activity</h3>
       <div className='recent-reviews-container'>
       <h4>Recent Reviews</h4>
-      {reviews?.map(review => <ProfileFeed review={review}/>)}
+      { reviews?.map((review, i) => { if (i < 5) {
+        return <ProfileFeed review={review}/> }
+
+      })}
       </div>
 
       <div>
       <h4>Recent Checkins</h4>
-      { checkIns.map(checkIn =>    <div className='recent-item'>
+      { checkIns.map((checkIn, i) =>  { if (i< 5){ return <div className='recent-item'>
 
         <span> <i class="far fa-check-square"></i>{checkIn.Shop.name}{formatDate(checkIn.createdAt)}</span>
-      </div>) }
+      </div>} } )}
       </div>
     </div>
     </>

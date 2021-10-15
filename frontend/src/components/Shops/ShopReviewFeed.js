@@ -14,7 +14,12 @@ const ShopReviewFeed = ({count}) => {
   const [showEdit, setShowEdit] = useState(false);
   const [reviewId, setReviewId] = useState(null);
 
-  const reviews = useSelector(state =>  state.reviews[id]);
+  const reviews = useSelector(state =>  {
+    if (state.reviews[id]){
+      return state.reviews[id].filter((review, i) => { if (i < 5) return review });
+    }
+  })
+
 
   const currentUser = useSelector(state => state.session.user);
   const [rating, setRating] = useState(0);
@@ -80,7 +85,7 @@ const ShopReviewFeed = ({count}) => {
     <>
       <div className='review-feed-container'>
         <h2>Reviews</h2>
-       { reviews?.length && reviews.map(review =>
+       { reviews?.length && reviews.map((review) =>
        <div className='individual-review' >
          {currentUser?.id === review.User?.id && <>
          <span className='edit-review' onClick={()=> { setShowEdit(!showEdit);
