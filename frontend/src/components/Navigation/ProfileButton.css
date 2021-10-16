@@ -37,21 +37,20 @@ color: #A68A5B;
   border-bottom: 2px solid gray;
 }
 
-/* .footer-container {
-  height: 80vh;
-  position: relative;
-} */
+
 .footer {
   display: flex;
+  flex-shrink: 0;
   gap: 2em;
   font-size: 2.5em;
-  position: absolute;
+  position: relative;
   bottom: 0;
   left:0;
   right: 0;
   padding: 45px 0 10px 0;
   color: #1A0A40;
   background-color: #A68A5B;
+  height: 120px;
 }
 
 .github,.linkedin {

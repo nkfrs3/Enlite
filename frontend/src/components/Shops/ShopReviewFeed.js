@@ -14,11 +14,8 @@ const ShopReviewFeed = ({count}) => {
   const [showEdit, setShowEdit] = useState(false);
   const [reviewId, setReviewId] = useState(null);
 
-  const reviews = useSelector(state =>  {
-    if (state.reviews[id]){
-      return state.reviews[id].filter((review, i) => { if (i < 5) return review });
-    }
-  })
+  const reviews = useSelector(state =>  state.reviews[id])
+
 
 
   const currentUser = useSelector(state => state.session.user);

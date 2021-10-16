@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router";
 import { fetchShops } from "../../store/shops";
 import Shop from "./shop";
 import ShopDetails from "./ShopDetails";
+import RecentActivity from "./RecentActivity";
 import './Shop.css'
 import { fetchAllReviews } from "../../store/reviews";
 
@@ -25,6 +26,7 @@ const Shops = () => {
   useEffect(() => {
     const res = dispatch(fetchShops());
     const reviews = dispatch(fetchAllReviews());
+
     }, [dispatch]);
 
 
@@ -67,6 +69,15 @@ const Shops = () => {
     }
   }
 
+  const scrollBack = () => {
+    if(order === 'distance'){}
+    if(order === 'rating'){
+    }
+    else if (order === 'alphabetical'){
+
+    }
+  }
+
   function scrollLeft(arr, num) {
     console.log('left');
   }
@@ -89,7 +100,7 @@ const Shops = () => {
         setSelectedShops(ratingsArr.slice(0,7))
         setRatingsArr(ratingsArr);
       }else {
-        const averagesObj =  getAverage(reviews);
+        const averagesObj = getAverage(reviews);
         const ratingsArr = allShops.map((shop) => ({...shop, avgRating: averagesObj[shop.id]|| 0})).sort((a,b)=> b.avgRating - a.avgRating)
         console.log(ratingsArr);
         setSelectedShops(ratingsArr.slice(0,7))
@@ -119,21 +130,28 @@ const Shops = () => {
     <Route exact path='/shops'>
     <div class="content-container">
       <h2 className='the-best'>The Best Coffee in Ohio</h2>
-      <span onClick={scroll} className='show-more'><i class="fas fa-ellipsis-h"></i></span>
-      <label for='sort-by' className='sort-by'>Order By</label>
+      <div className="controller">
+        <span onClick={scrollBack} className='show-more left'><i class="fas fa-caret-left"></i></span>
+         <span onClick={scroll} className='show-more right'><i class="fas fa-caret-right"></i></span>
+         <label for='sort-by' className='sort-by'>Order By</label>
         <select  value={order} onChange={handleOrder} >
           <option value='alphabetical'>Alphabetical</option>
           <option value='rating'>Rating</option>
           <option value='distance'>Distance</option>
         </select>
+      </div>
+
 
       <div className='shops-container'>
         {selectedShops.map(shop => {
-          return <Shop shop={shop}/>
+          return <Shop shop={shop} />
         }) }
-      <span onClick={scroll} className='show-more'><i class="fas fa-ellipsis-h"></i></span>
+       <span onClick={scrollBack} className='show-more bottom-left'><i class="fas fa-caret-left"></i></span>
+      <span onClick={scroll} className='show-more bottom-right'><i class="fas fa-caret-right"></i></span>
       </div>
-
+      <div className="recent-container">
+        <RecentActivity />
+      </div>
     </div>
     </Route>
 

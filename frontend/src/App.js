@@ -23,18 +23,22 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded}/>
-      <Route exact path='/'>
-        <LandingPage />
-      </Route>
-      <Route exact path='/(|shops)' >
-        <CoffeeBanner />
-      </Route>
-      <Shops />
-      <Route path='/profile/:id'>
-        <ProfilePage />
-      </Route>
+      {/* <div id='flex-wrapper'> */}
+        {/* <div id="wrapper"> */}
+          <Navigation isLoaded={isLoaded}/>
+          <Route exact path='/'>
+            <LandingPage />
+          </Route>
+          <Route exact path='/(|shops)' >
+            <CoffeeBanner />
+          </Route>
+          <Shops />
+          <Route path='/profile/:id'>
+            <ProfilePage />
+          </Route>
+        {/* </div> */}
       <Footer />
+      {/* </div> */}
     </>
   );
 }

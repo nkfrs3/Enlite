@@ -43,7 +43,8 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 1350px;
-  margin: 0 auto;
+  margin: 3em auto 5em auto;
+
 }
 .recent-activity h3 {
   padding: 35px 0;
