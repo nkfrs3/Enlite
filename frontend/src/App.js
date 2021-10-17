@@ -16,29 +16,25 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('restoring!')
    dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
 
   return (
     <>
-      {/* <div id='flex-wrapper'> */}
-        {/* <div id="wrapper"> */}
-          <Navigation isLoaded={isLoaded}/>
-          <Route exact path='/'>
-            <LandingPage />
-          </Route>
-          <Route exact path='/(|shops)' >
-            <CoffeeBanner />
-          </Route>
-          <Shops />
-          <Route path='/profile/:id'>
-            <ProfilePage />
-          </Route>
-        {/* </div> */}
+      <Navigation isLoaded={isLoaded}/>
+      <Route exact path='/'>
+        <LandingPage />
+      </Route>
+      <Route exact path='/(|shops)' >
+        <CoffeeBanner />
+      </Route>
+      <Shops />
+      <Route path='/profile/:id'>
+        <ProfilePage />
+      </Route>
       <Footer />
-      {/* </div> */}
+
     </>
   );
 }

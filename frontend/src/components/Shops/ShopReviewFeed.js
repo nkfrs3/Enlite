@@ -6,6 +6,15 @@ import Stars from "./Stars";
 import {deleteReview, fetchReviewsForShop,} from '../../store/reviews'
 import EditReview from "./EditReview";
 
+export const formatDateAndTime = (date) => {
+  const time = new Date(date).toLocaleTimeString('en');
+
+  const arr = date.split('-');
+  const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
+
+  return `${monthAndDay} ${time}`;
+
+  }
 
 const ShopReviewFeed = ({count}) => {
 
@@ -52,11 +61,11 @@ const ShopReviewFeed = ({count}) => {
    }
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    dispatch(fetchReviewsForShop(id)).then(()=> setLoading(true))
-    console.log(count)
-    },[dispatch, count])
+  //   dispatch(fetchReviewsForShop(id)).then(()=> setLoading(true))
+  //   console.log(count)
+  //   },[dispatch, count])
 
 
   const handleDelete = (reviewId) => {
@@ -68,15 +77,7 @@ const ShopReviewFeed = ({count}) => {
 
   }
 
-  const formatDate = (date) => {
-  const time = new Date(date).toLocaleTimeString('en');
 
-  const arr = date.split('-');
-  const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
-
-  return `${monthAndDay} ${time}`;
-
-  }
 
   return (
     <>
@@ -90,7 +91,7 @@ const ShopReviewFeed = ({count}) => {
           <span className='delete-review' onClick={() => handleDelete(review.id)}>delete</span></>
         }
          <span className='review-author'>-{review.User?.username}</span>
-         <span className='review-date'>{formatDate(review.createdAt)}</span>
+         <span className='review-date'>{formatDateAndTime(review.createdAt)}</span>
         <p>{review.comment}</p>
        <div className='review-image-container'>
 

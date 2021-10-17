@@ -7,11 +7,12 @@ import ShopDetails from "./ShopDetails";
 import RecentActivity from "./RecentActivity";
 import './Shop.css'
 import { fetchAllReviews } from "../../store/reviews";
+import { set } from "js-cookie";
 
 const Shops = () => {
   const [selectedShops, setSelectedShops] = useState([]);
   const [scrollWidth, setScrollWidth] = useState(7) //the number to determine the scroll distance
-  const [scrollIndex, setScrollIndex] = useState(7); //the number to track the current index
+  const [scrollIndex, setScrollIndex] = useState(0); //the number to track the current index
   const [loaded, setLoaded] = useState(false);
   const [distanceArr, setDistanceArr] = useState([]);
   const [ratingsArr, setRatingsArr] = useState([]);
@@ -54,32 +55,53 @@ const Shops = () => {
    }
   }
   function scrollRight(arr, num) {
-    console.log('begin scrolling right')
+    // console.log('begin scrolling right')
+    console.log(scrollIndex)
     if (scrollIndex > arr.length - num) {
-      console.log('hit the end!!!')
+      // console.log('hit the end!!!')
       const end = arr.slice(scrollIndex);
       const start = arr.slice(0, num - (end.length));
-      console.log(end, start)
+      console.log(end, start);
+      // console.log(end, start)
       setSelectedShops([...end, ...start]);
       setScrollIndex(start.length);
+
       return;
     } else {
       setSelectedShops(arr.slice(scrollIndex, scrollIndex + num));
       setScrollIndex(prev => prev + num);
+
+
     }
   }
 
   const scrollBack = () => {
-    if(order === 'distance'){}
+    console.log('clicked scroll left');
+    if(order === 'distance'){
+      scrollLeft(distanceArr, scrollWidth)
+    }
     if(order === 'rating'){
+      scrollLeft(ratingsArr, scrollWidth)
     }
     else if (order === 'alphabetical'){
 
+      scrollLeft(allShops, scrollWidth)
     }
   }
 
   function scrollLeft(arr, num) {
-    console.log('left');
+
+    if (scrollIndex < num) {
+      let start = arr.slice(0, scrollIndex);
+      let newIndex = arr.length - (num -start.length)
+      let end = arr.slice(newIndex);
+      setSelectedShops([...end, ...start]);
+      setScrollIndex(newIndex)
+
+    }else {
+      setSelectedShops(arr.slice(scrollIndex - num, scrollIndex))
+      setScrollIndex(prev =>  prev - num)
+    }
   }
 
   const handleOrder = ({target}) =>{
@@ -186,7 +208,7 @@ function getAverage(reviews){
 
       avg[keys[i]] += parseInt(arr[j].rating);
     }
-    avg[keys[i]] = avg[keys[i]] / arr.length;
+    avg[keys[i]] = (avg[keys[i]] / arr.length).toFixed(2);
   }
 return avg;
 }
