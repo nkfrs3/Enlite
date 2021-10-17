@@ -94,7 +94,6 @@ const initialState = { user: null };
 const sessionReducer = (state = initialState, action) => {
   switch (action.type){
     case LOGIN:
-      console.log(action.payload, 'fucking action dot payload')
      return {...state, user: action.payload};
     case LOGOUT:
       return {...state, user: null};
