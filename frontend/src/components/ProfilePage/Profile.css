@@ -3,7 +3,7 @@
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0E1ny93Ps15cfkpfHQVObfVhAomSoxR8tXw&usqp=CAU");
   background-size: contain;
   background-position: center;
-  max-width: 1000px;
+  max-width: 1350px;
   height: 260px;
   position: relative;
   display: flex;
@@ -21,7 +21,7 @@
   font-size: 2.4em;
   color: #A68A5B;
   background-color: rgb(14, 12, 12);
-  padding: 0 8px;
+  padding: 3px 10px 0 10px;
   margin:2px;
 
 }
@@ -30,9 +30,11 @@
   font-weight: 800;
 }
 
-.profile-label {
-  margin-left: 1.5em;
+.profile-label{
+  margin: 0 20px 0 75px;
+  font-size: 1.5em;
 }
+
 
 .recent-activity {
   text-align: center;
@@ -40,28 +42,115 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  width: 1000px;
-  margin: 0 auto;
+  width: 1350px;
+  margin: 3em auto 5em auto;
+
 }
 .recent-activity h3 {
-  padding: 15px 0;
+  padding: 35px 0;
   display: block;
- flex-basis: 100%;
+  flex-basis: 100%;
+  height: 28px;
+  font-size: 16px;
+
 }
 
 .recent-activity h4 {
   flex-basis: 50%;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgb(94, 94, 94);
   height:fit-content;
+  min-width: 300px;
   max-width: 300px;
+  padding: 10px 0 5px 0;
 }
 
 .recent-item {
-  font-size: 14px;
+  font-size: 16px;
   display:flex;
   flex-direction: column;
   text-align: left;
+  /* background-color: rgb(238, 232, 232); */
+  padding: 10px;
 }
-.recent-item * {
 
+.edit-profile-btn {
+  color: #1A0A40;
+  letter-spacing: -0.5px;
+   margin-left: 15%;
+  cursor: pointer;
+
+}
+
+.edit-profile-btn:hover {
+  color:#6043a3;
+}
+
+.edit-profile-form {
+  position: absolute;
+  background-color: rgb(236, 227, 238);
+  width: 600px;
+  height: 300px;
+  top: 200px;
+  left: 50%;
+  margin-left: -300px;
+
+  display:flex;
+
+}
+
+.icons {
+  width: 100%;
+  font-size: 14px;
+}
+.edit-profile-form h3 {
+  text-align: center;
+  margin: 7px 0 10px 0;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.icons span:hover {
+  opacity: 50%;
+
+}
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.icons span {
+  margin-left: 10px;
+  font-size: 3em;
+  background-color: #140733;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.icons span:nth-child(2){
+  padding: 0 20px;
+}
+
+.colors-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.colors-container span {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.edit-profile-form button {
+ width: 80px;
+ margin-top: 14px;
+ align-self: center;
+ text-align: center;
+ padding: 2px 10px;
 }

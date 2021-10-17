@@ -6,10 +6,11 @@
 }
 #root{
   background-color: rgb(246, 242, 247);
+  height: 100%;
 }
 html{
-  position: relative;
-  min-height: 100%;
+  /* position: relative; */
+  height:100%;
 }
 
 body,
@@ -31,12 +32,22 @@ ol[role='list'] {
 }
 
 body {
-  min-height: 100vh;
+  height: 100%;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  margin-bottom: 200px;
+  /* margin-bottom: 200px; */
   background-color: rgb(246, 242, 247);
+  /* max-height: max-content; */
 }
+#wrapper {
+  flex: 1 0 auto;
+}
+#flex-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 input,
 button,

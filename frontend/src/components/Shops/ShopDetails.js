@@ -17,6 +17,7 @@ const ShopDetails = () => {
   const [comment, setComment] = useState('');
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
 
   const currentUser = useSelector(state => state.session.user);
@@ -51,6 +52,7 @@ const ShopDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setCount(prev => prev + 1);
     let newErrors = [];
     if (rating <= 0 ){
       newErrors.push('You must provide a score.')
@@ -71,6 +73,7 @@ const ShopDetails = () => {
         setComment("");
         setRating(0);
         setImage(null);
+
       }).then(dispatch(fetchReviewsForShop(id)))
       .catch(async (res) => {
         console.log(res)
@@ -92,7 +95,7 @@ const ShopDetails = () => {
   return (
     <div className='shop-details'>
       <h1 className='shop-name'>{visited?.name}</h1>
-      <ShopReviewFeed id={currentUser}/>
+      <ShopReviewFeed  count={count}/>
    { visited && <Map shop={visited} />}
     <span className='map-address'> {visited?.address}, {visited?.city}</span>
 

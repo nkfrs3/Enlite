@@ -1,0 +1,16 @@
+.most-recent-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.most-recent-activity h2 {
+  white-space: nowrap;
+  border-bottom: 2px solid #1A0A40;
+}
+
+.most-recent-activity p {
+  font-size: 12px;
+  height: fit-content;
+  margin: auto 0 auto 2px;
+}

@@ -113,7 +113,7 @@ module.exports = {
         city: 'Findlay',
         zipcode: 45840,
         website:'https://coffeeamici.com/',
-        image:'https://scontent-ort2-2.xx.fbcdn.net/v/t39.30808-6/c43.0.814.425a/s526x296/242840116_10159594629758834_7084149437658261330_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=340051&_nc_ohc=-KUADeSAL8kAX_wvD1W&_nc_ht=scontent-ort2-2.xx&oh=f367050510e1b76a2b4c1add8f587d58&oe=616431F5',
+        image:'https://coffeeamici.com/wp-content/uploads/2018/05/header-logo-3.png',
         lat: 41.039236181576314,
         long: -83.6504138232761,
       },

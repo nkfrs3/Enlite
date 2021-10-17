@@ -6,6 +6,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { User } = require('../../db/models');
 
+
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
@@ -47,5 +48,15 @@ router.get('/:id', asyncHandler(async (req,res)=> {
   res.json(user);
 }))
 
+router.put('/:id', asyncHandler(async(req,res) => {
+  const id = req.params.id;
+  const {color, icon} = req.body;
+  await User.update( {profileIcon: icon, profileColor: color}, {where: {id}});
 
+  const user = await User.findOne({where: {
+    id,
+  }})
+
+  return res.json(user);
+}))
 module.exports = router;

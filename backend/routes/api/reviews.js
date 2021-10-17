@@ -2,7 +2,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const {singlePublicFileUpload, singleMulterUpload, singleFileDelete} = require('../../awsS3');
-const {Review, User, Shop} = require('../../db/models');
+const {Review, User, Shop, Checkin} = require('../../db/models');
 const router = express.Router();
 
 
@@ -45,11 +45,10 @@ router.get('/users/:id', asyncHandler(async(req,res)=> {
 }))
 
 // get all reviews for a single shop
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const id = req.params.id;
 
   const reviews = await Review.findAll({where: {shopId: id}, include: User, order: [["updatedAt", 'DESC']], limit: 20});
-    console.log(reviews)
     return res.json(reviews);
   })
 )
@@ -73,6 +72,17 @@ router.delete('/:id', asyncHandler(async(req, res)=> {
     const response = await Review.destroy( {where:{id: req.params.id}} );
   //  const awsDeleted = await singleFileDelete()
     res.json({status: 0, data: response});
-}))
+}));
+
+router.get('/recent', asyncHandler(async(req,res)=> {
+  const recentReviews = await Review.findAll( { include: [{model: User, attributes: ['username', 'profileIcon', 'profileColor']}, {model: Shop, attributes: ['name']} ], order: [["createdAt", 'DESC']], limit: 5 })
+  console.log('made it to request!!!')
+  // const recentCheckins = await Checkin.findAll( { include: {model: User, attributes: ['username', 'profileIcon', 'profileColor']}, order: [["createdAt", 'DESC']], limit: 5 })
+  const recentCheckins = await Checkin.findAll( { include: [{model: User, attributes: ['username', 'profileIcon', 'profileColor']}, {model: Shop, attributes: ['name']}], order: [["createdAt", 'DESC']], limit: 5 })
+  let sortedValues = [...recentReviews, ...recentCheckins].sort((a,b) => b.createdAt - a.createdAt)
+  console.log(sortedValues);
+  // res.json({'ok': 'ok'})
+  res.send(sortedValues);
+ } ))
 
 module.exports = router;

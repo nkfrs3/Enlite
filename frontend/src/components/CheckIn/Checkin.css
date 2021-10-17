@@ -19,3 +19,8 @@
  color: greenyellow;
   padding: 0;
 }
+
+.success {
+  font-size: 2.3em;
+  place-self: start start;
+}

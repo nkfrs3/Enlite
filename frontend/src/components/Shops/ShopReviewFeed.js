@@ -6,15 +6,26 @@ import Stars from "./Stars";
 import {deleteReview, fetchReviewsForShop,} from '../../store/reviews'
 import EditReview from "./EditReview";
 
+export const formatDateAndTime = (date) => {
+  const time = new Date(date).toLocaleTimeString('en');
 
-const ShopReviewFeed = () => {
+  const arr = date.split('-');
+  const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
+
+  return `${monthAndDay} ${time}`;
+
+  }
+
+const ShopReviewFeed = ({count}) => {
 
   const {id} = useParams();
   const dispatch = useDispatch();
   const [showEdit, setShowEdit] = useState(false);
   const [reviewId, setReviewId] = useState(null);
 
-  const reviews = useSelector(state =>  (state.reviews[id]));
+  const reviews = useSelector(state =>  state.reviews[id])
+
+
 
   const currentUser = useSelector(state => state.session.user);
   const [rating, setRating] = useState(0);
@@ -23,6 +34,9 @@ const ShopReviewFeed = () => {
   const [hoverRating, setHoverRating] = useState(undefined);
   const [errors, setErrors] = useState([]);
   const handleRating = (i) => setRating(i);
+  const [loading, setLoading] = useState(false);
+  // const [count, setCount] = useState(0);
+
   const handleMouseOver = value => {
     setHoverRating(value);
   }
@@ -47,9 +61,11 @@ const ShopReviewFeed = () => {
    }
 
 
-  useEffect(() => {
-    dispatch(fetchReviewsForShop(id));
-    },[dispatch])
+  // useEffect(() => {
+
+  //   dispatch(fetchReviewsForShop(id)).then(()=> setLoading(true))
+  //   console.log(count)
+  //   },[dispatch, count])
 
 
   const handleDelete = (reviewId) => {
@@ -61,21 +77,13 @@ const ShopReviewFeed = () => {
 
   }
 
-  const formatDate = (date) => {
-  const time = new Date(date).toLocaleTimeString('en');
 
-  const arr = date.split('-');
-  const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
-  console.log(monthAndDay, time)
-  return `${monthAndDay} ${time}`;
-
-}
 
   return (
     <>
       <div className='review-feed-container'>
         <h2>Reviews</h2>
-       { reviews?.length && reviews.map(review =>
+       { reviews?.length && reviews.map((review) =>
        <div className='individual-review' >
          {currentUser?.id === review.User?.id && <>
          <span className='edit-review' onClick={()=> { setShowEdit(!showEdit);
@@ -83,7 +91,7 @@ const ShopReviewFeed = () => {
           <span className='delete-review' onClick={() => handleDelete(review.id)}>delete</span></>
         }
          <span className='review-author'>-{review.User?.username}</span>
-         <span className='review-date'>{formatDate(review.createdAt)}</span>
+         <span className='review-date'>{formatDateAndTime(review.createdAt)}</span>
         <p>{review.comment}</p>
        <div className='review-image-container'>
 
@@ -101,23 +109,8 @@ const ShopReviewFeed = () => {
 
       </>
   )
+
 }
 
-
-
-// export const Stars = ({rating}) => {
-//  let numStars = [];
-//  let i = rating;
-//  while (i > 0){
-//    numStars.push('3');
-//   i--;
-//  }
-
-//   return (
-//     <span className='stars-container'>
-//     {numStars.map(x => <span className='stars'><i class="fas fa-star"></i></span>)}
-//     </span>
-//   )
-// }
 
 export default ShopReviewFeed;
