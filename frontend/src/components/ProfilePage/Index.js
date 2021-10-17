@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Redirect } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { editAccount } from "../../store/session";
 import './Profile.css';
 
 
@@ -20,11 +20,10 @@ const ProfilePage = () => {
   const [icon, setIcon] = useState("fas fa-user-circle")
   const [color, setColor] = useState('#A68A5B')
   // const [profile,setProfile] = useState({});
-
+  const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
 
   const {id} = useParams();
-  console.log(id, user)
 
   useEffect(() => {
 
@@ -56,13 +55,17 @@ const ProfilePage = () => {
   }
 
   const handleSubmit = e => {
-    e.preventdefault();
+    e.preventDefault();
+    const body = {id, icon, color}
+    dispatch(editAccount(body));
+    setShowEdit(false);
+
   }
 
   return (
     <>
     <div className='profile-banner'>
-     <span className='profile-image'><i class="fas fa-user-circle"></i></span>
+     <span className='profile-image' style={{ color: !!user?.profileColor ? user.profileColor : '#A68A5B' }}> {!!user?.profileIcon ? <i class={user.profileIcon} ></i> : <i class='fas fa-user-circle'></i>}</span>
       <h1>{user?.username}</h1>
       <div>
           <span className='profile-label'>number of reviews:</span><span className='count'> {reviews.length}</span>
@@ -71,7 +74,8 @@ const ProfilePage = () => {
     </div>
     {authorized && <span className="edit-profile-btn" onClick={handleEdit}>edit profile</span>}
 
-    {showEdit && <form className="edit-profile-form" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
+    {showEdit &&
+      <form className="edit-profile-form" onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
         <label className="icons">
           <h3>Set Icon</h3>
           <div className='icon-container'>

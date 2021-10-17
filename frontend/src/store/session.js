@@ -42,8 +42,6 @@ try{
 
 export const signUp = (payload) => async (dispatch) => {
   const {email, password, username } = payload;
-  console.log(payload);
-
   try{
     const response = await csrfFetch("/api/users", {
       method: "POST",
@@ -64,6 +62,15 @@ export const signUp = (payload) => async (dispatch) => {
     }
   }
 
+  export const editAccount = (body) => async (dispatch) => {
+    const {id, color, icon} = body;
+    const res = await csrfFetch(`/api/users/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({color, icon}),
+    });
+    const data = await res.json();
+    dispatch(loginUser(data))
+  }
 
   export const logout = () => async (dispatch) => {
     const res = await csrfFetch('/api/session', {
@@ -87,6 +94,7 @@ const initialState = { user: null };
 const sessionReducer = (state = initialState, action) => {
   switch (action.type){
     case LOGIN:
+      console.log(action.payload, 'fucking action dot payload')
      return {...state, user: action.payload};
     case LOGOUT:
       return {...state, user: null};
