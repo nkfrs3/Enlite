@@ -1,64 +1,62 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
-import { FaCoffee } from 'react-icons/fa';
-import Stars from "./Stars";
-import {deleteReview, fetchReviewsForShop,} from '../../store/reviews'
-import EditReview from "./EditReview";
+// import { useSelector, useDispatch } from "react-redux";
+// import { useParams } from "react-router";
+// import { useEffect, useState } from "react";
+// import Stars from "./Stars";
+// import {deleteReview, fetchReviewsForShop} from '../../store/reviews'
+// import EditReview from "./EditReview";
 
-export const formatDateAndTime = (date) => {
-  const time = new Date(date).toLocaleTimeString('en');
+// export const formatDateAndTime = (date) => {
+//   const time = new Date(date).toLocaleTimeString('en');
 
-  const arr = date.split('-');
-  const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
+//   const arr = date.split('-');
+//   const monthAndDay = `${arr[1]}/${arr[2].slice(0,2)}/${arr[0]}`
 
-  return `${monthAndDay} ${time}`;
+//   return `${monthAndDay} ${time}`;
 
-  }
+//   }
 
-const ShopReviewFeed = ({count}) => {
+// const ShopReviewFeed = ({count}) => {
 
-  const {id} = useParams();
-  const dispatch = useDispatch();
-  const [showEdit, setShowEdit] = useState(false);
-  const [reviewId, setReviewId] = useState(null);
+//   const {id} = useParams();
+//   const dispatch = useDispatch();
+//   const [showEdit, setShowEdit] = useState(false);
+//   const [reviewId, setReviewId] = useState(null);
 
-  const reviews = useSelector(state =>  state.reviews[id])
-
+//   const reviews = useSelector(state =>  state.reviews[id]);
 
 
-  const currentUser = useSelector(state => state.session.user);
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [image, setImage] = useState(null);
-  const [hoverRating, setHoverRating] = useState(undefined);
-  const [errors, setErrors] = useState([]);
-  const handleRating = (i) => setRating(i);
-  const [loading, setLoading] = useState(false);
-  // const [count, setCount] = useState(0);
+//   const currentUser = useSelector(state => state.session.user);
+//   const [rating, setRating] = useState(0);
+//   const [comment, setComment] = useState('');
+//   const [image, setImage] = useState(null);
+//   const [hoverRating, setHoverRating] = useState(undefined);
+//   const [errors, setErrors] = useState([]);
+//   const handleRating = (i) => setRating(i);
+//   const [loading, setLoading] = useState(false);
 
-  const handleMouseOver = value => {
-    setHoverRating(value);
-  }
 
-  const handleComment = ({target}) => {setComment(target.value)}
+//   const handleMouseOver = value => {
+//     setHoverRating(value);
+//   }
 
-  const updateFile = (e) => {
-    const file = e.target.files[0];
-    if (file) setImage(file);
-  };
+//   const handleComment = ({target}) => {setComment(target.value)}
 
-  const handleMouseLeave = () => {
-    setHoverRating(undefined);
-  }
+//   const updateFile = (e) => {
+//     const file = e.target.files[0];
+//     if (file) setImage(file);
+//   };
 
-  const cups = [1, 2, 3, 4, 5];
-  const colors = {gold: '#A68A5B', grey: '#1A0A40 '}
-  const styles = {
-    cups: {
+//   const handleMouseLeave = () => {
+//     setHoverRating(undefined);
+//   }
 
-     }
-   }
+//   const cups = [1, 2, 3, 4, 5];
+//   const colors = {gold: '#A68A5B', grey: '#1A0A40 '}
+//   const styles = {
+//     cups: {
+
+//      }
+//    }
 
 
   // useEffect(() => {
@@ -68,20 +66,20 @@ const ShopReviewFeed = ({count}) => {
   //   },[dispatch, count])
 
 
-  const handleDelete = (reviewId) => {
+  // const handleDelete = (reviewId) => {
 
-    let answer = window.confirm("Confirm to delete post.");
-    if (answer){
-      dispatch(deleteReview(reviewId, parseInt(id)))
-    }else return;
+  //   let answer = window.confirm("Confirm to delete post.");
+  //   if (answer){
+  //     dispatch(deleteReview(reviewId, parseInt(id)))
+  //   }else return;
 
-  }
+  // }
 
 
 
-  return (
-    <>
-      <div className='review-feed-container'>
+  // return (
+  //   <>
+      {/* <div className='review-feed-container'>
         <h2>Reviews</h2>
        { reviews?.length && reviews.map((review) =>
        <div className='individual-review' >
@@ -105,12 +103,12 @@ const ShopReviewFeed = ({count}) => {
           ) }
       </div>
 
-     { showEdit && <EditReview reviewId={reviewId} setShowEdit={setShowEdit}/> }
+     { showEdit && <EditReview reviewId={reviewId} setShowEdit={setShowEdit}/> } */}
 
-      </>
+      {/* </>
   )
 
 }
 
 
-export default ShopReviewFeed;
+export default ShopReviewFeed; */}

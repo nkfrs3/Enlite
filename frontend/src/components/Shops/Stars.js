@@ -2,7 +2,6 @@
 
 export const Stars = ({rating}) => {
 
-
   let remainder = (rating % 1).toFixed(2);
 
   let numStars = [];
