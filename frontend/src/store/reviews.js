@@ -29,9 +29,10 @@ export const fetchReviewsForShop = (shopId) => async(dispatch) => {
   dispatch(getReviewsForShop(reviews))
 }
 
-const sendReview = (review) => ({
+const sendReview = (review, associatedUser) => ({
   type: SEND_REVIEW,
   payload: review,
+  associatedUser
 });
 
 export const createReview = (review) => async (dispatch) => {
@@ -61,7 +62,7 @@ export const createReview = (review) => async (dispatch) => {
   });
 
   const data = await res.json();
-  dispatch(sendReview(data.review));
+  dispatch(sendReview(data.review, data.associatedUser));
   return data;
 };
 
@@ -125,14 +126,17 @@ const reviewsReducer = (state = initialState, action) => {
         ...state
       };
     case SEND_REVIEW:
+      console.log(action.payload, "action.payload!")
       const shopId = action.payload.shopId;
       const newObj = {...state};
       if (!newObj[shopId]) {
         newObj[shopId] = action.payload;
+        newObj[shopId] = action.payload.User = action.associatedUser;
         return newObj;
       }
       const target = newObj[shopId];
     newObj[shopId] = [action.payload, ...target]
+    newObj[shopId][0].User = action.associatedUser;
     return newObj;
 
     case FETCH_REVIEW: //gets all the reviews for a single shop

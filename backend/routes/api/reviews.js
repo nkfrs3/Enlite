@@ -21,17 +21,18 @@ router.post(
     });
     console.log(review);
     // setTokenCookie(res, review);
-    let associatedUser = User.findOne({where: {id: userId}})
+    let associatedUser = await User.scope('currentUser').findOne({where: {id: userId}})
     review.User = associatedUser;
     return res.json({
       review,
+      associatedUser
     });
   })
 );
 
 // get all reviews for each shop
 router.get('/', asyncHandler(async (req, res) => {
-   const allReviews = await Review.findAll()
+   const allReviews = await Review.findAll({include: {model: User.scope('currentUser')}, order: [["updatedAt", "DESC"]]} )
     return res.json(allReviews);
 }));
 
