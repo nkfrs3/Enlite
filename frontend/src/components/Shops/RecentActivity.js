@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {formatDateAndTime} from '../Shops/ShopReviewFeed'
+import { formatDateAndTime } from "./ShopDetails";
 import './RecentActivity.css'
 
 const RecentActivity = () => {
@@ -13,7 +13,7 @@ const RecentActivity = () => {
   return (
     <div className='most-recent-activity'>
       <h2>Most Recent Activity</h2>
-      {feed.map(item => {
+      { feed.map(item => {
           if (item.rating){
             return <span className='recent-review' style={{display: 'flex'}}>
             <span style={{color: item.User.profileColor, fontSize: '1.5em'}}>
