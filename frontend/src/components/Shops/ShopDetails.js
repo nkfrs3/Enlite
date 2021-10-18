@@ -131,7 +131,7 @@ const ShopDetails = () => {
 
       <div className='review-feed-container'>
         <h2>Reviews</h2>
-       { reviews?.length && reviews.map((review) =>
+       { !!reviews?.length && reviews.map((review) =>
        <div className='individual-review' >
          {currentUser?.id === review.User?.id && <>
          <span className='edit-review' onClick={()=> { setShowEdit(!showEdit);
