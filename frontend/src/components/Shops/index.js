@@ -11,7 +11,7 @@ import { set } from "js-cookie";
 
 const Shops = () => {
   const [selectedShops, setSelectedShops] = useState([]);
-  const [scrollWidth, setScrollWidth] = useState(7) //the number to determine the scroll distance
+  const [scrollWidth, setScrollWidth] = useState(10) //the number to determine the scroll distance
   const [scrollIndex, setScrollIndex] = useState(0); //the number to track the current index
   const [loaded, setLoaded] = useState(false);
   const [distanceArr, setDistanceArr] = useState([]);
@@ -35,7 +35,7 @@ const Shops = () => {
       if (!loaded){
         if (allShops.length> 0 ){
           setLoaded(true);
-          setSelectedShops(allShops.slice(0,7));
+          setSelectedShops(allShops.slice(0,scrollWidth));
         }
       }
     }, [allShops]);
@@ -111,7 +111,7 @@ const Shops = () => {
   useEffect(()=> {
     if (order == 'distance' ) {
       if(distanceArr.length > 0){
-        setSelectedShops(distanceArr.slice(0,7));
+        setSelectedShops(distanceArr.slice(0,scrollWidth));
         setScrollIndex(scrollWidth)
       }else {
         navigator.geolocation.getCurrentPosition(success, error);
@@ -119,32 +119,37 @@ const Shops = () => {
        }
     if (order =='rating'){
       if (ratingsArr.length > 0){
-        setSelectedShops(ratingsArr.slice(0,7))
+        setSelectedShops(ratingsArr.slice(0,scrollWidth))
         setRatingsArr(ratingsArr);
       }else {
         const averagesObj = getAverage(reviews);
         const ratingsArr = allShops.map((shop) => ({...shop, avgRating: averagesObj[shop.id]|| 0})).sort((a,b)=> b.avgRating - a.avgRating)
         console.log(ratingsArr);
-        setSelectedShops(ratingsArr.slice(0,7))
+        setSelectedShops(ratingsArr.slice(0,scrollWidth))
         setRatingsArr(ratingsArr);
         setScrollIndex(scrollWidth)
       }
     }
     if (order == 'alphabetical'){
-      setSelectedShops(allShops.slice(0, 7))
+      setSelectedShops(allShops.slice(0, scrollWidth))
       setScrollIndex(scrollWidth);
       }
 
-  }, [order])
+  }, [order, scrollWidth])
 
   function success(pos) {
     const userLat = pos.coords.latitude;
     const userLng = pos.coords.longitude;
     console.log('user:', userLat, userLng)
     const distanceArr = allShops.map(shop => ({...shop, distance: calculateDistance(userLat, userLng, shop.lat, shop.long)}) ).sort( (a,b) => a.distance -b.distance);
-    setSelectedShops(distanceArr.slice(0,7))
+    setSelectedShops(distanceArr.slice(0,scrollWidth))
     setDistanceArr(distanceArr);
     setScrollIndex(scrollWidth)
+  }
+
+  const handleScrollWidth = ({target}) =>{
+    setScrollWidth(target.value);
+
   }
 
   return (
@@ -160,6 +165,13 @@ const Shops = () => {
           <option value='alphabetical'>Alphabetical</option>
           <option value='rating'>Rating</option>
           <option value='distance'>Distance</option>
+        </select>
+        <label for='' className='sort-by'>No. Items</label>
+        <select value={scrollIndex} onChange={handleScrollWidth} >
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={30}>30</option>
+
         </select>
       </div>
 

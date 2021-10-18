@@ -21,7 +21,7 @@ div.content-container {
 }
 
 h2.the-best {
-  margin-top:15px;
+  margin-top:25px;
   margin-left: 1.65em;
   padding-bottom: 2em;
   grid-column: 1 / 4;
@@ -128,8 +128,8 @@ span.show-more:hover {
 }
 
 .sort-by {
-  margin-left: 15%;
-  padding-right: 0.5em;
+  margin-left: 5%;
+  padding-right: 5px;
   font-size: 13px;
 }
 
