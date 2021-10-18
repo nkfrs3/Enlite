@@ -1,4 +1,5 @@
-import { useSelector, useState } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import './LandingPage.css'
 
 const LandingPage = () => {
