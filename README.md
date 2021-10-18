@@ -4,7 +4,7 @@ Hello reader. I created this project, Enlite, as a personal portfolio project wh
 
 # Technologies Used
 
-The main technologies I used to build out Enlite were Express, postgres with Sequelize, React with Redux, and CSS. The site can be accessed through the live link hosted on [heroku](http:www.google.com). 
+The main technologies I used to build out Enlite were Express, postgres with Sequelize, React with Redux, and CSS. The site can be accessed through the live link hosted on [heroku](https://enlite-nick.herokuapp.com/). 
 
 # Database Schema 
 
