@@ -7,6 +7,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { User } = require('../../db/models');
 
 
+
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
@@ -58,5 +59,16 @@ router.put('/:id', asyncHandler(async(req,res) => {
   }})
 
   return res.json(user);
-}))
+}));
+
+// router.delete('/:id/:password', asyncHandler(async(req,res)=> {
+//   const {password, id} = req.params;
+//   const userToDelete = await User.scope('loginUser').findOne({where: {id}});
+//   console.log(userToDelete, 'User2delete');
+//   const isValidated = await userToDelete.validatePassword(password)
+//   if (isValidated){
+//     await userToDelete.destroy();
+//     res.send({status: "success"});
+//   }else res.json({status: "failed"});
+// }))
 module.exports = router;
