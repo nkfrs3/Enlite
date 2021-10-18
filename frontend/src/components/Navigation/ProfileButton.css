@@ -59,3 +59,7 @@ color: #A68A5B;
 .footer .about-me {
   padding-left: 3em;
 }
+
+.profile-icon-btn:hover {
+  opacity: 0.6;
+}
