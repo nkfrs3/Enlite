@@ -21,7 +21,7 @@ router.post(
     });
     console.log(review);
     // setTokenCookie(res, review);
-    let associatedUser = user.findOne({where: {id: userId}})
+    let associatedUser = User.findOne({where: {id: userId}})
     review.User = associatedUser;
     return res.json({
       review,
