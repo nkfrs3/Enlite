@@ -15,7 +15,7 @@ const RecentActivity = () => {
       <h2>Most Recent Activity</h2>
       { feed.map(item => {
           if (item.rating){
-            return <span className='recent-review' style={{display: 'flex'}}>
+            return <span className='recent-review' style={{display: 'flex'}} key={item.id}>
             <span style={{color: item.User.profileColor, fontSize: '1.5em'}}>
             <i className={item.User.profileIcon} > </i>
               </span>
@@ -23,7 +23,7 @@ const RecentActivity = () => {
             </span>
 
           }else {
-                return <span className='recent-checkin' style={{display: 'flex'}}>
+                return <span className='recent-checkin' style={{display: 'flex'}} key={item.id}>
                    <span style={{color: item.User.profileColor, fontSize: '1.5em'}}>
                       <i className={item.User.profileIcon} > </i> </span>
                       <p>{item.User.username}: <span style={{letterSpacing: '-0.5px'}}>{formatDateAndTime(item.createdAt)}</span> <br /> {item.Shop.name} <i class="far fa-check-square" style={{color: 'lightgreen', marginLeft: '5px'}}></i></p>

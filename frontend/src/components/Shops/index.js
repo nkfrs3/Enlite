@@ -178,7 +178,7 @@ const Shops = () => {
 
       <div className='shops-container'>
         {selectedShops.map(shop => {
-          return <Shop shop={shop} />
+          return <Shop shop={shop} key={shop.id}/>
         }) }
        <span onClick={scrollBack} className='show-more bottom-left'><i class="fas fa-caret-left"></i></span>
       <span onClick={scroll} className='show-more bottom-right'><i class="fas fa-caret-right"></i></span>

@@ -400,7 +400,7 @@ border-radius: 7px;
   width: fit-content;
   white-space: pre-line;
   grid-area: p;
-   text-align: start;
+  text-align: start;
   font-size: 13px;
   margin-top: 3px;
 }

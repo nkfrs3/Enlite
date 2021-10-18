@@ -80,6 +80,14 @@ export const signUp = (payload) => async (dispatch) => {
     return res;
   }
 
+  // export const deleteAccount = (id, password) => async(dispatch) => {
+  //   const res = await csrfFetch(`/api/users/${id}/${password}`, {
+  //     method: 'DELETE',
+  //   });
+  //   dispatch(logOut);
+  //   console.log(res, "RES!!!");
+  //   return res.json();
+  // }
   export const demoLogout = (id) => async (dispatch) => {
 
     const res = await csrfFetch('/api/session/demo/' + id, {

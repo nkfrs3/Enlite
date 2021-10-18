@@ -149,7 +149,9 @@
   border: 1px solid black;
   cursor: pointer;
 }
-
+.colors-container span:hover {
+  opacity: .8;
+}
 .edit-profile-form button {
  width: 80px;
  margin-top: 14px;
@@ -163,4 +165,68 @@
 
 .edit-profile-form button:hover {
   background-color: #482b8b;
+}
+
+.edit-profile-form .close {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+}
+
+.edit-profile-form .close:hover {
+  color: tomato !important;
+}
+
+.delete-account {
+  position: absolute;
+  bottom: 3px;
+  left: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+  color:rgb(156, 32, 10);
+
+  cursor: pointer;
+}
+
+.delete-account:hover {
+  font-weight: 900;
+  color:rgb(238, 81, 53);
+}
+
+.delete-account-form{
+  position: absolute;
+  width: 550px;
+  height: 200px;
+  top: 90px;
+  left: 50%;
+  margin-left: -275px;
+  z-index: 999;
+  background-color: rgb(31, 31, 31);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+  padding: 1em;
+}
+.delete-account-form input {
+  width: 70%;
+  border-radius: 5px;
+  padding-left: 0.6em;
+}
+.delete-account-form button {
+  margin-top: auto;
+  margin-bottom: 1.5em;
+  align-self: center;
+  text-align: center;
+  padding: 0.4em 1.25em;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: tomato;
+  color:black;
+}
+
+.delete-account-form button:hover {
+  background-color: rgb(250, 64, 31);
 }

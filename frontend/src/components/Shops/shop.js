@@ -1,16 +1,13 @@
-import {useHistory, Route, Switch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Stars from './Stars'
-import { fetchReviewsForShop } from '../../store/reviews';
-import ShopDetails from './ShopDetails';
+
 
 const Shop = ({shop}) => {
-  // const [avgRating, setAvgRating] = useState(null);
+
   const history = useHistory();
   const dispatch = useDispatch();
   const shopReviews = useSelector(state => state.reviews[shop.id]);
-  // console.log(`omgomgomg`, shopReviews);
 
   const handleVisit = () => {
     history.push(`/shops/${shop.id}`)

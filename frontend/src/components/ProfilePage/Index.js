@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { editAccount } from "../../store/session";
+import { deleteAccount } from "../../store/session";
 import './Profile.css';
 
 
@@ -19,7 +20,7 @@ const ProfilePage = () => {
   const [showEdit, setShowEdit] = useState(false)
   const [icon, setIcon] = useState("fas fa-user-circle")
   const [color, setColor] = useState('#A68A5B')
-  // const [profile,setProfile] = useState({});
+  const [showConfirm, setShowConfirm] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
 
@@ -31,15 +32,17 @@ const ProfilePage = () => {
      fetch(`/api/checkin/${id}`).then(res => res.json()).then(json => setCheckIns(json)).catch(e => console.log(e));
   }, [])
 
-  useEffect(() => {
-    if (!showEdit) return;
+  const closeModal = () => {
+    setShowEdit(false);
+    setShowConfirm(false);
+  };
 
-    const closeModal = () => {
-      setShowEdit(false);
-    };
+  useEffect(() => {
+    if (!showEdit && !showConfirm) return;
+
     document.addEventListener('click', closeModal);
     return () => document.removeEventListener("click", closeModal);
-  }, [showEdit]);
+  }, [showEdit, showConfirm]);
 
   useEffect(()=> {
     if (user == undefined) {
@@ -61,7 +64,9 @@ const ProfilePage = () => {
     setShowEdit(false);
 
   }
-
+  const handleDelete = () => {
+    setShowConfirm(true);
+  }
   return (
     <>
     <div className='profile-banner'>
@@ -76,6 +81,7 @@ const ProfilePage = () => {
 
     {showEdit &&
       <form className="edit-profile-form" onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
+        <span className='close' onClick={() => setShowEdit(false)}><i class="far fa-times-circle"></i></span>
         <label className="icons">
           <h3>Set Icon</h3>
           <div className='icon-container'>
@@ -86,6 +92,7 @@ const ProfilePage = () => {
             <span onClick={(e)=> setIcon('fas fa-regular fa-user-astronaut')} style={{outline: icon === 'fas fa-regular fa-user-astronaut' ? '5px solid #A68A5B': 'none'}}><i class="fas fa-regular fa-user-astronaut" style={{color: color}}></i></span>
 
             <span onClick={(e)=> setIcon('fas fa-solid fa-user-ninja')} style={{outline: icon === 'fas fa-solid fa-user-ninja' ? '5px solid #A68A5B': 'none'}}><i class=" fas fa-solid fa-user-ninja" style={{color: color}}></i></span>
+            {/* <p className='delete-account' onClick={handleDelete}>Delete account</p> */}
           </div>
           </label>
 
@@ -117,6 +124,7 @@ const ProfilePage = () => {
       </div>} } )}
       </div>
     </div>
+    {/* { showConfirm && <DeleteAccount id={id} closeModal={closeModal}/> } */}
     </>
   )
 }
@@ -132,5 +140,23 @@ const ProfileFeed = ({review}) => {
   )
 
 }
+
+// const DeleteAccount = ({id, closeModal}) => {
+
+//   const [password, setPassword] = useState("");
+//   const dispatch = useDispatch();
+//   const handleDelete = () => {
+//     dispatch(deleteAccount(id, password))
+//   }
+//   return(
+//     <div className="delete-account-form" onClick={e => e.stopPropagation()}>
+//       <h4>Confirm your password to delete.</h4>
+//       <label>
+//         <input type="password" placeholder="confirm password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+//       </label>
+//       <button type='button' onClick={handleDelete}>DELETE</button>
+//     </div>
+//   )
+// }
 
 export default ProfilePage;

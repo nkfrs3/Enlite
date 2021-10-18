@@ -10,6 +10,7 @@ import './Checkin.css'
 function CheckIn({id}) {
 const [checkIn, setCheckIn] = useState(false);
 const currentUser = useSelector(state => state.session.user);
+
  useEffect(()=> {
    console.log(`check-in-${id}`)
   let status = document.cookie.split('; ').find(row => row.startsWith(`check-in-${id}`))
@@ -20,7 +21,7 @@ const currentUser = useSelector(state => state.session.user);
       setCheckIn(true);
     }
   }
- }, [])
+ }, [id])
 
   const handleCheckin = async () => {
     if (currentUser){

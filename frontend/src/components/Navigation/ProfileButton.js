@@ -45,7 +45,9 @@ const ProfileButton = ({user}) => {
   return (
   <>
     <span onClick ={openMenu} className="profile-icon">
-    <i class="fas fa-user-circle"></i>
+
+    <span className='profile-icon-btn' style={{ color: !!user?.profileColor ? user.profileColor : '#A68A5B' }}> {!!user?.profileIcon ? <i class={user.profileIcon} ></i> : <i class='fas fa-user-circle'></i>}</span>
+
     </span>
     <div className="dropdown-container">
      {showMenu && (
